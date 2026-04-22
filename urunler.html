@@ -605,7 +605,7 @@
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        <span class="cart-badge">3</span>
+        <span class="cart-badge" id="cartBadge">0</span>
       </a>
     </li>
     <li class="nav-account">
@@ -769,7 +769,7 @@
           <p class="product-name">Kablosuz Bluetooth Kulaklık Pro</p>
           <div class="product-footer">
             <span class="product-price">₺1.299 <span class="old">₺1.799</span></span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="1" data-name="Kablosuz Bluetooth Kulaklık Pro" data-price="1299" data-icon="🎧" data-cat="Elektronik">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -781,7 +781,7 @@
           <p class="product-name">Spor Koşu Ayakkabısı Ultralight</p>
           <div class="product-footer">
             <span class="product-price">₺849</span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="2" data-name="Spor Koşu Ayakkabısı Ultralight" data-price="849" data-icon="👟" data-cat="Ayakkabı">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -793,7 +793,7 @@
           <p class="product-name">Akıllı Saat Fitness Tracker</p>
           <div class="product-footer">
             <span class="product-price">₺2.199 <span class="old">₺3.100</span></span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="3" data-name="Akıllı Saat Fitness Tracker" data-price="2199" data-icon="⌚" data-cat="Aksesuar">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -805,7 +805,7 @@
           <p class="product-name">Deri Laptop Çantası 15"</p>
           <div class="product-footer">
             <span class="product-price">₺675</span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="4" data-name='Deri Laptop Çantası 15"' data-price="675" data-icon="💼" data-cat="Çanta">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -817,7 +817,7 @@
           <p class="product-name">Telefon Kılıfı MagSafe Uyumlu</p>
           <div class="product-footer">
             <span class="product-price">₺199 <span class="old">₺299</span></span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="5" data-name="Telefon Kılıfı MagSafe Uyumlu" data-price="199" data-icon="📱" data-cat="Elektronik">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -829,7 +829,7 @@
           <p class="product-name">UV400 Polarize Güneş Gözlüğü</p>
           <div class="product-footer">
             <span class="product-price">₺390</span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="6" data-name="UV400 Polarize Güneş Gözlüğü" data-price="390" data-icon="🕶️" data-cat="Aksesuar">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -841,7 +841,7 @@
           <p class="product-name">Taşınabilir Bluetooth Hoparlör</p>
           <div class="product-footer">
             <span class="product-price">₺3.499</span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="7" data-name="Taşınabilir Bluetooth Hoparlör" data-price="3499" data-icon="💻" data-cat="Elektronik">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -853,7 +853,7 @@
           <p class="product-name">Premium Pamuk Oversize T-Shirt</p>
           <div class="product-footer">
             <span class="product-price">₺450 <span class="old">₺560</span></span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="8" data-name="Premium Pamuk Oversize T-Shirt" data-price="450" data-icon="👕" data-cat="Giyim">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -865,7 +865,7 @@
           <p class="product-name">Klasik Deri Oxford Ayakkabı</p>
           <div class="product-footer">
             <span class="product-price">₺1.150 <span class="old">₺1.350</span></span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="9" data-name="Klasik Deri Oxford Ayakkabı" data-price="1150" data-icon="👠" data-cat="Ayakkabı">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -877,7 +877,7 @@
           <p class="product-name">Mini Crossbody Deri El Çantası</p>
           <div class="product-footer">
             <span class="product-price">₺920</span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="10" data-name="Mini Crossbody Deri El Çantası" data-price="920" data-icon="👜" data-cat="Çanta">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -889,7 +889,7 @@
           <p class="product-name">Oyuncu Mouse Pad XL RGB</p>
           <div class="product-footer">
             <span class="product-price">₺489</span>
-            <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(this)" data-id="11" data-name="Oyuncu Mouse Pad XL RGB" data-price="489" data-icon="🎮" data-cat="Elektronik">+ Sepet</button>
           </div>
         </div>
       </div>
@@ -1062,6 +1062,53 @@
     document.querySelector('[data-status="all"]').classList.add('active');
     applyFilters();
   }
+
+  // ── SEPET FONKSİYONLARI ──
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; }
+  }
+  function saveCart(cart) {
+    localStorage.setItem('novaCart', JSON.stringify(cart));
+  }
+  function updateBadge() {
+    const cart = getCart();
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    badge.textContent = total;
+    badge.style.display = total > 0 ? 'flex' : 'none';
+  }
+
+  function addToCart(btn) {
+    const id    = btn.dataset.id;
+    const name  = btn.dataset.name;
+    const price = parseInt(btn.dataset.price);
+    const icon  = btn.dataset.icon;
+    const cat   = btn.dataset.cat;
+
+    let cart = getCart();
+    const existing = cart.find(i => i.id === id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id, name, price, icon, cat, qty: 1 });
+    }
+    saveCart(cart);
+    updateBadge();
+
+    // Buton animasyonu
+    const orig = btn.textContent;
+    btn.textContent = '✓ Eklendi';
+    btn.style.background = 'var(--accent)';
+    btn.style.color = '#0d0d0d';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 1200);
+  }
+
+  // Sayfa yüklenince badge güncelle
+  updateBadge();
 
   // Navbar dropdown
   function toggleDropdown(e) {
