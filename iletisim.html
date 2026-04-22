@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOVA SHOP — İletişim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --surface: #161616; --card: #1e1e1e;
+      --accent: #e8c07d; --accent2: #c9956a;
+      --text: #f0ece4; --muted: #888; --border: #2a2a2a;
+      --nav-h: 72px;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(13,13,13,0.85); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; z-index: 1000; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-decoration: none; flex: 1; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 18px; border-radius: 24px; transition: background 0.2s, color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { background: var(--card); color: var(--accent); }
+    .account-btn { background: var(--accent) !important; color: #0d0d0d !important; font-weight: 600 !important; display: flex; align-items: center; gap: 6px; }
+    .cart-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; color: var(--text); text-decoration: none; border-radius: 50%; transition: background 0.2s; }
+    .cart-icon:hover { background: var(--card); }
+    .cart-badge { position: absolute; top: 4px; right: 4px; background: var(--accent); color: #0d0d0d; font-size: 0.6rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .nav-account { position: relative; }
+    .account-dropdown { display: none; position: absolute; top: calc(100% + 14px); right: 0; width: 340px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.6); overflow: hidden; animation: dropIn 0.25s ease; }
+    .account-dropdown.open { display: block; }
+    @keyframes dropIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+    .dropdown-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    .dropdown-tab { flex: 1; padding: 14px; text-align: center; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: color 0.2s; }
+    .dropdown-tab.active { color: var(--accent); background: rgba(232,192,125,0.07); border-bottom: 2px solid var(--accent); }
+    .dropdown-panel { padding: 24px; display: none; }
+    .dropdown-panel.active { display: block; }
+    .dp-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text); margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .dp-input { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; color: var(--text); font-size: 0.82rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
+    .dp-input:focus { border-color: var(--accent); }
+    .dp-input::placeholder { color: var(--muted); }
+    .dp-btn { width: 100%; margin-top: 14px; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 10px; cursor: pointer; transition: opacity 0.2s; }
+    .dp-btn:hover { opacity: 0.9; }
+    .dp-link { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
+    .dp-link a { color: var(--accent); text-decoration: none; }
+
+    /* PAGE */
+    .page { padding: calc(var(--nav-h) + 60px) 48px 80px; max-width: 1100px; margin: 0 auto; }
+
+    .page-header { text-align: center; margin-bottom: 64px; }
+    .page-tag { display: inline-block; background: rgba(232,192,125,0.12); border: 1px solid rgba(232,192,125,0.3); color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 12px; }
+    .page-header h1 span { color: var(--accent); }
+    .page-header p { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
+    @media(max-width:860px){ .contact-layout { grid-template-columns: 1fr; } }
+
+    /* Info cards */
+    .info-cards { display: flex; flex-direction: column; gap: 16px; }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .info-card:hover { border-color: rgba(232,192,125,0.25); transform: translateX(4px); }
+
+    .info-icon {
+      width: 44px; height: 44px;
+      background: rgba(232,192,125,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .info-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
+    .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .info-sub { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+    /* Social */
+    .social-title { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 28px 0 14px; }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 42px; height: 42px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover { background: rgba(232,192,125,0.1); color: var(--accent); border-color: rgba(232,192,125,0.3); }
+
+    /* Contact form */
+    .contact-form-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .form-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
+    .form-title span { color: var(--accent); }
+    .form-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; }
+
+    .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .cf-grid { grid-template-columns: 1fr; } }
+
+    .cf-group { display: flex; flex-direction: column; gap: 6px; }
+    .cf-group.full { grid-column: 1/-1; }
+    .cf-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+    .cf-input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 0.875rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .cf-input:focus { border-color: var(--accent); }
+    .cf-input::placeholder { color: var(--muted); }
+    textarea.cf-input { resize: vertical; min-height: 130px; }
+
+    .subject-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .subject-tag {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .subject-tag:hover, .subject-tag.selected {
+      background: rgba(232,192,125,0.1);
+      border-color: rgba(232,192,125,0.4);
+      color: var(--accent);
+    }
+
+    .cf-submit {
+      margin-top: 24px;
+      padding: 14px 40px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 8px 24px rgba(232,192,125,0.2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .cf-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Success toast */
+    .toast {
+      display: none;
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+      background: var(--card);
+      border: 1px solid rgba(126,200,126,0.4);
+      color: #7ec87e;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      z-index: 9999;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      animation: toastIn 0.3s ease;
+    }
+    @keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+
+    footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.82rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NOVA</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li>
+      <a href="sepet.html" class="cart-icon" title="Sepet">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge">3</span>
+      </a>
+    </li>
+    <li class="nav-account">
+      <a class="account-btn" onclick="toggleDropdown(event)" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Hesabım ▾
+      </a>
+      <div class="account-dropdown" id="accountDropdown">
+        <div class="dropdown-tabs">
+          <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
+          <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
+        </div>
+        <div class="dropdown-panel active" id="panel-giris">
+          <div class="dp-title">Hoş Geldiniz 👋</div>
+          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
+          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre"/></div>
+          <button class="dp-btn" onclick="window.location.href='hesap.html'">Giriş Yap</button>
+          <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+        </div>
+        <div class="dropdown-panel" id="panel-kayit">
+          <div class="dp-title">Yeni Hesap</div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="Ad"/>
+            <input class="dp-input" type="text" placeholder="Soyad"/>
+          </div>
+          <div class="form-row full"><input class="dp-input" type="tel" placeholder="Telefon Numarası"/></div>
+          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
+          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre oluştur"/></div>
+          <div class="form-row full"><input class="dp-input" type="text" placeholder="Adres"/></div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="İl"/>
+            <input class="dp-input" type="text" placeholder="İlçe"/>
+          </div>
+          <button class="dp-btn">Kayıt Ol</button>
+        </div>
+      </div>
+    </li>
+    <li><a href="iletisim.html" class="active">İletişim</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="page-header">
+    <span class="page-tag">✉ Bize Ulaşın</span>
+    <h1>Nasıl <span>Yardımcı</span><br/>Olabiliriz?</h1>
+    <p>Sorularınız, önerileriniz veya şikayetleriniz için<br/>7/24 sizin için buradayız.</p>
+  </div>
+
+  <div class="contact-layout">
+
+    <!-- Info -->
+    <div>
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <p class="info-label">Telefon</p>
+            <p class="info-val">+90 (212) 555 00 11</p>
+            <p class="info-sub">Pazartesi–Cuma, 09:00–18:00</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <p class="info-label">E-posta</p>
+            <p class="info-val">destek@novashop.com</p>
+            <p class="info-sub">Genellikle 2 saat içinde yanıt</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <p class="info-label">Adres</p>
+            <p class="info-val">Maslak Mah. Büyükdere Cad. No: 255</p>
+            <p class="info-sub">Sarıyer, İstanbul 34485</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <p class="info-label">Çalışma Saatleri</p>
+            <p class="info-val">Pazartesi – Cumartesi</p>
+            <p class="info-sub">09:00 – 20:00 arasında</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="social-title">Sosyal Medya</p>
+      <div class="social-links">
+        <a class="social-link" href="#" title="Instagram">📸</a>
+        <a class="social-link" href="#" title="Twitter">🐦</a>
+        <a class="social-link" href="#" title="Facebook">👍</a>
+        <a class="social-link" href="#" title="YouTube">▶️</a>
+        <a class="social-link" href="#" title="WhatsApp">💬</a>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="contact-form-wrap">
+      <h2 class="form-title">Mesaj <span>Gönder</span></h2>
+      <p class="form-desc">Formu doldurun, en kısa sürede size dönelim.</p>
+
+      <div class="cf-grid">
+        <div class="cf-group">
+          <label class="cf-label">Ad</label>
+          <input class="cf-input" type="text" placeholder="Adınız"/>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Soyad</label>
+          <input class="cf-input" type="text" placeholder="Soyadınız"/>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">E-posta</label>
+          <input class="cf-input" type="email" placeholder="ornek@mail.com"/>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Telefon</label>
+          <input class="cf-input" type="tel" placeholder="+90 5__ ___ __ __"/>
+        </div>
+        <div class="cf-group full">
+          <label class="cf-label">Konu</label>
+          <div class="subject-tags">
+            <span class="subject-tag selected" onclick="selectTag(this)">Sipariş & Kargo</span>
+            <span class="subject-tag" onclick="selectTag(this)">İade & Değişim</span>
+            <span class="subject-tag" onclick="selectTag(this)">Ürün Bilgisi</span>
+            <span class="subject-tag" onclick="selectTag(this)">Teknik Destek</span>
+            <span class="subject-tag" onclick="selectTag(this)">Diğer</span>
+          </div>
+        </div>
+        <div class="cf-group full">
+          <label class="cf-label">Mesajınız</label>
+          <textarea class="cf-input" placeholder="Mesajınızı buraya yazın..."></textarea>
+        </div>
+      </div>
+
+      <button class="cf-submit" onclick="sendMessage()">
+        Mesaj Gönder
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast">✓ Mesajınız başarıyla iletildi! En kısa sürede dönüş yapılacak.</div>
+
+<footer>
+  <span class="footer-logo">NOVA SHOP</span>
+  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span>Güvenli alışveriş · SSL korumalı</span>
+</footer>
+
+<script>
+  function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById('accountDropdown').classList.toggle('open');
+  }
+  function switchTab(tab) {
+    document.querySelectorAll('.dropdown-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+  document.addEventListener('click', function(e) {
+    const acc = document.querySelector('.nav-account');
+    if (!acc.contains(e.target)) document.getElementById('accountDropdown').classList.remove('open');
+  });
+
+  function selectTag(el) {
+    document.querySelectorAll('.subject-tag').forEach(t => t.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function sendMessage() {
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 3500);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOVA SHOP — Ana Sayfa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --card: #1e1e1e;
+      --accent: #e8c07d;
+      --accent2: #c9956a;
+      --text: #f0ece4;
+      --muted: #888;
+      --border: #2a2a2a;
+      --nav-h: 72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 48px;
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+      flex: 1;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 8px 18px;
+      border-radius: 24px;
+      transition: background 0.2s, color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--card);
+      color: var(--accent);
+    }
+
+    /* Hesabım dropdown */
+    .nav-account { position: relative; }
+
+    .account-btn {
+      background: var(--accent);
+      color: #0d0d0d !important;
+      font-weight: 600 !important;
+      display: flex; align-items: center; gap: 6px;
+      cursor: pointer;
+    }
+    .account-btn:hover { background: var(--accent2) !important; color: #fff !important; }
+
+    .account-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      width: 340px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+      overflow: hidden;
+      animation: dropIn 0.25s ease;
+    }
+    .account-dropdown.open { display: block; }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+    .dropdown-tab {
+      flex: 1; padding: 14px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .dropdown-tab.active {
+      color: var(--accent);
+      background: rgba(232,192,125,0.07);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .dropdown-panel { padding: 24px; display: none; }
+    .dropdown-panel.active { display: block; }
+
+    .dp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
+
+    .dp-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .dp-input:focus { border-color: var(--accent); }
+    .dp-input::placeholder { color: var(--muted); }
+
+    .dp-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .dp-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .dp-btn:active { transform: translateY(0); }
+
+    .dp-link {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .dp-link a { color: var(--accent); text-decoration: none; }
+
+    /* Sepet ikonu */
+    .cart-icon {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 50%;
+      transition: background 0.2s;
+      margin-left: 4px;
+    }
+    .cart-icon:hover { background: var(--card); }
+    .cart-badge {
+      position: absolute; top: 4px; right: 4px;
+      background: var(--accent);
+      color: #0d0d0d;
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: calc(var(--nav-h) + 40px) 48px 80px;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,192,125,0.08) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 50% at 20% 20%, rgba(201,149,106,0.06) 0%, transparent 60%);
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 560px; z-index: 1; }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(232,192,125,0.12);
+      border: 1px solid rgba(232,192,125,0.3);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 440px;
+    }
+
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0d0d0d;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 16px 32px;
+      border-radius: 50px;
+      letter-spacing: 0.3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(232,192,125,0.25);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,192,125,0.4); }
+
+    /* ── PRODUCTS ── */
+    .section { padding: 80px 48px; }
+
+    .section-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--text);
+    }
+
+    .section-title span { color: var(--accent); }
+
+    .see-all {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .see-all:hover { border-color: var(--accent); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(232,192,125,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .product-img {
+      width: 100%; height: 220px;
+      background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      position: relative; overflow: hidden;
+    }
+
+    .product-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--accent);
+      color: #0d0d0d;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .product-info { padding: 20px; }
+
+    .product-cat {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .product-price .old {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+
+    .add-cart-btn {
+      background: rgba(232,192,125,0.1);
+      border: 1px solid rgba(232,192,125,0.25);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .add-cart-btn:hover {
+      background: var(--accent);
+      color: #0d0d0d;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Close dropdown when clicking outside */
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="nav-logo">NOVA</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Ana Sayfa</a></li>
+    <li>
+      <a href="sepet.html" class="cart-icon" title="Sepet">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge">3</span>
+      </a>
+    </li>
+    <li class="nav-account">
+      <a class="account-btn" onclick="toggleDropdown(event)" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Hesabım ▾
+      </a>
+      <div class="account-dropdown" id="accountDropdown">
+        <div class="dropdown-tabs">
+          <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
+          <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
+        </div>
+
+        <!-- Giriş Paneli -->
+        <div class="dropdown-panel active" id="panel-giris">
+          <div class="dp-title">Hoş Geldiniz 👋</div>
+          <div class="form-row full">
+            <input class="dp-input" type="email" placeholder="E-posta adresi"/>
+          </div>
+          <div class="form-row full">
+            <input class="dp-input" type="password" placeholder="Şifre"/>
+          </div>
+          <button class="dp-btn" onclick="window.location.href='hesap.html'">Giriş Yap</button>
+          <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+        </div>
+
+        <!-- Kayıt Paneli -->
+        <div class="dropdown-panel" id="panel-kayit">
+          <div class="dp-title">Yeni Hesap</div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="Ad"/>
+            <input class="dp-input" type="text" placeholder="Soyad"/>
+          </div>
+          <div class="form-row full">
+            <input class="dp-input" type="tel" placeholder="Telefon Numarası"/>
+          </div>
+          <div class="form-row full">
+            <input class="dp-input" type="email" placeholder="E-posta adresi"/>
+          </div>
+          <div class="form-row full">
+            <input class="dp-input" type="password" placeholder="Şifre oluştur"/>
+          </div>
+          <div class="form-row full">
+            <input class="dp-input" type="text" placeholder="Adres (Sokak, Mahalle, No)"/>
+          </div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="İl"/>
+            <input class="dp-input" type="text" placeholder="İlçe"/>
+          </div>
+          <button class="dp-btn">Kayıt Ol</button>
+        </div>
+      </div>
+    </li>
+    <li><a href="iletisim.html">İletişim</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">✦ 2025 Koleksiyonu</span>
+    <h1>Kaliteli<br/>Alışverişin<br/><span>Yeni Adresi</span></h1>
+    <p>Binlerce ürün, hızlı teslimat ve güvenli ödeme seçenekleriyle en iyi alışveriş deneyimi sizi bekliyor.</p>
+    <a href="#products" class="hero-cta">
+      Alışverişe Başla
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="section-header">
+    <h2 class="section-title">Öne Çıkan <span>Ürünler</span></h2>
+    <a href="#" class="see-all">Tümünü gör →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">🎧
+        <span class="product-badge">YENİ</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Elektronik</p>
+        <p class="product-name">Kablosuz Bluetooth Kulaklık Pro</p>
+        <div class="product-footer">
+          <span class="product-price">₺1.299 <span class="old">₺1.799</span></span>
+          <button class="add-cart-btn">+ Sepet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">👟</div>
+      <div class="product-info">
+        <p class="product-cat">Ayakkabı</p>
+        <p class="product-name">Spor Koşu Ayakkabısı Ultralight</p>
+        <div class="product-footer">
+          <span class="product-price">₺849</span>
+          <button class="add-cart-btn">+ Sepet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">⌚
+        <span class="product-badge">%30</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Aksesuar</p>
+        <p class="product-name">Akıllı Saat Fitness Tracker</p>
+        <div class="product-footer">
+          <span class="product-price">₺2.199 <span class="old">₺3.100</span></span>
+          <button class="add-cart-btn">+ Sepet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">💼</div>
+      <div class="product-info">
+        <p class="product-cat">Çanta</p>
+        <p class="product-name">Deri Laptop Çantası 15"</p>
+        <div class="product-footer">
+          <span class="product-price">₺675</span>
+          <button class="add-cart-btn">+ Sepet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">📱
+        <span class="product-badge">YENİ</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">Elektronik</p>
+        <p class="product-name">Telefon Kılıfı MagSafe Uyumlu</p>
+        <div class="product-footer">
+          <span class="product-price">₺199 <span class="old">₺299</span></span>
+          <button class="add-cart-btn">+ Sepet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🕶️</div>
+      <div class="product-info">
+        <p class="product-cat">Aksesuar</p>
+        <p class="product-name">UV400 Polarize Güneş Gözlüğü</p>
+        <div class="product-footer">
+          <span class="product-price">₺390</span>
+          <button class="add-cart-btn">+ Sepet</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">NOVA SHOP</span>
+  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span>Güvenli alışveriş · SSL korumalı</span>
+</footer>
+
+<script>
+  function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById('accountDropdown').classList.toggle('open');
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.dropdown-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+
+  document.addEventListener('click', function(e) {
+    const acc = document.querySelector('.nav-account');
+    if (!acc.contains(e.target)) {
+      document.getElementById('accountDropdown').classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
