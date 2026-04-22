@@ -450,30 +450,31 @@
           <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
         </div>
 
-        <!-- Kayıt Paneli -->
+<!-- Kayıt Paneli -->
         <div class="dropdown-panel" id="panel-kayit">
           <div class="dp-title">Yeni Hesap</div>
           <div class="form-row">
-            <input class="dp-input" type="text" placeholder="Ad"/>
-            <input class="dp-input" type="text" placeholder="Soyad"/>
+            <input class="dp-input" type="text"     id="reg-ad"      placeholder="Ad"/>
+            <input class="dp-input" type="text"     id="reg-soyad"   placeholder="Soyad"/>
           </div>
           <div class="form-row full">
-            <input class="dp-input" type="tel" placeholder="Telefon Numarası"/>
+            <input class="dp-input" type="tel"      id="reg-telefon" placeholder="Telefon Numarası"/>
           </div>
           <div class="form-row full">
-            <input class="dp-input" type="email" placeholder="E-posta adresi"/>
+            <input class="dp-input" type="email"    id="reg-email"   placeholder="E-posta adresi"/>
           </div>
           <div class="form-row full">
-            <input class="dp-input" type="password" placeholder="Şifre oluştur"/>
+            <input class="dp-input" type="password" id="reg-sifre"   placeholder="Şifre oluştur"/>
           </div>
           <div class="form-row full">
-            <input class="dp-input" type="text" placeholder="Adres (Sokak, Mahalle, No)"/>
+            <input class="dp-input" type="text"     id="reg-adres"   placeholder="Adres (Sokak, Mahalle, No)"/>
           </div>
           <div class="form-row">
-            <input class="dp-input" type="text" placeholder="İl"/>
-            <input class="dp-input" type="text" placeholder="İlçe"/>
+            <input class="dp-input" type="text"     id="reg-il"      placeholder="İl"/>
+            <input class="dp-input" type="text"     id="reg-ilce"    placeholder="İlçe"/>
           </div>
-          <button class="dp-btn">Kayıt Ol</button>
+          <button class="dp-btn" onclick="kayitOl()">Kayıt Ol</button>
+          <p id="kayit-mesaj" style="text-align:center;font-size:0.8rem;margin-top:10px;"></p>
         </div>
       </div>
     </li>
