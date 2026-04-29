@@ -44,9 +44,7 @@
     .dp-link { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
     .dp-link a { color: var(--accent); text-decoration: none; }
 
-    /* PAGE */
     .page { padding: calc(var(--nav-h) + 60px) 48px 80px; max-width: 1100px; margin: 0 auto; }
-
     .page-header { text-align: center; margin-bottom: 64px; }
     .page-tag { display: inline-block; background: rgba(232,192,125,0.12); border: 1px solid rgba(232,192,125,0.3); color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
     .page-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 12px; }
@@ -56,130 +54,42 @@
     .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
     @media(max-width:860px){ .contact-layout { grid-template-columns: 1fr; } }
 
-    /* Info cards */
     .info-cards { display: flex; flex-direction: column; gap: 16px; }
-
-    .info-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px 24px;
-      display: flex; align-items: flex-start; gap: 16px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
+    .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; transition: border-color 0.2s, transform 0.2s; }
     .info-card:hover { border-color: rgba(232,192,125,0.25); transform: translateX(4px); }
-
-    .info-icon {
-      width: 44px; height: 44px;
-      background: rgba(232,192,125,0.1);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
+    .info-icon { width: 44px; height: 44px; background: rgba(232,192,125,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
     .info-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
     .info-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
     .info-sub { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
 
-    /* Social */
     .social-title { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 28px 0 14px; }
     .social-links { display: flex; gap: 10px; }
-    .social-link {
-      width: 42px; height: 42px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 1rem;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
+    .social-link { width: 42px; height: 42px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 1rem; transition: background 0.2s, color 0.2s, border-color 0.2s; }
     .social-link:hover { background: rgba(232,192,125,0.1); color: var(--accent); border-color: rgba(232,192,125,0.3); }
 
-    /* Contact form */
-    .contact-form-wrap {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 36px;
-    }
-
+    .contact-form-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
     .form-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
     .form-title span { color: var(--accent); }
     .form-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; }
 
     .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     @media(max-width:600px){ .cf-grid { grid-template-columns: 1fr; } }
-
     .cf-group { display: flex; flex-direction: column; gap: 6px; }
     .cf-group.full { grid-column: 1/-1; }
     .cf-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
-    .cf-input {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: var(--text);
-      font-size: 0.875rem;
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .cf-input { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-size: 0.875rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
     .cf-input:focus { border-color: var(--accent); }
     .cf-input::placeholder { color: var(--muted); }
     textarea.cf-input { resize: vertical; min-height: 130px; }
 
     .subject-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .subject-tag {
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .subject-tag:hover, .subject-tag.selected {
-      background: rgba(232,192,125,0.1);
-      border-color: rgba(232,192,125,0.4);
-      color: var(--accent);
-    }
+    .subject-tag { padding: 6px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+    .subject-tag:hover, .subject-tag.selected { background: rgba(232,192,125,0.1); border-color: rgba(232,192,125,0.4); color: var(--accent); }
 
-    .cf-submit {
-      margin-top: 24px;
-      padding: 14px 40px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: opacity 0.2s, transform 0.1s;
-      box-shadow: 0 8px 24px rgba(232,192,125,0.2);
-      display: flex; align-items: center; gap: 8px;
-    }
+    .cf-submit { margin-top: 24px; padding: 14px 40px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.95rem; border: none; border-radius: 10px; cursor: pointer; letter-spacing: 0.3px; transition: opacity 0.2s, transform 0.1s; box-shadow: 0 8px 24px rgba(232,192,125,0.2); display: flex; align-items: center; gap: 8px; }
     .cf-submit:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    /* Success toast */
-    .toast {
-      display: none;
-      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
-      background: var(--card);
-      border: 1px solid rgba(126,200,126,0.4);
-      color: #7ec87e;
-      padding: 14px 28px;
-      border-radius: 40px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      z-index: 9999;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-      animation: toastIn 0.3s ease;
-    }
+    .toast { display: none; position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: var(--card); border: 1px solid rgba(126,200,126,0.4); color: #7ec87e; padding: 14px 28px; border-radius: 40px; font-size: 0.875rem; font-weight: 600; z-index: 9999; box-shadow: 0 12px 40px rgba(0,0,0,0.5); animation: toastIn 0.3s ease; }
     @keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
 
     footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.82rem; }
@@ -311,43 +221,46 @@
       <h2 class="form-title">Mesaj <span>Gönder</span></h2>
       <p class="form-desc">Formu doldurun, en kısa sürede size dönelim.</p>
 
-      <div class="cf-grid">
-        <div class="cf-group">
-          <label class="cf-label">Ad</label>
-          <input class="cf-input" type="text" placeholder="Adınız"/>
-        </div>
-        <div class="cf-group">
-          <label class="cf-label">Soyad</label>
-          <input class="cf-input" type="text" placeholder="Soyadınız"/>
-        </div>
-        <div class="cf-group">
-          <label class="cf-label">E-posta</label>
-          <input class="cf-input" type="email" placeholder="ornek@mail.com"/>
-        </div>
-        <div class="cf-group">
-          <label class="cf-label">Telefon</label>
-          <input class="cf-input" type="tel" placeholder="+90 5__ ___ __ __"/>
-        </div>
-        <div class="cf-group full">
-          <label class="cf-label">Konu</label>
-          <div class="subject-tags">
-            <span class="subject-tag selected" onclick="selectTag(this)">Sipariş & Kargo</span>
-            <span class="subject-tag" onclick="selectTag(this)">İade & Değişim</span>
-            <span class="subject-tag" onclick="selectTag(this)">Ürün Bilgisi</span>
-            <span class="subject-tag" onclick="selectTag(this)">Teknik Destek</span>
-            <span class="subject-tag" onclick="selectTag(this)">Diğer</span>
+      <form id="iletisimForm">
+        <div class="cf-grid">
+          <div class="cf-group">
+            <label class="cf-label">Ad</label>
+            <input class="cf-input" type="text" name="ad" placeholder="Adınız"/>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">Soyad</label>
+            <input class="cf-input" type="text" name="soyad" placeholder="Soyadınız"/>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">E-posta</label>
+            <input class="cf-input" type="email" name="email" placeholder="ornek@mail.com"/>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">Telefon</label>
+            <input class="cf-input" type="tel" name="telefon" placeholder="+90 5__ _ _ _"/>
+          </div>
+          <div class="cf-group full">
+            <label class="cf-label">Konu</label>
+            <div class="subject-tags">
+              <span class="subject-tag selected" onclick="selectTag(this)">Sipariş & Kargo</span>
+              <span class="subject-tag" onclick="selectTag(this)">İade & Değişim</span>
+              <span class="subject-tag" onclick="selectTag(this)">Ürün Bilgisi</span>
+              <span class="subject-tag" onclick="selectTag(this)">Teknik Destek</span>
+              <span class="subject-tag" onclick="selectTag(this)">Diğer</span>
+            </div>
+          </div>
+          <div class="cf-group full">
+            <label class="cf-label">Mesajınız</label>
+            <textarea class="cf-input" name="mesaj" placeholder="Mesajınızı buraya yazın..."></textarea>
           </div>
         </div>
-        <div class="cf-group full">
-          <label class="cf-label">Mesajınız</label>
-          <textarea class="cf-input" placeholder="Mesajınızı buraya yazın..."></textarea>
-        </div>
-      </div>
 
-      <button class="cf-submit" onclick="sendMessage()">
-        Mesaj Gönder
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+        <button class="cf-submit" type="submit">
+          Mesaj Gönder
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+
     </div>
   </div>
 </main>
@@ -381,11 +294,48 @@
     el.classList.add('selected');
   }
 
-  function sendMessage() {
-    const toast = document.getElementById('toast');
-    toast.style.display = 'block';
-    setTimeout(() => { toast.style.display = 'none'; }, 3500);
-  }
+  document.getElementById('iletisimForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = document.querySelector('.cf-submit');
+    btn.innerHTML = 'Gönderiliyor...';
+    btn.disabled = true;
+
+    const formData = new FormData();
+    formData.append('ad',      document.querySelector('[name=ad]').value);
+    formData.append('soyad',   document.querySelector('[name=soyad]').value);
+    formData.append('email',   document.querySelector('[name=email]').value);
+    formData.append('telefon', document.querySelector('[name=telefon]').value);
+    formData.append('konu',    document.querySelector('.subject-tag.selected')?.textContent || '');
+    formData.append('mesaj',   document.querySelector('[name=mesaj]').value);
+
+    fetch('iletisim_gonder.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.durum === 'basarili') {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        document.getElementById('iletisimForm').reset();
+        document.querySelectorAll('.subject-tag').forEach(t => t.classList.remove('selected'));
+        document.querySelector('.subject-tag').classList.add('selected');
+        btn.innerHTML = 'Mesaj Gönder <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+        btn.disabled = false;
+      } else {
+        alert(data.mesaj);
+        btn.innerHTML = 'Mesaj Gönder';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      alert('Bağlantı hatası, tekrar deneyin.');
+      btn.innerHTML = 'Mesaj Gönder';
+      btn.disabled = false;
+    });
+  });
 </script>
 </body>
 </html>
