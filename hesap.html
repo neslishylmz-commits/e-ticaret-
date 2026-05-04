@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOVA SHOP — Hesabım</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --surface: #161616; --card: #1e1e1e;
+      --accent: #e8c07d; --accent2: #c9956a;
+      --text: #f0ece4; --muted: #888; --border: #2a2a2a;
+      --nav-h: 72px; --green: #7ec87e;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(13,13,13,0.85); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; z-index: 1000; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-decoration: none; flex: 1; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 18px; border-radius: 24px; transition: background 0.2s, color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { background: var(--card); color: var(--accent); }
+    .account-btn { background: var(--accent) !important; color: #0d0d0d !important; font-weight: 600 !important; display: flex; align-items: center; gap: 6px; }
+    .cart-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; color: var(--text); text-decoration: none; border-radius: 50%; transition: background 0.2s; }
+    .cart-icon:hover { background: var(--card); }
+    .cart-badge { position: absolute; top: 4px; right: 4px; background: var(--accent); color: #0d0d0d; font-size: 0.6rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .nav-account { position: relative; }
+    .account-dropdown { display: none; position: absolute; top: calc(100% + 14px); right: 0; width: 340px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.6); overflow: hidden; animation: dropIn 0.25s ease; }
+    .account-dropdown.open { display: block; }
+    @keyframes dropIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+    .dropdown-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    .dropdown-tab { flex: 1; padding: 14px; text-align: center; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: color 0.2s; }
+    .dropdown-tab.active { color: var(--accent); background: rgba(232,192,125,0.07); border-bottom: 2px solid var(--accent); }
+    .dropdown-panel { padding: 24px; display: none; }
+    .dropdown-panel.active { display: block; }
+    .dp-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text); margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .dp-input { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; color: var(--text); font-size: 0.82rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
+    .dp-input:focus { border-color: var(--accent); }
+    .dp-input::placeholder { color: var(--muted); }
+    .dp-btn { width: 100%; margin-top: 14px; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 10px; cursor: pointer; transition: opacity 0.2s; }
+    .dp-btn:hover { opacity: 0.9; }
+    .dp-link { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
+    .dp-link a { color: var(--accent); text-decoration: none; }
+
+    /* PAGE */
+    .page { padding: calc(var(--nav-h) + 48px) 48px 80px; max-width: 1100px; margin: 0 auto; }
+
+    .account-layout { display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+    @media(max-width:800px){ .account-layout { grid-template-columns: 1fr; } }
+
+    /* Sidebar */
+    .account-sidebar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      height: fit-content;
+      position: sticky; top: calc(var(--nav-h) + 24px);
+    }
+
+    .user-avatar {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 12px;
+    }
+
+    .user-name { text-align: center; font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+    .user-email { text-align: center; font-size: 0.75rem; color: var(--muted); margin-bottom: 24px; }
+
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      color: var(--muted);
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar-nav li a:hover, .sidebar-nav li a.active {
+      background: rgba(232,192,125,0.1);
+      color: var(--accent);
+    }
+
+    .sidebar-logout {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      color: #e07070;
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      cursor: pointer; margin-top: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      transition: background 0.2s;
+    }
+    .sidebar-logout:hover { background: rgba(224,112,112,0.08); }
+
+    /* Main content */
+    .account-main {}
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .section-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-card-title span { color: var(--accent); }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+    /* Profile form */
+    .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .profile-grid { grid-template-columns: 1fr; } }
+
+    .input-group { display: flex; flex-direction: column; gap: 6px; }
+    .input-group.full { grid-column: 1 / -1; }
+    .input-label { font-size: 0.75rem; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+    .profile-input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 0.875rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .profile-input:focus { border-color: var(--accent); }
+
+    .save-btn {
+      margin-top: 20px;
+      padding: 13px 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .save-btn:hover { opacity: 0.9; }
+
+    /* Orders */
+    .order-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .order-item:last-child { border-bottom: none; }
+    .order-icon { font-size: 2rem; width: 48px; text-align: center; }
+    .order-info { flex: 1; }
+    .order-name { font-size: 0.875rem; font-weight: 600; }
+    .order-date { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .order-price { font-weight: 700; color: var(--accent); }
+    .order-status {
+      font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 20px;
+    }
+    .status-delivered { background: rgba(126,200,126,0.15); color: var(--green); }
+    .status-shipping  { background: rgba(232,192,125,0.15); color: var(--accent); }
+
+    footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.82rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NOVA</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li>
+      <a href="sepet.html" class="cart-icon" title="Sepet">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge">3</span>
+      </a>
+    </li>
+    <li class="nav-account">
+      <a class="account-btn active" onclick="toggleDropdown(event)" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Hesabım ▾
+      </a>
+      <div class="account-dropdown" id="accountDropdown">
+        <div class="dropdown-tabs">
+          <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
+          <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
+        </div>
+        <div class="dropdown-panel active" id="panel-giris">
+          <div class="dp-title">Hoş Geldiniz 👋</div>
+          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
+          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre"/></div>
+          <button class="dp-btn">Giriş Yap</button>
+          <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+        </div>
+        <div class="dropdown-panel" id="panel-kayit">
+          <div class="dp-title">Yeni Hesap</div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="Ad"/>
+            <input class="dp-input" type="text" placeholder="Soyad"/>
+          </div>
+          <div class="form-row full"><input class="dp-input" type="tel" placeholder="Telefon Numarası"/></div>
+          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
+          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre oluştur"/></div>
+          <div class="form-row full"><input class="dp-input" type="text" placeholder="Adres"/></div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="İl"/>
+            <input class="dp-input" type="text" placeholder="İlçe"/>
+          </div>
+          <button class="dp-btn">Kayıt Ol</button>
+        </div>
+      </div>
+    </li>
+    <li><a href="iletisim.html">İletişim</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="account-layout">
+
+    <!-- Sidebar -->
+    <aside class="account-sidebar">
+      <div class="user-avatar">👤</div>
+      <p class="user-name">Ahmet Yılmaz</p>
+      <p class="user-email">ahmet@example.com</p>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="#" class="active">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Genel Bakış
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profil Bilgileri
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+            Siparişlerim
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Adreslerim
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Favorilerim
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-logout" onclick="window.location.href='index.html'">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Çıkış Yap
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="account-main">
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Toplam Sipariş</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Aktif Kargo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Favoriler</div>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="section-card">
+        <h3 class="section-card-title">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Profil <span>Bilgileri</span>
+        </h3>
+        <div class="profile-grid">
+          <div class="input-group">
+            <label class="input-label">Ad</label>
+            <input class="profile-input" type="text" value="Ahmet"/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Soyad</label>
+            <input class="profile-input" type="text" value="Yılmaz"/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Telefon</label>
+            <input class="profile-input" type="tel" value="+90 555 123 45 67"/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">E-posta</label>
+            <input class="profile-input" type="email" value="ahmet@example.com"/>
+          </div>
+          <div class="input-group full">
+            <label class="input-label">Adres</label>
+            <input class="profile-input" type="text" value="Atatürk Cad. No: 42 Daire: 5"/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">İl</label>
+            <input class="profile-input" type="text" value="İstanbul"/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">İlçe</label>
+            <input class="profile-input" type="text" value="Kadıköy"/>
+          </div>
+        </div>
+        <button class="save-btn">Değişiklikleri Kaydet</button>
+      </div>
+
+      <!-- Orders -->
+      <div class="section-card">
+        <h3 class="section-card-title">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          Son <span>Siparişler</span>
+        </h3>
+        <div class="order-item">
+          <div class="order-icon">🎧</div>
+          <div class="order-info">
+            <p class="order-name">Kablosuz Bluetooth Kulaklık Pro</p>
+            <p class="order-date">18 Nisan 2025</p>
+          </div>
+          <span class="order-price">₺1.299</span>
+          <span class="order-status status-delivered">Teslim Edildi</span>
+        </div>
+        <div class="order-item">
+          <div class="order-icon">⌚</div>
+          <div class="order-info">
+            <p class="order-name">Akıllı Saat Fitness Tracker</p>
+            <p class="order-date">21 Nisan 2025</p>
+          </div>
+          <span class="order-price">₺2.199</span>
+          <span class="order-status status-shipping">Kargoda</span>
+        </div>
+        <div class="order-item">
+          <div class="order-icon">👟</div>
+          <div class="order-info">
+            <p class="order-name">Spor Koşu Ayakkabısı Ultralight</p>
+            <p class="order-date">10 Nisan 2025</p>
+          </div>
+          <span class="order-price">₺849</span>
+          <span class="order-status status-delivered">Teslim Edildi</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">NOVA SHOP</span>
+  <span>©️ 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span>Güvenli alışveriş · SSL korumalı</span>
+</footer>
+<script>
+  // Kullanıcı bilgilerini yükle
+  const kullanici = JSON.parse(localStorage.getItem('kullanici'));
+
+  if (!kullanici) {
+    // Giriş yapılmamışsa index'e gönder
+    window.location.href = 'index.html';
+  } else {
+    // Sidebar
+    document.querySelector('.user-name').textContent  = kullanici.ad + ' ' + kullanici.soyad;
+    document.querySelector('.user-email').textContent = kullanici.email;
+
+    // Profil formu
+    document.querySelectorAll('.profile-input')[0].value = kullanici.ad;
+    document.querySelectorAll('.profile-input')[1].value = kullanici.soyad;
+    document.querySelectorAll('.profile-input')[2].value = kullanici.telefon || '';
+    document.querySelectorAll('.profile-input')[3].value = kullanici.email;
+    document.querySelectorAll('.profile-input')[4].value = kullanici.adres  || '';
+    document.querySelectorAll('.profile-input')[5].value = kullanici.il     || '';
+    document.querySelectorAll('.profile-input')[6].value = kullanici.ilce   || '';
+  }
+
+  function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById('accountDropdown').classList.toggle('open');
+  }
+  function switchTab(tab) {
+    document.querySelectorAll('.dropdown-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+  document.addEventListener('click', function(e) {
+    const acc = document.querySelector('.nav-account');
+    if (!acc.contains(e.target)) document.getElementById('accountDropdown').classList.remove('open');
+  });
+
+  // Çıkış yap
+  document.querySelector('.sidebar-logout').onclick = function() {
+    localStorage.removeItem('kullanici');
+    window.location.href = 'index.html';
+  };
+</script>
+</body>
+</html>
