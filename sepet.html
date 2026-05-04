@@ -305,9 +305,11 @@
   }
 
   function updateBadge(total) {
-    const badge = document.getElementById('cartBadge');
-    badge.textContent = total;
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = total;
+  badge.style.display = total > 0 ? 'flex' : 'none';
   }
+
 
   function changeQty(id, dir) {
     let cart = getCart();
