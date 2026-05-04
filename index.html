@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOVA SHOP — Ana Sayfa</title>
+  <title>LOBA SHOP — Ana Sayfa</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -412,7 +412,7 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="index.html" class="nav-logo">NOVA</a>
+  <a href="index.html" class="nav-logo">LOBA</a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Ana Sayfa</a></li>
     <li>
@@ -421,7 +421,7 @@
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        <span class="cart-badge">3</span>
+        <span class="cart-badge"></span>
       </a>
     </li>
     <li class="nav-account">
@@ -588,8 +588,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-logo">NOVA SHOP</span>
-  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span class="footer-logo">LOBA SHOP</span>
+  <span>© 2025 LOBA Shop. Tüm hakları saklıdır.</span>
   <span>Güvenli alışveriş · SSL korumalı</span>
 </footer>
 
@@ -612,6 +612,53 @@
       document.getElementById('accountDropdown').classList.remove('open');
     }
   });
+
+  // ── YENİ EKLENEN FONKSİYON ──
+  async function kayitOl() {
+    const mesaj = document.getElementById('kayit-mesaj');
+
+    const veri = {
+      ad:      document.getElementById('reg-ad').value.trim(),
+      soyad:   document.getElementById('reg-soyad').value.trim(),
+      telefon: document.getElementById('reg-telefon').value.trim(),
+      email:   document.getElementById('reg-email').value.trim(),
+      sifre:   document.getElementById('reg-sifre').value,
+      adres:   document.getElementById('reg-adres').value.trim(),
+      il:      document.getElementById('reg-il').value.trim(),
+      ilce:    document.getElementById('reg-ilce').value.trim(),
+    };
+
+    // Basit kontrol
+    if (!veri.ad || !veri.email || !veri.sifre) {
+      mesaj.style.color = '#e07d7d';
+      mesaj.textContent = '⚠️ Ad, e-posta ve şifre zorunludur.';
+      return;
+    }
+
+    mesaj.style.color = 'var(--muted)';
+    mesaj.textContent = 'Kaydediliyor...';
+
+    try {
+      const response = await fetch('register.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(veri)
+      });
+
+      const sonuc = await response.json();
+
+      if (sonuc.basari) {
+        mesaj.style.color = '#7de07d';
+        mesaj.textContent = '✅ Kayıt başarılı! Hoş geldiniz.';
+      } else {
+        mesaj.style.color = '#e07d7d';
+        mesaj.textContent = '❌ ' + sonuc.mesaj;
+      }
+    } catch (err) {
+      mesaj.style.color = '#e07d7d';
+      mesaj.textContent = '❌ Sunucuya bağlanılamadı.';
+    }
+  }
 </script>
 </body>
 </html>
