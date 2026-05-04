@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LOBA SHOP — Ana Sayfa</title>
+  <title>NOVA SHOP — Ana Sayfa</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -412,7 +412,7 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="index.html" class="nav-logo">LOBA</a>
+  <a href="index.html" class="nav-logo">NOVA</a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Ana Sayfa</a></li>
     <li>
@@ -421,7 +421,7 @@
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        <span class="cart-badge"></span>
+        <span class="cart-badge">3</span>
       </a>
     </li>
     <li class="nav-account">
@@ -438,17 +438,18 @@
         </div>
 
         <!-- Giriş Paneli -->
-        <div class="dropdown-panel active" id="panel-giris">
-          <div class="dp-title">Hoş Geldiniz 👋</div>
-          <div class="form-row full">
-            <input class="dp-input" type="email" placeholder="E-posta adresi"/>
-          </div>
-          <div class="form-row full">
-            <input class="dp-input" type="password" placeholder="Şifre"/>
-          </div>
-          <button class="dp-btn" onclick="window.location.href='hesap.html'">Giriş Yap</button>
-          <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
-        </div>
+<div class="dropdown-panel active" id="panel-giris">
+  <div class="dp-title">Hoş Geldiniz 👋</div>
+  <div class="form-row full">
+    <input class="dp-input" type="email" id="giris-email" placeholder="E-posta adresi"/>
+  </div>
+  <div class="form-row full">
+    <input class="dp-input" type="password" id="giris-sifre" placeholder="Şifre"/>
+  </div>
+  <button class="dp-btn" onclick="girisYap()">Giriş Yap</button>
+  <p id="giris-mesaj" style="text-align:center;font-size:0.8rem;margin-top:10px;"></p>
+  <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+</div>
 
   <!-- Kayıt Paneli -->
         <div class="dropdown-panel" id="panel-kayit">
@@ -588,8 +589,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-logo">LOBA SHOP</span>
-  <span>© 2025 LOBA Shop. Tüm hakları saklıdır.</span>
+  <span class="footer-logo">NOVA SHOP</span>
+  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
   <span>Güvenli alışveriş · SSL korumalı</span>
 </footer>
 
@@ -647,10 +648,22 @@
 
       const sonuc = await response.json();
 
-      if (sonuc.basari) {
-        mesaj.style.color = '#7de07d';
-        mesaj.textContent = '✅ Kayıt başarılı! Hoş geldiniz.';
-      } else {
+if (sonuc.basari) {
+  // Kullanıcı bilgilerini kaydet (şifre hariç)
+  localStorage.setItem('kullanici', JSON.stringify({
+    ad:      veri.ad,
+    soyad:   veri.soyad,
+    email:   veri.email,
+    telefon: veri.telefon,
+    adres:   veri.adres,
+    il:      veri.il,
+    ilce:    veri.ilce
+  }));
+
+  mesaj.style.color = '#7de07d';
+  mesaj.textContent = '✅ Kayıt başarılı! Yönlendiriliyorsunuz...';
+  setTimeout(() => window.location.href = 'hesap.html', 1200);
+} else {
         mesaj.style.color = '#e07d7d';
         mesaj.textContent = '❌ ' + sonuc.mesaj;
       }
@@ -659,6 +672,43 @@
       mesaj.textContent = '❌ Sunucuya bağlanılamadı.';
     }
   }
+  async function girisYap() {
+  const mesaj = document.getElementById('giris-mesaj');
+  const email = document.getElementById('giris-email').value.trim();
+  const sifre = document.getElementById('giris-sifre').value;
+
+  if (!email || !sifre) {
+    mesaj.style.color = '#e07d7d';
+    mesaj.textContent = '⚠️ E-posta ve şifre zorunludur.';
+    return;
+  }
+
+  mesaj.style.color = 'var(--muted)';
+  mesaj.textContent = 'Giriş yapılıyor...';
+
+  try {
+    const response = await fetch('login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, sifre })
+    });
+
+    const sonuc = await response.json();
+
+    if (sonuc.basari) {
+      localStorage.setItem('kullanici', JSON.stringify(sonuc.kullanici));
+      mesaj.style.color = '#7de07d';
+      mesaj.textContent = '✅ Giriş başarılı! Yönlendiriliyorsunuz...';
+      setTimeout(() => window.location.href = 'hesap.html', 1000);
+    } else {
+      mesaj.style.color = '#e07d7d';
+      mesaj.textContent = '❌ ' + sonuc.mesaj;
+    }
+  } catch (err) {
+    mesaj.style.color = '#e07d7d';
+    mesaj.textContent = '❌ Sunucuya bağlanılamadı.';
+  }
+}
 </script>
 </body>
 </html>
