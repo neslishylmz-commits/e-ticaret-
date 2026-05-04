@@ -521,7 +521,7 @@
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        <span class="cart-badge">3</span>
+      <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
       </a>
     </li>
     <li class="nav-account">
@@ -813,7 +813,7 @@
   // VERİTABANINDAN ÜRÜN YÜKLE
   async function loadProducts() {
     try {
-        const res = await fetch('/eticaret/urunler.php');
+        const res = await fetch('/Loba/urunler.php');
       const products = await res.json();
       const grid = document.getElementById('productsGrid');
 
@@ -839,7 +839,7 @@
             <p class="product-name">${p.ad}</p>
             <div class="product-footer">
               <span class="product-price">₺${parseFloat(p.fiyat).toLocaleString('tr-TR')} ${oldPrice}</span>
-              <button class="add-cart-btn" onclick="event.stopPropagation()">+ Sepet</button>
+             <button class="add-cart-btn" onclick="addToCart(event, '${p.id}', '${p.ad}', ${p.fiyat}, '${p.emoji}', '${p.kategori}')">+ Sepet</button>
             </div>
           </div>
         `;
@@ -852,7 +852,53 @@
       document.querySelector('.loading').textContent = '❌ Ürünler yüklenemedi.';
     }
   }
+  function addToCart(e, id, name, price, icon, cat) {
+  e.stopPropagation();
+  let cart = [];
+  try { cart = JSON.parse(localStorage.getItem('novaCart')) || []; } catch(err) { cart = []; }
 
+  const existing = cart.find(i => i.id == id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: String(id), name, price: parseFloat(price), icon, cat, qty: 1 });
+  }
+
+  localStorage.setItem('novaCart', JSON.stringify(cart));
+
+  // Badge güncelle
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = total;
+  badge.style.display = total > 0 ? 'flex' : 'none';
+
+  // Butona geri bildirim ver
+  const btn = e.target;
+  btn.textContent = '✓ Eklendi';
+  btn.style.background = 'rgba(126,200,126,0.15)';
+  btn.style.borderColor = 'rgba(126,200,126,0.4)';
+  btn.style.color = '#7ec87e';
+  setTimeout(() => {
+    btn.textContent = '+ Sepet';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+  }, 1500);
+}
+
+function updateCartBadge() {
+  try {
+    const cart = JSON.parse(localStorage.getItem('novaCart')) || [];
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+      badge.textContent = total;
+      badge.style.display = total > 0 ? 'flex' : 'none';
+    }
+  } catch(e) {}
+}
+
+updateCartBadge();
   loadProducts();
 
   // Navbar dropdown
