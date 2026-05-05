@@ -9,481 +9,101 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --card: #1e1e1e;
-      --accent: #e8c07d;
-      --accent2: #c9956a;
-      --text: #f0ece4;
-      --muted: #888;
-      --border: #2a2a2a;
+      --bg: #0d0d0d; --surface: #161616; --card: #1e1e1e;
+      --accent: #e8c07d; --accent2: #c9956a;
+      --text: #f0ece4; --muted: #888; --border: #2a2a2a;
       --nav-h: 72px;
     }
 
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-    }
-
-    /* ── NAVBAR ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      background: rgba(13,13,13,0.85);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center;
-      padding: 0 48px;
-      z-index: 1000;
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-decoration: none;
-      flex: 1;
-    }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 8px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      padding: 8px 18px;
-      border-radius: 24px;
-      transition: background 0.2s, color 0.2s;
-      position: relative;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      background: var(--card);
-      color: var(--accent);
-    }
-
-    /* Hesabım dropdown */
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(13,13,13,0.85); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; z-index: 1000; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-decoration: none; flex: 1; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 18px; border-radius: 24px; transition: background 0.2s, color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { background: var(--card); color: var(--accent); }
     .nav-account { position: relative; }
-
-    .account-btn {
-      background: var(--accent);
-      color: #0d0d0d !important;
-      font-weight: 600 !important;
-      display: flex; align-items: center; gap: 6px;
-      cursor: pointer;
-    }
-    .account-btn:hover { background: var(--accent2) !important; color: #fff !important; }
-
-    .account-dropdown {
-      display: none;
-      position: absolute;
-      top: calc(100% + 14px);
-      right: 0;
-      width: 340px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-      overflow: hidden;
-      animation: dropIn 0.25s ease;
-    }
+    .account-dropdown { display: none; position: absolute; top: calc(100% + 14px); right: 0; width: 340px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.6); overflow: hidden; animation: dropIn 0.25s ease; }
     .account-dropdown.open { display: block; }
-
-    @keyframes dropIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .dropdown-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-    }
-    .dropdown-tab {
-      flex: 1; padding: 14px;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--muted);
-      transition: color 0.2s, background 0.2s;
-      letter-spacing: 0.5px;
-    }
-    .dropdown-tab.active {
-      color: var(--accent);
-      background: rgba(232,192,125,0.07);
-      border-bottom: 2px solid var(--accent);
-    }
-
+    @keyframes dropIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+    .dropdown-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    .dropdown-tab { flex: 1; padding: 14px; text-align: center; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: color 0.2s, background 0.2s; }
+    .dropdown-tab.active { color: var(--accent); background: rgba(232,192,125,0.07); border-bottom: 2px solid var(--accent); }
     .dropdown-panel { padding: 24px; display: none; }
     .dropdown-panel.active { display: block; }
-
-    .dp-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--text);
-      margin-bottom: 18px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+    .dp-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text); margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
     .form-row.full { grid-template-columns: 1fr; }
-
-    .dp-input {
-      width: 100%;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 11px 14px;
-      color: var(--text);
-      font-size: 0.82rem;
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .dp-input { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; color: var(--text); font-size: 0.82rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
     .dp-input:focus { border-color: var(--accent); }
     .dp-input::placeholder { color: var(--muted); }
-
-    .dp-btn {
-      width: 100%;
-      margin-top: 14px;
-      padding: 13px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      letter-spacing: 0.5px;
-      transition: opacity 0.2s, transform 0.1s;
-    }
-    .dp-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .dp-btn:active { transform: translateY(0); }
-
-    .dp-link {
-      display: block;
-      text-align: center;
-      margin-top: 12px;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
+    .dp-btn { width: 100%; margin-top: 14px; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 10px; cursor: pointer; letter-spacing: 0.5px; transition: opacity 0.2s; font-family: 'DM Sans', sans-serif; }
+    .dp-btn:hover { opacity: 0.9; }
+    .dp-link { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
     .dp-link a { color: var(--accent); text-decoration: none; }
 
-    /* Sepet ikonu */
-    .cart-icon {
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      width: 42px; height: 42px;
-      color: var(--text);
-      text-decoration: none;
-      border-radius: 50%;
-      transition: background 0.2s;
-      margin-left: 4px;
-    }
-    .cart-icon:hover { background: var(--card); }
-    .cart-badge {
-      position: absolute; top: 4px; right: 4px;
-      background: var(--accent);
-      color: #0d0d0d;
-      font-size: 0.6rem;
-      font-weight: 700;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: calc(var(--nav-h) + 40px) 48px 80px;
-      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,192,125,0.08) 0%, transparent 70%),
-                  radial-gradient(ellipse 40% 50% at 20% 20%, rgba(201,149,106,0.06) 0%, transparent 60%);
-      position: relative; overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 32px 32px;
-      pointer-events: none;
-    }
-
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: calc(var(--nav-h) + 40px) 48px 80px; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,192,125,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 20% 20%, rgba(201,149,106,0.06) 0%, transparent 60%); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; }
     .hero-content { max-width: 560px; z-index: 1; }
-
-    .hero-tag {
-      display: inline-block;
-      background: rgba(232,192,125,0.12);
-      border: 1px solid rgba(232,192,125,0.3);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
+    .hero-tag { display: inline-block; background: rgba(232,192,125,0.12); border: 1px solid rgba(232,192,125,0.3); color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.1; color: var(--text); margin-bottom: 20px; }
     .hero h1 span { color: var(--accent); }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 440px;
-    }
-
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 16px 32px;
-      border-radius: 50px;
-      letter-spacing: 0.3px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(232,192,125,0.25);
-    }
+    .hero p { font-size: 1.05rem; color: var(--muted); line-height: 1.7; margin-bottom: 36px; max-width: 440px; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 16px 32px; border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 32px rgba(232,192,125,0.25); }
     .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,192,125,0.4); }
 
-    /* ── PRODUCTS ── */
+    /* PRODUCTS */
     .section { padding: 80px 48px; }
-
-    .section-header {
-      display: flex; align-items: baseline; justify-content: space-between;
-      margin-bottom: 48px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--text);
-    }
-
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 48px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--text); }
     .section-title span { color: var(--accent); }
-
-    .see-all {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
+    .see-all { color: var(--accent); text-decoration: none; font-size: 0.875rem; font-weight: 600; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
     .see-all:hover { border-color: var(--accent); }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .product-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    .product-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(232,192,125,0.3);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-
-    .product-img {
-      width: 100%; height: 220px;
-      background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem;
-      position: relative; overflow: hidden;
-    }
-
-    .product-badge {
-      position: absolute; top: 12px; left: 12px;
-      background: var(--accent);
-      color: #0d0d0d;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 12px;
-      letter-spacing: 0.5px;
-    }
-
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .product-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(232,192,125,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .product-img { width: 100%; height: 220px; background: linear-gradient(135deg, #2a2a2a, #1e1e1e); display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; overflow: hidden; }
+    .product-badge { position: absolute; top: 12px; left: 12px; background: var(--accent); color: #0d0d0d; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
     .product-info { padding: 20px; }
+    .product-cat { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+    .product-name { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 12px; line-height: 1.4; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.25rem; font-weight: 700; color: var(--accent); }
+    .product-price .old { font-size: 0.8rem; font-weight: 400; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
+    .add-cart-btn { background: rgba(232,192,125,0.1); border: 1px solid rgba(232,192,125,0.25); color: var(--accent); font-size: 0.8rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: background 0.2s, color 0.2s; font-family: 'DM Sans', sans-serif; }
+    .add-cart-btn:hover { background: var(--accent); color: #0d0d0d; }
 
-    .product-cat {
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 6px;
-    }
-
-    .product-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .product-footer {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    .product-price {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .product-price .old {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--muted);
-      text-decoration: line-through;
-      margin-left: 6px;
-    }
-
-    .add-cart-btn {
-      background: rgba(232,192,125,0.1);
-      border: 1px solid rgba(232,192,125,0.25);
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .add-cart-btn:hover {
-      background: var(--accent);
-      color: #0d0d0d;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 48px;
-      display: flex; align-items: center; justify-content: space-between;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    /* Close dropdown when clicking outside */
+    footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.82rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); font-weight: 700; }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <a href="index.html" class="nav-logo">NOVA</a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Ana Sayfa</a></li>
+    <li><a href="urunler.html">Ürünler</a></li>
     <li>
-      <a href="sepet.html" class="cart-icon" title="Sepet">
-        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+      <a href="sepet.html" style="display:flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;padding:8px 18px;border-radius:24px;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--card)';this.style.color='var(--accent)'" onmouseout="this.style.background='none';this.style.color='var(--text)'">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        <span class="cart-badge">3</span>
+        Sepetim
+        <span id="cartBadge" style="background:var(--accent);color:#0d0d0d;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
       </a>
     </li>
     <li class="nav-account">
-      <a class="account-btn" onclick="toggleDropdown(event)" href="#">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-        </svg>
-        Hesabım ▾
-      </a>
-      <div class="account-dropdown" id="accountDropdown">
-        <div class="dropdown-tabs">
-          <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
-          <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
-        </div>
-
-        <!-- Giriş Paneli -->
-<div class="dropdown-panel active" id="panel-giris">
-  <div class="dp-title">Hoş Geldiniz 👋</div>
-  <div class="form-row full">
-    <input class="dp-input" type="email" id="giris-email" placeholder="E-posta adresi"/>
-  </div>
-  <div class="form-row full">
-    <input class="dp-input" type="password" id="giris-sifre" placeholder="Şifre"/>
-  </div>
-  <button class="dp-btn" onclick="girisYap()">Giriş Yap</button>
-  <p id="giris-mesaj" style="text-align:center;font-size:0.8rem;margin-top:10px;"></p>
-  <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
-</div>
-
-  <!-- Kayıt Paneli -->
-        <div class="dropdown-panel" id="panel-kayit">
-          <div class="dp-title">Yeni Hesap</div>
-          <div class="form-row">
-            <input class="dp-input" type="text"     id="reg-ad"      placeholder="Ad"/>
-            <input class="dp-input" type="text"     id="reg-soyad"   placeholder="Soyad"/>
-          </div>
-          <div class="form-row full">
-            <input class="dp-input" type="tel"      id="reg-telefon" placeholder="Telefon Numarası"/>
-          </div>
-          <div class="form-row full">
-            <input class="dp-input" type="email"    id="reg-email"   placeholder="E-posta adresi"/>
-          </div>
-          <div class="form-row full">
-            <input class="dp-input" type="password" id="reg-sifre"   placeholder="Şifre oluştur"/>
-          </div>
-          <div class="form-row full">
-            <input class="dp-input" type="text"     id="reg-adres"   placeholder="Adres (Sokak, Mahalle, No)"/>
-          </div>
-          <div class="form-row">
-            <input class="dp-input" type="text"     id="reg-il"      placeholder="İl"/>
-            <input class="dp-input" type="text"     id="reg-ilce"    placeholder="İlçe"/>
-          </div>
-          <button class="dp-btn" onclick="kayitOl()">Kayıt Ol</button>
-          <p id="kayit-mesaj" style="text-align:center;font-size:0.8rem;margin-top:10px;"></p>
-        </div>
-      </div>
+      <span id="navAccountArea"></span>
     </li>
     <li><a href="iletisim.html">İletişim</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
     <span class="hero-tag">✦ 2025 Koleksiyonu</span>
@@ -491,103 +111,21 @@
     <p>Binlerce ürün, hızlı teslimat ve güvenli ödeme seçenekleriyle en iyi alışveriş deneyimi sizi bekliyor.</p>
     <a href="urunler.html" class="hero-cta">
       Alışverişe Başla
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
 </section>
 
-<!-- PRODUCTS -->
 <section class="section" id="products">
   <div class="section-header">
     <h2 class="section-title">Öne Çıkan <span>Ürünler</span></h2>
     <a href="urunler.html" class="see-all">Tümünü gör →</a>
   </div>
-  <div class="products-grid">
-
-    <div class="product-card">
-      <div class="product-img">🎧
-        <span class="product-badge">YENİ</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Elektronik</p>
-        <p class="product-name">Kablosuz Bluetooth Kulaklık Pro</p>
-        <div class="product-footer">
-          <span class="product-price">₺1.299 <span class="old">₺1.799</span></span>
-          <button class="add-cart-btn">+ Sepet</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">👟</div>
-      <div class="product-info">
-        <p class="product-cat">Ayakkabı</p>
-        <p class="product-name">Spor Koşu Ayakkabısı Ultralight</p>
-        <div class="product-footer">
-          <span class="product-price">₺849</span>
-          <button class="add-cart-btn">+ Sepet</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">⌚
-        <span class="product-badge">%30</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Aksesuar</p>
-        <p class="product-name">Akıllı Saat Fitness Tracker</p>
-        <div class="product-footer">
-          <span class="product-price">₺2.199 <span class="old">₺3.100</span></span>
-          <button class="add-cart-btn">+ Sepet</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">💼</div>
-      <div class="product-info">
-        <p class="product-cat">Çanta</p>
-        <p class="product-name">Deri Laptop Çantası 15"</p>
-        <div class="product-footer">
-          <span class="product-price">₺675</span>
-          <button class="add-cart-btn">+ Sepet</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">📱
-        <span class="product-badge">YENİ</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">Elektronik</p>
-        <p class="product-name">Telefon Kılıfı MagSafe Uyumlu</p>
-        <div class="product-footer">
-          <span class="product-price">₺199 <span class="old">₺299</span></span>
-          <button class="add-cart-btn">+ Sepet</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img">🕶️</div>
-      <div class="product-info">
-        <p class="product-cat">Aksesuar</p>
-        <p class="product-name">UV400 Polarize Güneş Gözlüğü</p>
-        <div class="product-footer">
-          <span class="product-price">₺390</span>
-          <button class="add-cart-btn">+ Sepet</button>
-        </div>
-      </div>
-    </div>
-
+  <div class="products-grid" id="productsGrid">
+    <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--muted);">⏳ Yükleniyor...</div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span class="footer-logo">NOVA SHOP</span>
   <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
@@ -595,9 +133,198 @@
 </footer>
 
 <script>
+  async function loadFeaturedProducts() {
+  try {
+    const res = await fetch('/loba/urunler.php');
+    const products = await res.json();
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = '';
+
+    // İlk 6 ürünü göster
+    products.slice(0, 6).forEach(p => {
+      const badge = p.badge ? `<span class="product-badge">${p.badge}</span>` : '';
+      const oldPrice = p.eski_fiyat
+        ? `<span class="old">₺${parseFloat(p.eski_fiyat).toLocaleString('tr-TR')}</span>`
+        : '';
+
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-img">${p.emoji}${badge}</div>
+        <div class="product-info">
+          <p class="product-cat">${p.kategori.charAt(0).toUpperCase() + p.kategori.slice(1)}</p>
+          <p class="product-name">${p.ad}</p>
+          <div class="product-footer">
+            <span class="product-price">₺${parseFloat(p.fiyat).toLocaleString('tr-TR')} ${oldPrice}</span>
+            <button class="add-cart-btn" onclick="addToCart(event, '${p.id}', '${p.ad}', ${p.fiyat}, '${p.emoji}', '${p.kategori}')">+ Sepet</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  } catch(e) {
+    document.getElementById('productsGrid').innerHTML =
+      '<p style="color:var(--muted);text-align:center;padding:40px;">Ürünler yüklenemedi.</p>';
+  }
+}
+
+function addToCart(e, id, name, price, icon, cat) {
+  e.stopPropagation();
+  let cart = [];
+  try { cart = JSON.parse(localStorage.getItem('novaCart')) || []; } catch(err) { cart = []; }
+  const existing = cart.find(i => i.id == id);
+  if (existing) { existing.qty += 1; }
+  else { cart.push({ id: String(id), name, price: parseFloat(price), icon, cat, qty: 1 }); }
+  localStorage.setItem('novaCart', JSON.stringify(cart));
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  if (badge) { badge.textContent = total; badge.style.display = total > 0 ? 'flex' : 'none'; }
+  const btn = e.target;
+  btn.textContent = '✓ Eklendi';
+  btn.style.background = 'rgba(126,200,126,0.15)';
+  btn.style.borderColor = 'rgba(126,200,126,0.4)';
+  btn.style.color = '#7ec87e';
+  setTimeout(() => { btn.textContent = '+ Sepet'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = ''; }, 1500);
+}
+
+loadFeaturedProducts();
+  // ── NAVBAR ──
+  function renderNavAccount() {
+    const kullanici = (() => { try { return JSON.parse(localStorage.getItem('kullanici')); } catch(e) { return null; } })();
+    const area = document.getElementById('navAccountArea');
+    if (!area) return;
+
+    if (kullanici) {
+      area.innerHTML = `
+        <div style="position:relative;">
+          <a onclick="toggleDropdown(event)" href="#" style="display:flex;align-items:center;gap:6px;background:var(--accent);color:#0d0d0d;font-weight:600;font-size:0.9rem;padding:8px 18px;border-radius:24px;text-decoration:none;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profilim ▾
+          </a>
+          <div class="account-dropdown" id="accountDropdown">
+            <div style="padding:8px;">
+              <a href="hesap.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:var(--text);text-decoration:none;font-size:0.875rem;font-weight:500;" onmouseover="this.style.background='rgba(232,192,125,0.08)'" onmouseout="this.style.background='none'">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Profilim
+              </a>
+              <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+              <a onclick="cikisYap()" href="#" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:#e07070;text-decoration:none;font-size:0.875rem;font-weight:500;" onmouseover="this.style.background='rgba(224,112,112,0.08)'" onmouseout="this.style.background='none'">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Çıkış Yap
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      area.innerHTML = `
+        <div style="position:relative;">
+          <a onclick="toggleDropdown(event)" href="#" style="display:flex;align-items:center;gap:6px;background:var(--accent);color:#0d0d0d;font-weight:600;font-size:0.9rem;padding:8px 18px;border-radius:24px;text-decoration:none;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Hesabım ▾
+          </a>
+          <div class="account-dropdown" id="accountDropdown">
+            <div class="dropdown-tabs">
+              <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
+              <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
+            </div>
+            <div class="dropdown-panel active" id="panel-giris">
+              <div class="dp-title">Hoş Geldiniz 👋</div>
+              <div class="form-row full"><input class="dp-input" id="loginEmail" type="email" placeholder="E-posta adresi"/></div>
+              <div class="form-row full"><input class="dp-input" id="loginPass" type="password" placeholder="Şifre"/></div>
+              <p style="color:#e07070;font-size:0.78rem;margin-top:6px;display:none;" id="loginErr"></p>
+              <button class="dp-btn" onclick="girisYap()">Giriş Yap</button>
+              <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+            </div>
+            <div class="dropdown-panel" id="panel-kayit">
+              <div class="dp-title">Yeni Hesap</div>
+              <div class="form-row">
+                <input class="dp-input" id="regAd" type="text" placeholder="Ad"/>
+                <input class="dp-input" id="regSoyad" type="text" placeholder="Soyad"/>
+              </div>
+              <div class="form-row full"><input class="dp-input" id="regTel" type="tel" placeholder="Telefon"/></div>
+              <div class="form-row full"><input class="dp-input" id="regEmail" type="email" placeholder="E-posta"/></div>
+              <div class="form-row full"><input class="dp-input" id="regPass" type="password" placeholder="Şifre oluştur"/></div>
+              <div class="form-row full"><input class="dp-input" id="regAdres" type="text" placeholder="Adres"/></div>
+              <div class="form-row">
+                <input class="dp-input" id="regIl" type="text" placeholder="İl"/>
+                <input class="dp-input" id="regIlce" type="text" placeholder="İlçe"/>
+              </div>
+              <p style="color:#e07070;font-size:0.78rem;margin-top:6px;display:none;" id="regErr"></p>
+              <button class="dp-btn" onclick="kayitOl()">Kayıt Ol</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Sepet badge
+    try {
+      const cart = JSON.parse(localStorage.getItem('novaCart')) || [];
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      const badge = document.getElementById('cartBadge');
+      if (badge) { badge.textContent = total; badge.style.display = total > 0 ? 'flex' : 'none'; }
+    } catch(e) {}
+  }
+
+  function girisYap() {
+  const emailEl = document.getElementById('loginEmail');
+  const passEl  = document.getElementById('loginPass');
+  const err     = document.getElementById('loginErr');
+
+  if (!emailEl || !passEl) return;
+
+  const email = emailEl.value.trim();
+  const pass  = passEl.value;
+
+  if (!email || !pass) {
+    if (err) { err.textContent = 'E-posta ve şifre zorunludur.'; err.style.display = 'block'; }
+    return;
+  }
+
+  const kullanicilar = JSON.parse(localStorage.getItem('kullanicilar')) || [];
+  const bulunan = kullanicilar.find(k => k.email === email && k.sifre === pass);
+
+  if (!bulunan) {
+    if (err) { err.textContent = 'E-posta veya şifre hatalı.'; err.style.display = 'block'; }
+    return;
+  }
+
+  localStorage.setItem('kullanici', JSON.stringify(bulunan));
+  window.location.href = 'hesap.html';
+}
+
+  function kayitOl() {
+    const ad    = document.getElementById('regAd').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const pass  = document.getElementById('regPass').value;
+    const err   = document.getElementById('regErr');
+    if (!ad || !email || !pass) { err.textContent = 'Ad, e-posta ve şifre zorunludur.'; err.style.display = 'block'; return; }
+    const kullanicilar = JSON.parse(localStorage.getItem('kullanicilar')) || [];
+    if (kullanicilar.find(k => k.email === email)) { err.textContent = 'Bu e-posta zaten kayıtlı.'; err.style.display = 'block'; return; }
+    const yeni = {
+      ad, soyad: document.getElementById('regSoyad').value.trim(),
+      email, sifre: pass,
+      telefon: document.getElementById('regTel').value.trim(),
+      adres: document.getElementById('regAdres').value.trim(),
+      il: document.getElementById('regIl').value.trim(),
+      ilce: document.getElementById('regIlce').value.trim()
+    };
+    kullanicilar.push(yeni);
+    localStorage.setItem('kullanicilar', JSON.stringify(kullanicilar));
+    localStorage.setItem('kullanici', JSON.stringify(yeni));
+    window.location.href = 'hesap.html';
+  }
+
+  function cikisYap() {
+    localStorage.removeItem('kullanici');
+    window.location.reload();
+  }
+
   function toggleDropdown(e) {
     e.preventDefault();
-    document.getElementById('accountDropdown').classList.toggle('open');
+    const dd = document.getElementById('accountDropdown');
+    if (dd) dd.classList.toggle('open');
   }
 
   function switchTab(tab) {
@@ -608,107 +335,14 @@
   }
 
   document.addEventListener('click', function(e) {
-    const acc = document.querySelector('.nav-account');
-    if (!acc.contains(e.target)) {
-      document.getElementById('accountDropdown').classList.remove('open');
+    const area = document.getElementById('navAccountArea');
+    if (area && !area.contains(e.target)) {
+      const dd = document.getElementById('accountDropdown');
+      if (dd) dd.classList.remove('open');
     }
   });
 
-  // ── YENİ EKLENEN FONKSİYON ──
-  async function kayitOl() {
-    const mesaj = document.getElementById('kayit-mesaj');
-
-    const veri = {
-      ad:      document.getElementById('reg-ad').value.trim(),
-      soyad:   document.getElementById('reg-soyad').value.trim(),
-      telefon: document.getElementById('reg-telefon').value.trim(),
-      email:   document.getElementById('reg-email').value.trim(),
-      sifre:   document.getElementById('reg-sifre').value,
-      adres:   document.getElementById('reg-adres').value.trim(),
-      il:      document.getElementById('reg-il').value.trim(),
-      ilce:    document.getElementById('reg-ilce').value.trim(),
-    };
-
-    // Basit kontrol
-    if (!veri.ad || !veri.email || !veri.sifre) {
-      mesaj.style.color = '#e07d7d';
-      mesaj.textContent = '⚠️ Ad, e-posta ve şifre zorunludur.';
-      return;
-    }
-
-    mesaj.style.color = 'var(--muted)';
-    mesaj.textContent = 'Kaydediliyor...';
-
-    try {
-      const response = await fetch('register.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(veri)
-      });
-
-      const sonuc = await response.json();
-
-if (sonuc.basari) {
-  // Kullanıcı bilgilerini kaydet (şifre hariç)
-  localStorage.setItem('kullanici', JSON.stringify({
-    ad:      veri.ad,
-    soyad:   veri.soyad,
-    email:   veri.email,
-    telefon: veri.telefon,
-    adres:   veri.adres,
-    il:      veri.il,
-    ilce:    veri.ilce
-  }));
-
-  mesaj.style.color = '#7de07d';
-  mesaj.textContent = '✅ Kayıt başarılı! Yönlendiriliyorsunuz...';
-  setTimeout(() => window.location.href = 'hesap.html', 1200);
-} else {
-        mesaj.style.color = '#e07d7d';
-        mesaj.textContent = '❌ ' + sonuc.mesaj;
-      }
-    } catch (err) {
-      mesaj.style.color = '#e07d7d';
-      mesaj.textContent = '❌ Sunucuya bağlanılamadı.';
-    }
-  }
-  async function girisYap() {
-  const mesaj = document.getElementById('giris-mesaj');
-  const email = document.getElementById('giris-email').value.trim();
-  const sifre = document.getElementById('giris-sifre').value;
-
-  if (!email || !sifre) {
-    mesaj.style.color = '#e07d7d';
-    mesaj.textContent = '⚠️ E-posta ve şifre zorunludur.';
-    return;
-  }
-
-  mesaj.style.color = 'var(--muted)';
-  mesaj.textContent = 'Giriş yapılıyor...';
-
-  try {
-    const response = await fetch('login.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, sifre })
-    });
-
-    const sonuc = await response.json();
-
-    if (sonuc.basari) {
-      localStorage.setItem('kullanici', JSON.stringify(sonuc.kullanici));
-      mesaj.style.color = '#7de07d';
-      mesaj.textContent = '✅ Giriş başarılı! Yönlendiriliyorsunuz...';
-      setTimeout(() => window.location.href = 'hesap.html', 1000);
-    } else {
-      mesaj.style.color = '#e07d7d';
-      mesaj.textContent = '❌ ' + sonuc.mesaj;
-    }
-  } catch (err) {
-    mesaj.style.color = '#e07d7d';
-    mesaj.textContent = '❌ Sunucuya bağlanılamadı.';
-  }
-}
+  renderNavAccount();
 </script>
 </body>
 </html>
