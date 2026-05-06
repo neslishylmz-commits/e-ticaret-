@@ -112,43 +112,7 @@
         <span id="cartBadge" style="background:var(--accent);color:#0d0d0d;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
       </a>
     </li>
-    <li class="nav-account">
-      <a class="account-btn" onclick="toggleDropdown(event)" href="#">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-        </svg>
-        Hesabım ▾
-      </a>
-      <div class="account-dropdown" id="accountDropdown">
-        <div class="dropdown-tabs">
-          <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
-          <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
-        </div>
-        <div class="dropdown-panel active" id="panel-giris">
-          <div class="dp-title">Hoş Geldiniz 👋</div>
-          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
-          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre"/></div>
-          <button class="dp-btn" onclick="window.location.href='hesap.html'">Giriş Yap</button>
-          <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
-        </div>
-        <div class="dropdown-panel" id="panel-kayit">
-          <div class="dp-title">Yeni Hesap</div>
-          <div class="form-row">
-            <input class="dp-input" type="text" placeholder="Ad"/>
-            <input class="dp-input" type="text" placeholder="Soyad"/>
-          </div>
-          <div class="form-row full"><input class="dp-input" type="tel" placeholder="Telefon Numarası"/></div>
-          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
-          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre oluştur"/></div>
-          <div class="form-row full"><input class="dp-input" type="text" placeholder="Adres"/></div>
-          <div class="form-row">
-            <input class="dp-input" type="text" placeholder="İl"/>
-            <input class="dp-input" type="text" placeholder="İlçe"/>
-          </div>
-          <button class="dp-btn">Kayıt Ol</button>
-        </div>
-      </div>
-    </li>
+    <li class="nav-account"><span id="navAccountArea"></span></li>
     <li><a href="iletisim.html" class="active">İletişim</a></li>
   </ul>
 </nav>
@@ -171,7 +135,7 @@
           </div>
           <div>
             <p class="info-label">Telefon</p>
-            <p class="info-val">+90 (212) 555 00 11</p>
+            <p class="info-val">+90 (530) 132 40 71</p>
             <p class="info-sub">Pazartesi–Cuma, 09:00–18:00</p>
           </div>
         </div>
@@ -275,20 +239,6 @@
 </footer>
 
 <script>
-  function toggleDropdown(e) {
-    e.preventDefault();
-    document.getElementById('accountDropdown').classList.toggle('open');
-  }
-  function switchTab(tab) {
-    document.querySelectorAll('.dropdown-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('panel-' + tab).classList.add('active');
-  }
-  document.addEventListener('click', function(e) {
-    const acc = document.querySelector('.nav-account');
-    if (!acc.contains(e.target)) document.getElementById('accountDropdown').classList.remove('open');
-  });
 
   function selectTag(el) {
     document.querySelectorAll('.subject-tag').forEach(t => t.classList.remove('selected'));
@@ -338,5 +288,6 @@
     });
   });
 </script>
+<script src="auth.js"></script>
 </body>
 </html>
