@@ -1,12 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
-
-$sock = '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock';
-if (file_exists($sock)) ini_set('mysqli.default_socket', $sock);
 
 $conn = new mysqli('localhost', 'root', '', 'loba');
 $conn->set_charset('utf8mb4');
@@ -14,35 +8,27 @@ if ($conn->connect_error) {
     echo json_encode(['basari' => false, 'mesaj' => 'DB hatası: ' . $conn->connect_error]); exit;
 }
 
-$raw  = file_get_contents('php://input');
-$data = json_decode($raw, true);
-if (!$data) {
-    echo json_encode(['basari' => false, 'mesaj' => 'Veri okunamadı.']); exit;
+$user_id = intval($_GET['user_id'] ?? 0);
+
+if (!$user_id) {
+    echo json_encode(['basari' => false, 'mesaj' => 'user_id gerekli']); exit;
 }
 
-$siparis_no    = trim($data['siparis_no']      ?? '');
-$user_email    = trim($data['kullanici_email'] ?? '');
-$urunler       = json_encode($data['urunler']  ?? []);
-$ara_toplam    = floatval($data['ara_toplam']  ?? 0);
-$kargo_ucreti  = floatval($data['kargo_ucreti'] ?? 0);
-$kapida_ucret  = floatval($data['kapida_ucret'] ?? 0);
-$toplam        = floatval($data['toplam']       ?? 0);
-$odeme_yontemi = trim($data['odeme_yontemi']   ?? 'kredi');
+$stmt = $conn->prepare("SELECT * FROM siparisler WHERE user_id = ? ORDER BY created_at DESC");
+$stmt->bind_param('i', $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if (!$siparis_no || $toplam <= 0) {
-    echo json_encode(['basari' => false, 'mesaj' => 'Eksik sipariş verisi.']); exit;
+$siparisler = [];
+while ($row = $result->fetch_assoc()) {
+    // urunler JSON string ise parse et
+    if (isset($row['urunler']) && is_string($row['urunler'])) {
+        $row['urunler'] = json_decode($row['urunler'], true) ?: [];
+    }
+    $siparisler[] = $row;
 }
 
-$stmt = $conn->prepare("
-    INSERT INTO siparisler (siparis_no, user_email, urunler, ara_toplam, kargo_ucreti, kapida_ucret, toplam, odeme_yontemi)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-");
-$stmt->bind_param('sssdddds', $siparis_no, $user_email, $urunler, $ara_toplam, $kargo_ucreti, $kapida_ucret, $toplam, $odeme_yontemi);
-
-if ($stmt->execute()) {
-    echo json_encode(['basari' => true, 'siparis_no' => $siparis_no]);
-} else {
-    echo json_encode(['basari' => false, 'mesaj' => $stmt->error]);
-}
 $stmt->close();
 $conn->close();
+
+echo json_encode(['basari' => true, 'siparisler' => $siparisler], JSON_UNESCAPED_UNICODE);
