@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOVA SHOP — Hesabım</title>
+  <title>LOBA — Hesabım</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -111,7 +111,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">NOVA</a>
+  <a href="index.html" class="nav-logo">LOBA</a>
   <ul class="nav-links">
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="urunler.html">Ürünler</a></li>
@@ -262,8 +262,8 @@
 </main>
 
 <footer>
-  <span class="footer-logo">NOVA SHOP</span>
-  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span class="footer-logo">LOBA</span>
+  <span>© 2025 Loba. Tüm hakları saklıdır.</span>
   <span>Güvenli alışveriş · SSL korumalı</span>
 </footer>
 
@@ -273,10 +273,17 @@
     try { return JSON.parse(localStorage.getItem('kullanici')); } catch(e) { return null; }
   }
   function getSiparisler() {
-    try { return JSON.parse(localStorage.getItem('novaSiparisler')) || []; } catch(e) { return []; }
+    try { return JSON.parse(localStorage.getItem('lobaSiparisler')) || []; } catch(e) { return []; }
+  }
+  async function getSiparislerDB(email) {
+    try {
+      const res = await fetch('/loba/siparisler_getir.php?email=' + encodeURIComponent(email));
+      const data = await res.json();
+      return data.basari ? data.siparisler : [];
+    } catch(e) { return []; }
   }
   function getCart() {
-    try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; }
+    try { return JSON.parse(localStorage.getItem('lobaCart')) || []; } catch(e) { return []; }
   }
 
   // ── PANEL GEÇİŞİ ──
@@ -290,25 +297,24 @@
   // ── SİPARİŞ HTML ──
   function siparisHTML(s) {
     const statusClass = s.durum === 'Teslim Edildi' ? 'status-delivered' : 'status-shipping';
-    const toplam = s.items
-      ? s.items.reduce((sum, i) => sum + i.price * i.qty, 0)
-      : (s.toplam || 0);
-    const ilkUrun = s.items && s.items[0];
+    const urunler = s.urunler || s.items || [];
+    const ilkUrun = urunler[0];
+    const toplam  = s.toplam || urunler.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const tarih   = s.created_at ? new Date(s.created_at).toLocaleDateString('tr-TR') : (s.tarih || '');
     return `
       <div class="order-item">
         <div class="order-icon">${ilkUrun ? ilkUrun.icon : '📦'}</div>
         <div class="order-info">
-          <p class="order-name">${ilkUrun ? ilkUrun.name : 'Sipariş'} ${s.items && s.items.length > 1 ? `<span style="color:var(--muted);font-size:0.75rem;">+${s.items.length - 1} ürün</span>` : ''}</p>
-          <p class="order-date">${s.tarih || ''} · #${s.id || ''}</p>
+          <p class="order-name">${ilkUrun ? ilkUrun.name : 'Sipariş'} ${urunler.length > 1 ? `<span style="color:var(--muted);font-size:0.75rem;">+${urunler.length - 1} ürün</span>` : ''}</p>
+          <p class="order-date">${tarih} · #${s.siparis_no || s.id || ''}</p>
         </div>
-        <span class="order-price">₺${toplam.toLocaleString('tr-TR')}</span>
-        <span class="order-status ${statusClass}">${s.durum || 'Kargoda'}</span>
+        <span class="order-price">₺${parseFloat(toplam).toLocaleString('tr-TR')}</span>
+        <span class="order-status ${statusClass}">${s.durum || 'Hazırlanıyor'}</span>
       </div>
     `;
   }
 
-  // ── SAYFA YÜKLE ──
-  function sayfaYukle() {
+  async function sayfaYukle() {
     const kullanici = getKullanici();
 
     if (!kullanici) {
@@ -329,9 +335,9 @@
     document.getElementById('pIl').value    = kullanici.il || '';
     document.getElementById('pIlce').value  = kullanici.ilce || '';
 
-    // Siparişler
-    const siparisler = getSiparisler();
-    const aktifKargo = siparisler.filter(s => s.durum === 'Kargoda').length;
+    // Siparişleri veritabanından çek
+    const siparisler = await getSiparislerDB(kullanici.email);
+    const aktifKargo = siparisler.filter(s => s.durum !== 'Teslim Edildi').length;
 
     // İstatistikler
     document.getElementById('statSiparis').textContent = siparisler.length;
@@ -344,7 +350,7 @@
     if (siparisler.length === 0) {
       genelEl.innerHTML = '<div class="empty-orders">Henüz siparişiniz bulunmuyor.<br><a href="urunler.html" style="color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block;">Alışverişe Başla →</a></div>';
     } else {
-      genelEl.innerHTML = [...siparisler].reverse().slice(0, 3).map(siparisHTML).join('');
+      genelEl.innerHTML = siparisler.slice(0, 3).map(siparisHTML).join('');
     }
 
     // Tüm siparişler
@@ -352,7 +358,7 @@
     if (siparisler.length === 0) {
       tumEl.innerHTML = '<div class="empty-orders">Henüz siparişiniz bulunmuyor.<br><a href="urunler.html" style="color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block;">Alışverişe Başla →</a></div>';
     } else {
-      tumEl.innerHTML = [...siparisler].reverse().map(siparisHTML).join('');
+      tumEl.innerHTML = siparisler.map(siparisHTML).join('');
     }
 
     // Adres
@@ -408,17 +414,141 @@
   }
 
   // ── NAVBAR ──
+ function renderNavAccount() {
+  const kullanici = getKullanici();
+  const area = document.getElementById('navAccountArea');
+  if (!area) return;
 
+  if (kullanici) {
+    area.innerHTML = `
+      <div style="position:relative;">
+        <a onclick="toggleDropdown(event)" href="#" style="display:flex;align-items:center;gap:6px;background:var(--accent);color:#0d0d0d;font-weight:600;font-size:0.9rem;padding:8px 18px;border-radius:24px;text-decoration:none;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Profilim ▾
+        </a>
+        <div class="account-dropdown" id="accountDropdown">
+          <div style="padding:8px;">
+            <a href="hesap.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:var(--text);text-decoration:none;font-size:0.875rem;font-weight:500;transition:background 0.2s;" onmouseover="this.style.background='rgba(232,192,125,0.08)'" onmouseout="this.style.background='none'">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Profilim
+            </a>
+            <div style="border-top:1px solid var(--border);margin:4px 0;"></div>
+            <a onclick="cikisYap()" href="#" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:#e07070;text-decoration:none;font-size:0.875rem;font-weight:500;transition:background 0.2s;" onmouseover="this.style.background='rgba(224,112,112,0.08)'" onmouseout="this.style.background='none'">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Çıkış Yap
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    area.innerHTML = `
+      <div style="position:relative;">
+        <a class="account-btn" onclick="toggleDropdown(event)" href="#" style="display:flex;align-items:center;gap:6px;background:var(--accent);color:#0d0d0d;font-weight:600;font-size:0.9rem;padding:8px 18px;border-radius:24px;text-decoration:none;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Hesabım ▾
+        </a>
+        <div class="account-dropdown" id="accountDropdown">
+          <div class="dropdown-tabs">
+            <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
+            <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
+          </div>
+          <div class="dropdown-panel active" id="panel-giris">
+            <div class="dp-title">Hoş Geldiniz 👋</div>
+            <div class="form-row full"><input class="dp-input" id="loginEmail" type="email" placeholder="E-posta adresi"/></div>
+            <div class="form-row full"><input class="dp-input" id="loginPass" type="password" placeholder="Şifre"/></div>
+            <p class="err-msg" id="loginErr"></p>
+            <button class="dp-btn" onclick="girisYap()">Giriş Yap</button>
+            <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+          </div>
+          <div class="dropdown-panel" id="panel-kayit">
+            <div class="dp-title">Yeni Hesap</div>
+            <div class="form-row">
+              <input class="dp-input" id="regAd" type="text" placeholder="Ad"/>
+              <input class="dp-input" id="regSoyad" type="text" placeholder="Soyad"/>
+            </div>
+            <div class="form-row full"><input class="dp-input" id="regTel" type="tel" placeholder="Telefon"/></div>
+            <div class="form-row full"><input class="dp-input" id="regEmail" type="email" placeholder="E-posta"/></div>
+            <div class="form-row full"><input class="dp-input" id="regPass" type="password" placeholder="Şifre oluştur"/></div>
+            <div class="form-row full"><input class="dp-input" id="regAdres" type="text" placeholder="Adres"/></div>
+            <div class="form-row">
+              <input class="dp-input" id="regIl" type="text" placeholder="İl"/>
+              <input class="dp-input" id="regIlce" type="text" placeholder="İlçe"/>
+            </div>
+            <p class="err-msg" id="regErr"></p>
+            <button class="dp-btn" onclick="kayitOl()">Kayıt Ol</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
 
+  function girisYap() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass  = document.getElementById('loginPass').value;
+    const err   = document.getElementById('loginErr');
+    const kullanicilar = JSON.parse(localStorage.getItem('kullanicilar')) || [];
+    const bulunan = kullanicilar.find(k => k.email === email && k.sifre === pass);
+    if (!bulunan) { err.textContent = 'E-posta veya şifre hatalı.'; err.style.display = 'block'; return; }
+    localStorage.setItem('kullanici', JSON.stringify(bulunan));
+    window.location.href = 'hesap.html';
+  }
 
+  function kayitOl() {
+    const ad    = document.getElementById('regAd').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const pass  = document.getElementById('regPass').value;
+    const err   = document.getElementById('regErr');
+    if (!ad || !email || !pass) { err.textContent = 'Ad, e-posta ve şifre zorunludur.'; err.style.display = 'block'; return; }
+    const kullanicilar = JSON.parse(localStorage.getItem('kullanicilar')) || [];
+    if (kullanicilar.find(k => k.email === email)) { err.textContent = 'Bu e-posta zaten kayıtlı.'; err.style.display = 'block'; return; }
+    const yeni = {
+      ad, soyad: document.getElementById('regSoyad').value.trim(),
+      email, sifre: pass,
+      telefon: document.getElementById('regTel').value.trim(),
+      adres: document.getElementById('regAdres').value.trim(),
+      il: document.getElementById('regIl').value.trim(),
+      ilce: document.getElementById('regIlce').value.trim()
+    };
+    kullanicilar.push(yeni);
+    localStorage.setItem('kullanicilar', JSON.stringify(kullanicilar));
+    localStorage.setItem('kullanici', JSON.stringify(yeni));
+    window.location.href = 'hesap.html';
+  }
 
+  function cikisYap() {
+    localStorage.removeItem('kullanici');
+    window.location.href = 'index.html';
+  }
 
+  function toggleDropdown(e) {
+    e.preventDefault();
+    const dd = document.getElementById('accountDropdown');
+    if (dd) dd.classList.toggle('open');
+  }
 
+  function switchTab(tab) {
+    document.querySelectorAll('.dropdown-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
 
+  document.addEventListener('click', function(e) {
+    const area = document.getElementById('navAccountArea');
+    if (area && !area.contains(e.target)) {
+      const dd = document.getElementById('accountDropdown');
+      if (dd) dd.classList.remove('open');
+    }
+  });
+
+  // Çıkış butonu
+  document.getElementById('logoutBtn').onclick = cikisYap;
 
   // Başlat
+  renderNavAccount();
   sayfaYukle();
 </script>
-<script src="auth.js"></script>
 </body>
 </html>
