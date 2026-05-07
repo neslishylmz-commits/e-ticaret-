@@ -26,7 +26,6 @@
     }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-decoration: none; flex: 1; }
 
-    /* Steps in nav */
     .nav-steps { display: flex; align-items: center; gap: 0; }
     .ns { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
     .ns.done { color: var(--success); }
@@ -70,25 +69,20 @@
     }
     .section-card.focused { border-color: rgba(232,192,125,0.25); }
 
-    .section-header {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
-    }
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
     .section-num {
       width: 32px; height: 32px; border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       display: flex; align-items: center; justify-content: center;
       font-family: 'Playfair Display', serif;
-      font-size: 0.85rem; font-weight: 700; color: #0d0d0d;
-      flex-shrink: 0;
+      font-size: 0.85rem; font-weight: 700; color: #0d0d0d; flex-shrink: 0;
     }
     .section-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); }
     .section-badge {
       margin-left: auto;
-      background: rgba(126,200,126,0.1);
-      color: var(--success);
+      background: rgba(126,200,126,0.1); color: var(--success);
       font-size: 0.7rem; font-weight: 600;
-      padding: 3px 10px; border-radius: 20px;
-      letter-spacing: 0.3px;
+      padding: 3px 10px; border-radius: 20px; letter-spacing: 0.3px;
     }
 
     /* ── FORM ── */
@@ -97,21 +91,13 @@
     .form-full { grid-column: 1 / -1; }
 
     .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-label {
-      font-size: 0.72rem; font-weight: 600;
-      color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px;
-    }
+    .form-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
     .form-input, .form-select {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
     }
     .form-input:focus, .form-select:focus {
       border-color: var(--accent);
@@ -120,10 +106,8 @@
     .form-input::placeholder { color: #444; }
     .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
     .form-select option { background: var(--card); }
-
     .form-hint { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-    /* Input with icon */
     .input-wrap { position: relative; }
     .input-wrap .form-input { padding-left: 42px; }
     .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 15px; pointer-events: none; }
@@ -132,26 +116,18 @@
     /* Card visual */
     .card-visual {
       background: linear-gradient(135deg, #1e1e2e 0%, #2d2040 100%);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px 24px;
-      margin-bottom: 22px;
-      position: relative;
-      overflow: hidden;
-      min-height: 130px;
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 22px 24px; margin-bottom: 22px;
+      position: relative; overflow: hidden; min-height: 130px;
     }
     .card-visual::before {
-      content: '';
-      position: absolute; top: -40px; right: -40px;
-      width: 150px; height: 150px;
-      border-radius: 50%;
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 150px; height: 150px; border-radius: 50%;
       background: radial-gradient(circle, rgba(232,192,125,0.12), transparent 70%);
     }
     .card-visual::after {
-      content: '';
-      position: absolute; bottom: -30px; left: -20px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
+      content: ''; position: absolute; bottom: -30px; left: -20px;
+      width: 120px; height: 120px; border-radius: 50%;
       background: radial-gradient(circle, rgba(201,149,106,0.08), transparent 70%);
     }
     .cv-chip { font-size: 22px; margin-bottom: 12px; }
@@ -165,12 +141,9 @@
     .pay-tabs { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
     .pay-tab {
       flex: 1; min-width: 100px;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 8px;
-      text-align: center;
-      cursor: pointer;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 12px 8px;
+      text-align: center; cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       display: flex; flex-direction: column; align-items: center; gap: 5px;
     }
@@ -180,30 +153,21 @@
     .pay-tab-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); }
     .pay-tab.active .pay-tab-label { color: var(--accent); }
 
-    /* Payment panels */
     .pay-panel { display: none; }
     .pay-panel.active { display: block; }
 
-    /* Kapıda */
     .kapida-note {
-      background: rgba(232,192,125,0.07);
-      border: 1px solid rgba(232,192,125,0.2);
-      border-radius: 12px;
-      padding: 16px 18px;
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.7;
+      background: rgba(232,192,125,0.07); border: 1px solid rgba(232,192,125,0.2);
+      border-radius: 12px; padding: 16px 18px;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
     }
     .kapida-note strong { color: var(--accent); }
 
-    /* ── ADDRESS RADIO ── */
+    /* ── ADDRESS ── */
     .addr-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
     .addr-option {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      cursor: pointer;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; cursor: pointer;
       display: flex; gap: 12px; align-items: flex-start;
       transition: border-color 0.2s;
     }
@@ -223,14 +187,11 @@
     }
     .new-addr-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── CARGO OPTIONS ── */
+    /* ── CARGO ── */
     .cargo-options { display: flex; flex-direction: column; gap: 10px; }
     .cargo-option {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      cursor: pointer;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; cursor: pointer;
       display: flex; align-items: center; gap: 14px;
       transition: border-color 0.2s;
     }
@@ -244,46 +205,30 @@
     .cargo-price { font-weight: 700; font-size: 0.9rem; }
     .cargo-price.free { color: var(--success); }
 
-    /* ── NOTE ── */
     .form-textarea {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      outline: none;
-      resize: vertical;
-      min-height: 80px;
-      width: 100%;
-      transition: border-color 0.2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; outline: none; resize: vertical;
+      min-height: 80px; width: 100%; transition: border-color 0.2s;
     }
     .form-textarea:focus { border-color: var(--accent); }
     .form-textarea::placeholder { color: #444; }
 
-    /* ── ORDER SUMMARY (right) ── */
+    /* ── ORDER SUMMARY ── */
     .order-summary {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      position: sticky;
-      top: calc(var(--nav-h) + 24px);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+      position: sticky; top: calc(var(--nav-h) + 24px);
     }
     .os-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; }
-
-    /* Mini product list */
     .os-items { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
     .os-item { display: flex; align-items: center; gap: 12px; }
     .os-thumb {
-      width: 50px; height: 50px;
-      background: var(--surface);
-      border-radius: 10px;
-      border: 1px solid var(--border);
+      width: 50px; height: 50px; background: var(--surface);
+      border-radius: 10px; border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0;
-      position: relative;
+      font-size: 22px; flex-shrink: 0; position: relative;
     }
     .os-qty-badge {
       position: absolute; top: -6px; right: -6px;
@@ -297,7 +242,6 @@
     .os-item-sub { font-size: 0.72rem; color: var(--muted); }
     .os-item-price { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--accent); }
 
-    /* Price rows */
     .price-rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
     .price-row { display: flex; justify-content: space-between; font-size: 0.85rem; }
     .price-row .lbl { color: var(--muted); }
@@ -313,7 +257,6 @@
     .total-lbl { font-family: 'Playfair Display', serif; font-size: 1rem; }
     .total-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--accent); }
 
-    /* Coupon */
     .coupon-row { display: flex; gap: 8px; margin-bottom: 16px; }
     .coupon-input {
       flex: 1; background: var(--surface); border: 1px solid var(--border);
@@ -325,8 +268,7 @@
     .coupon-input:focus { border-color: var(--accent); }
     .coupon-input::placeholder { text-transform: none; letter-spacing: 0; color: #444; }
     .coupon-btn {
-      padding: 10px 14px;
-      background: var(--surface); border: 1px solid var(--border);
+      padding: 10px 14px; background: var(--surface); border: 1px solid var(--border);
       border-radius: 10px; color: var(--accent);
       font-size: 0.82rem; font-weight: 600; cursor: pointer;
       transition: background 0.2s; white-space: nowrap;
@@ -343,7 +285,6 @@
     .coupon-applied button { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; }
     .coupon-applied button:hover { color: var(--danger); }
 
-    /* Place order btn */
     .place-order-btn {
       width: 100%; padding: 17px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -357,18 +298,10 @@
     .place-order-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 12px 30px rgba(232,192,125,0.28); }
     .place-order-btn:active { transform: translateY(0); }
 
-    /* Trust */
-    .trust-row {
-      display: flex; justify-content: center; gap: 18px;
-      margin-top: 14px; flex-wrap: wrap;
-    }
+    .trust-row { display: flex; justify-content: center; gap: 18px; margin-top: 14px; flex-wrap: wrap; }
     .trust-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--muted); }
 
-    /* Payment logos */
-    .pay-logos {
-      display: flex; justify-content: center; gap: 8px;
-      margin-top: 14px; flex-wrap: wrap;
-    }
+    .pay-logos { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
     .pay-logo {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 6px; padding: 5px 10px;
@@ -383,78 +316,49 @@
 
     /* ── GİRİŞ UYARI BANNER ── */
     .login-banner {
-      display: none;
-      position: fixed;
-      top: var(--nav-h);
-      left: 0; right: 0;
-      z-index: 999;
+      position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 999;
       background: linear-gradient(135deg, rgba(232,192,125,0.12), rgba(201,149,106,0.08));
       border-bottom: 1px solid rgba(232,192,125,0.25);
-      backdrop-filter: blur(12px);
-      padding: 14px 48px;
-      display: none;
-      align-items: center;
-      gap: 14px;
+      backdrop-filter: blur(12px); padding: 14px 48px;
+      display: none; align-items: center; gap: 14px;
       animation: slideDown 0.35s ease;
     }
     .login-banner.show { display: flex; }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
     .banner-icon { font-size: 20px; flex-shrink: 0; }
     .banner-text { flex: 1; font-size: 0.875rem; color: var(--text); }
     .banner-text strong { color: var(--accent); }
     .banner-btn {
       padding: 9px 20px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d;
-      font-weight: 700;
-      font-size: 0.82rem;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.2s;
-      letter-spacing: 0.3px;
+      color: #0d0d0d; font-weight: 700; font-size: 0.82rem;
+      border: none; border-radius: 20px; cursor: pointer;
+      white-space: nowrap; transition: opacity 0.2s; letter-spacing: 0.3px;
     }
     .banner-btn:hover { opacity: 0.88; }
     .banner-close {
       background: none; border: none; color: var(--muted);
       font-size: 18px; cursor: pointer; padding: 4px 8px;
-      border-radius: 6px; transition: color 0.2s;
-      flex-shrink: 0;
+      border-radius: 6px; transition: color 0.2s; flex-shrink: 0;
     }
     .banner-close:hover { color: var(--text); }
 
-    /* Giriş formu overlay */
+    /* ── GİRİŞ MODAL ── */
     .login-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      align-items: center;
-      justify-content: center;
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
       animation: fadeIn 0.2s ease;
     }
     .login-overlay.show { display: flex; }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     .login-modal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 36px;
-      width: 100%;
-      max-width: 400px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 36px; width: 100%; max-width: 400px;
       box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-      animation: popIn 0.3s ease;
+      animation: popIn 0.3s ease; position: relative;
     }
-    @keyframes popIn {
-      from { opacity:0; transform: scale(0.95) translateY(10px); }
-      to   { opacity:1; transform: scale(1) translateY(0); }
-    }
+    @keyframes popIn { from { opacity:0; transform:scale(0.95) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
     .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
     .modal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 24px; }
     .modal-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 22px; }
@@ -484,6 +388,7 @@
       transition: opacity 0.2s; font-family: 'DM Sans', sans-serif;
     }
     .modal-btn:hover { opacity: 0.9; }
+    .modal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .modal-err { font-size: 0.78rem; color: var(--danger); margin-top: 4px; display: none; }
     .modal-close-btn {
       position: absolute; top: 16px; right: 16px;
@@ -491,7 +396,6 @@
       font-size: 22px; cursor: pointer; line-height: 1;
     }
 
-    /* Sayfa blur efekti */
     .page.blurred { filter: blur(2px) brightness(0.6); pointer-events: none; user-select: none; }
 
     /* ── SUCCESS OVERLAY ── */
@@ -507,7 +411,6 @@
       text-align: center; max-width: 460px; width: 90%;
       animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
     }
-    @keyframes popIn { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
     .success-icon { font-size: 64px; margin-bottom: 16px; }
     .success-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); margin-bottom: 8px; }
     .success-sub { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px; }
@@ -523,12 +426,10 @@
     }
     .success-btn:hover { opacity: 0.9; }
 
-    /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-    /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
     .section-card { animation: fadeUp 0.35s ease both; }
     .section-card:nth-child(1) { animation-delay: 0.05s; }
@@ -551,24 +452,13 @@
 <!-- ── NAV ── -->
 <nav>
   <a href="sepet.html" class="nav-logo">LOBA</a>
-
   <div class="nav-steps">
-    <div class="ns done">
-      <div class="ns-dot">✓</div>
-      Sepet
-    </div>
+    <div class="ns done"><div class="ns-dot">✓</div>Sepet</div>
     <div class="ns-line done"></div>
-    <div class="ns active">
-      <div class="ns-dot">2</div>
-      Ödeme
-    </div>
+    <div class="ns active"><div class="ns-dot">2</div>Ödeme</div>
     <div class="ns-line"></div>
-    <div class="ns">
-      <div class="ns-dot">3</div>
-      Onay
-    </div>
+    <div class="ns"><div class="ns-dot">3</div>Onay</div>
   </div>
-
   <div class="nav-secure">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -589,7 +479,7 @@
 
 <!-- ── GİRİŞ MODAL ── -->
 <div class="login-overlay" id="loginOverlay">
-  <div class="login-modal" style="position:relative;">
+  <div class="login-modal">
     <button class="modal-close-btn" onclick="loginModalKapat()">✕</button>
     <div class="modal-title">Hoş Geldiniz 👋</div>
     <div class="modal-sub">Devam etmek için giriş yapın veya kayıt olun.</div>
@@ -603,25 +493,25 @@
       <input class="modal-input" id="mLoginEmail" type="email" placeholder="E-posta adresi"/>
       <input class="modal-input" id="mLoginPass" type="password" placeholder="Şifre"/>
       <p class="modal-err" id="mLoginErr"></p>
-      <button class="modal-btn" onclick="modalGiris()">Giriş Yap</button>
+      <button class="modal-btn" id="mLoginBtn" onclick="modalGiris()">Giriş Yap</button>
     </div>
 
     <!-- Kayıt Paneli -->
     <div class="modal-panel" id="mpanel-kayit">
       <div class="modal-row" style="margin-bottom:10px;">
-        <input class="modal-input" id="mRegAd" type="text" placeholder="Ad" style="margin-bottom:0;"/>
+        <input class="modal-input" id="mRegAd"    type="text" placeholder="Ad"    style="margin-bottom:0;"/>
         <input class="modal-input" id="mRegSoyad" type="text" placeholder="Soyad" style="margin-bottom:0;"/>
       </div>
-      <input class="modal-input" id="mRegTel" type="tel" placeholder="Telefon"/>
-      <input class="modal-input" id="mRegEmail" type="email" placeholder="E-posta"/>
-      <input class="modal-input" id="mRegPass" type="password" placeholder="Şifre oluştur"/>
-      <input class="modal-input" id="mRegAdres" type="text" placeholder="Adres (mahalle, cadde, no)"/>
+      <input class="modal-input" id="mRegTel"   type="tel"      placeholder="Telefon"/>
+      <input class="modal-input" id="mRegEmail" type="email"    placeholder="E-posta"/>
+      <input class="modal-input" id="mRegPass"  type="password" placeholder="Şifre oluştur"/>
+      <input class="modal-input" id="mRegAdres" type="text"     placeholder="Adres (mahalle, cadde, no)"/>
       <div class="modal-row" style="margin-bottom:10px;">
-        <input class="modal-input" id="mRegIl" type="text" placeholder="İl" style="margin-bottom:0;"/>
+        <input class="modal-input" id="mRegIl"   type="text" placeholder="İl"   style="margin-bottom:0;"/>
         <input class="modal-input" id="mRegIlce" type="text" placeholder="İlçe" style="margin-bottom:0;"/>
       </div>
       <p class="modal-err" id="mRegErr"></p>
-      <button class="modal-btn" onclick="modalKayit()">Kayıt Ol</button>
+      <button class="modal-btn" id="mRegBtn" onclick="modalKayit()">Kayıt Ol</button>
     </div>
   </div>
 </div>
@@ -631,12 +521,11 @@
   <h1 class="page-title">Ödeme <span>Bilgileri</span></h1>
   <p class="page-sub">
     <a href="sepet.html">← Sepete Dön</a>
-    &nbsp;·&nbsp; 3 ürün · Toplam ₺4.173
   </p>
 
   <div class="checkout-layout">
 
-    <!-- ──────────── SOL KOLON ──────────── -->
+    <!-- SOL KOLON -->
     <div class="left-col">
 
       <!-- 1. TESLİMAT ADRESİ -->
@@ -646,36 +535,19 @@
           <div class="section-title">Teslimat Adresi</div>
           <span class="section-badge">Kayıtlı</span>
         </div>
-
-        <div class="addr-options">
-          <!-- Kullanıcı adresi JS ile doldurulacak -->
-        </div>
-
+        <div class="addr-options"></div>
         <button class="new-addr-toggle" onclick="toggleNewAddr()">
           <span>＋</span> Yeni Adres Ekle
         </button>
-
         <div id="newAddrForm" style="display:none; margin-top:18px;">
           <div class="form-grid" style="margin-bottom:14px;">
-            <div class="form-group">
-              <label class="form-label">Ad</label>
-              <input class="form-input" type="text" placeholder="Adınız"/>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Soyad</label>
-              <input class="form-input" type="text" placeholder="Soyadınız"/>
-            </div>
+            <div class="form-group"><label class="form-label">Ad</label><input class="form-input" type="text" placeholder="Adınız"/></div>
+            <div class="form-group"><label class="form-label">Soyad</label><input class="form-input" type="text" placeholder="Soyadınız"/></div>
             <div class="form-group form-full">
               <label class="form-label">Telefon</label>
-              <div class="input-wrap">
-                <span class="input-icon">📞</span>
-                <input class="form-input" type="tel" placeholder="+90 5xx xxx xx xx"/>
-              </div>
+              <div class="input-wrap"><span class="input-icon">📞</span><input class="form-input" type="tel" placeholder="+90 5xx xxx xx xx"/></div>
             </div>
-            <div class="form-group form-full">
-              <label class="form-label">Adres Satırı</label>
-              <input class="form-input" type="text" placeholder="Mahalle, cadde, sokak, bina no, daire"/>
-            </div>
+            <div class="form-group form-full"><label class="form-label">Adres Satırı</label><input class="form-input" type="text" placeholder="Mahalle, cadde, sokak, bina no, daire"/></div>
             <div class="form-group">
               <label class="form-label">İl</label>
               <select class="form-select">
@@ -683,19 +555,11 @@
                 <option>İzmir</option><option>Bursa</option><option>Antalya</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">İlçe</label>
-              <input class="form-input" type="text" placeholder="İlçe"/>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Posta Kodu</label>
-              <input class="form-input" type="text" placeholder="38000"/>
-            </div>
+            <div class="form-group"><label class="form-label">İlçe</label><input class="form-input" type="text" placeholder="İlçe"/></div>
+            <div class="form-group"><label class="form-label">Posta Kodu</label><input class="form-input" type="text" placeholder="38000"/></div>
             <div class="form-group">
               <label class="form-label">Adres Başlığı</label>
-              <select class="form-select">
-                <option>Ev</option><option>İş</option><option>Diğer</option>
-              </select>
+              <select class="form-select"><option>Ev</option><option>İş</option><option>Diğer</option></select>
             </div>
           </div>
           <div class="check-row">
@@ -711,83 +575,36 @@
           <div class="section-num">2</div>
           <div class="section-title">Fatura Bilgileri</div>
         </div>
-
         <div style="margin-bottom:16px;">
           <div class="check-row">
             <input type="checkbox" id="sameBillAddr" checked onchange="toggleBillAddr(this)"/>
             <label for="sameBillAddr">Fatura adresi teslimat adresi ile aynı</label>
           </div>
         </div>
-
         <div id="billAddrSection" style="display:none;">
           <div style="margin-bottom:14px;">
             <div class="pay-tabs" style="margin-bottom:14px;">
-              <div class="pay-tab active" onclick="selectBillType(this,'bireysel')" id="bt-bireysel">
-                <div class="pay-tab-icon">👤</div>
-                <div class="pay-tab-label">Bireysel</div>
-              </div>
-              <div class="pay-tab" onclick="selectBillType(this,'kurumsal')" id="bt-kurumsal">
-                <div class="pay-tab-icon">🏢</div>
-                <div class="pay-tab-label">Kurumsal</div>
-              </div>
+              <div class="pay-tab active" onclick="selectBillType(this,'bireysel')"><div class="pay-tab-icon">👤</div><div class="pay-tab-label">Bireysel</div></div>
+              <div class="pay-tab" onclick="selectBillType(this,'kurumsal')"><div class="pay-tab-icon">🏢</div><div class="pay-tab-label">Kurumsal</div></div>
             </div>
           </div>
-
           <div id="billForm-bireysel">
             <div class="form-grid">
-              <div class="form-group">
-                <label class="form-label">Ad Soyad</label>
-                <input class="form-input" type="text" placeholder="Ad Soyad"/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">T.C. Kimlik No</label>
-                <input class="form-input" type="text" placeholder="12345678901" maxlength="11"/>
-              </div>
-              <div class="form-group form-full">
-                <label class="form-label">Adres</label>
-                <input class="form-input" type="text" placeholder="Fatura adresi"/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">İl</label>
-                <select class="form-select">
-                  <option>Kayseri</option><option>Ankara</option><option>İstanbul</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">İlçe</label>
-                <input class="form-input" type="text" placeholder="İlçe"/>
-              </div>
+              <div class="form-group"><label class="form-label">Ad Soyad</label><input class="form-input" type="text" placeholder="Ad Soyad"/></div>
+              <div class="form-group"><label class="form-label">T.C. Kimlik No</label><input class="form-input" type="text" placeholder="12345678901" maxlength="11"/></div>
+              <div class="form-group form-full"><label class="form-label">Adres</label><input class="form-input" type="text" placeholder="Fatura adresi"/></div>
+              <div class="form-group"><label class="form-label">İl</label><select class="form-select"><option>Kayseri</option><option>Ankara</option><option>İstanbul</option></select></div>
+              <div class="form-group"><label class="form-label">İlçe</label><input class="form-input" type="text" placeholder="İlçe"/></div>
             </div>
           </div>
-
           <div id="billForm-kurumsal" style="display:none;">
             <div class="form-grid">
-              <div class="form-group form-full">
-                <label class="form-label">Şirket Adı</label>
-                <input class="form-input" type="text" placeholder="Şirket Adı A.Ş."/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Vergi No</label>
-                <input class="form-input" type="text" placeholder="0123456789"/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Vergi Dairesi</label>
-                <input class="form-input" type="text" placeholder="Melikgazi"/>
-              </div>
-              <div class="form-group form-full">
-                <label class="form-label">Şirket Adresi</label>
-                <input class="form-input" type="text" placeholder="Şirket adresi"/>
-              </div>
-              <div class="form-group">
-                <label class="form-label">İl</label>
-                <select class="form-select">
-                  <option>Kayseri</option><option>Ankara</option><option>İstanbul</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">İlçe</label>
-                <input class="form-input" type="text" placeholder="İlçe"/>
-              </div>
+              <div class="form-group form-full"><label class="form-label">Şirket Adı</label><input class="form-input" type="text" placeholder="Şirket Adı A.Ş."/></div>
+              <div class="form-group"><label class="form-label">Vergi No</label><input class="form-input" type="text" placeholder="0123456789"/></div>
+              <div class="form-group"><label class="form-label">Vergi Dairesi</label><input class="form-input" type="text" placeholder="Melikgazi"/></div>
+              <div class="form-group form-full"><label class="form-label">Şirket Adresi</label><input class="form-input" type="text" placeholder="Şirket adresi"/></div>
+              <div class="form-group"><label class="form-label">İl</label><select class="form-select"><option>Kayseri</option><option>Ankara</option><option>İstanbul</option></select></div>
+              <div class="form-group"><label class="form-label">İlçe</label><input class="form-input" type="text" placeholder="İlçe"/></div>
             </div>
           </div>
         </div>
@@ -817,68 +634,48 @@
           <div class="section-num">4</div>
           <div class="section-title">Ödeme Yöntemi</div>
         </div>
-
         <div class="pay-tabs">
-          <div class="pay-tab active" onclick="switchPay(this,'kredi')">
-            <div class="pay-tab-icon">💳</div>
-            <div class="pay-tab-label">Kredi / Banka Kartı</div>
-          </div>
-          <div class="pay-tab" onclick="switchPay(this,'kapida')">
-            <div class="pay-tab-icon">🏠</div>
-            <div class="pay-tab-label">Kapıda Ödeme</div>
-          </div>
+          <div class="pay-tab active" onclick="switchPay(this,'kredi')"><div class="pay-tab-icon">💳</div><div class="pay-tab-label">Kredi / Banka Kartı</div></div>
+          <div class="pay-tab" onclick="switchPay(this,'kapida')"><div class="pay-tab-icon">🏠</div><div class="pay-tab-label">Kapıda Ödeme</div></div>
         </div>
 
         <!-- Kredi Kartı -->
         <div class="pay-panel active" id="panel-kredi">
-          <!-- Kart görseli -->
           <div class="card-visual">
             <div class="cv-chip">💳</div>
             <div class="cv-number" id="cvNum">•••• •••• •••• ••••</div>
             <div class="cv-bottom">
-              <div>
-                <div class="cv-label">Kart Sahibi</div>
-                <div class="cv-val" id="cvName">AD SOYAD</div>
-              </div>
-              <div>
-                <div class="cv-label">Son Kullanım</div>
-                <div class="cv-val" id="cvExp">AA/YY</div>
-              </div>
+              <div><div class="cv-label">Kart Sahibi</div><div class="cv-val" id="cvName">AD SOYAD</div></div>
+              <div><div class="cv-label">Son Kullanım</div><div class="cv-val" id="cvExp">AA/YY</div></div>
               <div class="cv-brand" id="cvBrand">LOBA</div>
             </div>
           </div>
-
           <div class="form-grid" style="margin-bottom:14px;">
             <div class="form-group form-full">
               <label class="form-label">Kart Numarası</label>
               <div class="input-wrap">
                 <span class="input-icon">💳</span>
-                <input class="form-input" id="cardNum" type="text" placeholder="1234 5678 9012 3456" maxlength="19"
-                  oninput="formatCard(this)" onkeypress="return isNum(event)"/>
+                <input class="form-input" id="cardNum" type="text" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)" onkeypress="return isNum(event)"/>
                 <span class="card-brand" id="cardBrandIcon"></span>
               </div>
             </div>
             <div class="form-group form-full">
               <label class="form-label">Kart Üzerindeki Ad</label>
-              <input class="form-input" id="cardName" type="text" placeholder="AD SOYAD"
-                oninput="document.getElementById('cvName').textContent = this.value.toUpperCase() || 'AD SOYAD'"/>
+              <input class="form-input" id="cardName" type="text" placeholder="AD SOYAD" oninput="document.getElementById('cvName').textContent = this.value.toUpperCase() || 'AD SOYAD'"/>
             </div>
             <div class="form-group">
               <label class="form-label">Son Kullanım Tarihi</label>
-              <input class="form-input" id="cardExp" type="text" placeholder="AA/YY" maxlength="5"
-                oninput="formatExp(this)"/>
+              <input class="form-input" id="cardExp" type="text" placeholder="AA/YY" maxlength="5" oninput="formatExp(this)"/>
             </div>
             <div class="form-group">
               <label class="form-label">CVV / CVC</label>
               <div class="input-wrap">
                 <span class="input-icon">🔒</span>
-                <input class="form-input" id="cardCvv" type="password" placeholder="•••" maxlength="4"
-                  onkeypress="return isNum(event)"/>
+                <input class="form-input" id="cardCvv" type="password" placeholder="•••" maxlength="4" onkeypress="return isNum(event)"/>
               </div>
               <span class="form-hint">Kartın arka yüzündeki 3 haneli kod</span>
             </div>
           </div>
-
           <div style="margin-top:16px;" class="check-row">
             <input type="checkbox" id="save3d"/>
             <label for="save3d">3D Secure ile öde (önerilir)</label>
@@ -902,7 +699,6 @@
             <label for="kapidaConfirm">Kapıda ödeme koşullarını okudum, kabul ediyorum.</label>
           </div>
         </div>
-
       </div>
 
       <!-- 5. SİPARİŞ NOTU & SÖZLEŞMELER -->
@@ -911,43 +707,26 @@
           <div class="section-num">5</div>
           <div class="section-title">Ek Bilgiler & Sözleşmeler</div>
         </div>
-
         <div class="form-group" style="margin-bottom:18px;">
           <label class="form-label">Sipariş Notu (İsteğe Bağlı)</label>
           <textarea class="form-textarea" placeholder="Kargo görevlisi için özel not, bırakma yeri vb."></textarea>
         </div>
-
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <div class="check-row">
-            <input type="checkbox" id="kvkk" required/>
-            <label for="kvkk"><a href="#">KVKK Aydınlatma Metni</a>'ni okudum, kabul ediyorum. *</label>
-          </div>
-          <div class="check-row">
-            <input type="checkbox" id="mesafeli" required/>
-            <label for="mesafeli"><a href="#">Mesafeli Satış Sözleşmesi</a>'ni okudum, kabul ediyorum. *</label>
-          </div>
-          <div class="check-row">
-            <input type="checkbox" id="iptal"/>
-            <label for="iptal"><a href="#">Ön Bilgilendirme Formu</a>'nu okudum, kabul ediyorum.</label>
-          </div>
-          <div class="check-row">
-            <input type="checkbox" id="eposta"/>
-            <label for="eposta">Kampanya ve fırsatlardan haberdar olmak için e-posta almak istiyorum.</label>
-          </div>
+          <div class="check-row"><input type="checkbox" id="kvkk" required/><label for="kvkk"><a href="#">KVKK Aydınlatma Metni</a>'ni okudum, kabul ediyorum. *</label></div>
+          <div class="check-row"><input type="checkbox" id="mesafeli" required/><label for="mesafeli"><a href="#">Mesafeli Satış Sözleşmesi</a>'ni okudum, kabul ediyorum. *</label></div>
+          <div class="check-row"><input type="checkbox" id="iptal"/><label for="iptal"><a href="#">Ön Bilgilendirme Formu</a>'nu okudum, kabul ediyorum.</label></div>
+          <div class="check-row"><input type="checkbox" id="eposta"/><label for="eposta">Kampanya ve fırsatlardan haberdar olmak için e-posta almak istiyorum.</label></div>
         </div>
       </div>
 
     </div>
 
-    <!-- ──────────── SAĞ KOLON ──────────── -->
+    <!-- SAĞ KOLON -->
     <div class="right-col">
       <div class="order-summary">
         <div class="os-title">Sipariş Özeti</div>
-
-        <!-- Ürünler -->
         <div class="os-items" id="osItems"></div>
 
-        <!-- Kupon -->
         <div class="coupon-row" id="couponRow">
           <input class="coupon-input" id="couponInp" type="text" placeholder="İndirim / promosyon kodu"/>
           <button class="coupon-btn" onclick="applyCoupon()">Uygula</button>
@@ -960,33 +739,17 @@
           <button onclick="removeCoupon()">✕</button>
         </div>
 
-        <!-- Fiyat detayları -->
         <div class="price-rows">
-          <div class="price-row">
-            <span class="lbl">Ara Toplam</span>
-            <span class="val" id="araToplam">₺0</span>
-          </div>
-          <div class="price-row" id="couponPriceRow" style="display:none;">
-            <span class="lbl">Kupon İndirimi</span>
-            <span class="val red" id="couponDisc">−₺0</span>
-          </div>
-          <div class="price-row">
-            <span class="lbl">Kargo</span>
-            <span class="val green" id="cargoVal">Ücretsiz</span>
-          </div>
-          <div class="price-row">
-            <span class="lbl">KDV (%20)</span>
-            <span class="val" id="taxVal">₺0</span>
-          </div>
-          <div class="price-row" id="kapidaRow" style="display:none;">
-            <span class="lbl">Kapıda Ödeme Bedeli</span>
-            <span class="val">₺15,00</span>
-          </div>
+          <div class="price-row"><span class="lbl">Ara Toplam</span><span class="val" id="araToplam">₺0</span></div>
+          <div class="price-row" id="couponPriceRow" style="display:none;"><span class="lbl">Kupon İndirimi</span><span class="val red" id="couponDisc">−₺0</span></div>
+          <div class="price-row"><span class="lbl">Kargo</span><span class="val green" id="cargoVal">Ücretsiz</span></div>
+          <div class="price-row"><span class="lbl">KDV (%20)</span><span class="val" id="taxVal">₺0</span></div>
+          <div class="price-row" id="kapidaRow" style="display:none;"><span class="lbl">Kapıda Ödeme Bedeli</span><span class="val">₺15,00</span></div>
         </div>
 
         <div class="total-row">
           <span class="total-lbl">Toplam</span>
-          <span class="total-val" id="grandTotal">₺4.173</span>
+          <span class="total-val" id="grandTotal">₺0</span>
         </div>
 
         <button class="place-order-btn" onclick="placeOrder()">
@@ -1001,7 +764,6 @@
           <div class="trust-item">↩️ 14 Gün İade</div>
           <div class="trust-item">✅ Orijinal Ürün</div>
         </div>
-
         <div class="pay-logos">
           <span class="pay-logo">VISA</span>
           <span class="pay-logo">Mastercard</span>
@@ -1030,13 +792,14 @@
 </div>
 
 <script>
-  // ── GİRİŞ KONTROL & MODAL ──
-  function getKullanici() {
-    try { return JSON.parse(localStorage.getItem('kullanici')); } catch(e) { return null; }
-  }
+  // ── GİRİŞ KONTROL ──
+  // auth.js yüklendikten sonra çalışması için window.onload kullanıyoruz
+  window.addEventListener('load', function () {
+    loginKontrol();
+  });
 
   function loginKontrol() {
-    const kullanici = getKullanici();
+    const kullanici = window.__novaAuth ? window.__novaAuth.getKullanici() : null;
     if (!kullanici) {
       document.getElementById('loginBanner').classList.add('show');
       document.getElementById('mainPage').classList.add('blurred');
@@ -1067,15 +830,12 @@
   function bannerKapat() {
     document.getElementById('loginBanner').classList.remove('show');
   }
-
   function loginModalAc() {
     document.getElementById('loginOverlay').classList.add('show');
   }
-
   function loginModalKapat() {
     document.getElementById('loginOverlay').classList.remove('show');
   }
-
   function modalTab(tab, el) {
     document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
@@ -1083,57 +843,121 @@
     document.getElementById('mpanel-' + tab).classList.add('active');
   }
 
-  function modalGiris() {
+  // Giriş — PHP login.php kullanır
+  async function modalGiris() {
     const email = document.getElementById('mLoginEmail').value.trim();
     const pass  = document.getElementById('mLoginPass').value;
     const err   = document.getElementById('mLoginErr');
-    const kullanicilar = JSON.parse(localStorage.getItem('kullanicilar')) || [];
-    const bulunan = kullanicilar.find(k => k.email === email && k.sifre === pass);
-    if (!bulunan) {
-      err.textContent = 'E-posta veya şifre hatalı.';
+    const btn   = document.getElementById('mLoginBtn');
+
+    if (!email || !pass) {
+      err.textContent = 'E-posta ve şifre zorunludur.';
       err.style.display = 'block';
       return;
     }
-    localStorage.setItem('kullanici', JSON.stringify(bulunan));
-    loginModalKapat();
-    document.getElementById('loginBanner').classList.remove('show');
-    document.getElementById('mainPage').classList.remove('blurred');
-    kullaniciAdresiniYukle(bulunan);
+
+    btn.textContent = 'Giriş yapılıyor...';
+    btn.disabled = true;
+
+    try {
+      const res  = await fetch('/Loba/login.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, sifre: pass })
+      });
+      const data = await res.json();
+
+      if (!data.basari) {
+        err.textContent = data.mesaj || 'E-posta veya şifre hatalı.';
+        err.style.display = 'block';
+        return;
+      }
+
+      const k = data.kullanici;
+      const kullanici = {
+        ad: k.user_ad, soyad: k.user_soyad || '',
+        email: k.user_mail, telefon: k.user_telefon || '',
+        adres: k.user_adres || '', il: k.user_il || '', ilce: k.user_ilce || ''
+      };
+
+      localStorage.setItem('kullanici', JSON.stringify(kullanici));
+      if (window.__novaAuth) window.__novaAuth.renderNavAccount();
+
+      loginModalKapat();
+      document.getElementById('loginBanner').classList.remove('show');
+      document.getElementById('mainPage').classList.remove('blurred');
+      kullaniciAdresiniYukle(kullanici);
+
+    } catch(e) {
+      err.textContent = 'Sunucuya ulaşılamadı.';
+      err.style.display = 'block';
+    } finally {
+      btn.textContent = 'Giriş Yap';
+      btn.disabled = false;
+    }
   }
 
-  function modalKayit() {
+  // Kayıt — PHP register.php kullanır
+  async function modalKayit() {
     const ad    = document.getElementById('mRegAd').value.trim();
     const email = document.getElementById('mRegEmail').value.trim();
     const pass  = document.getElementById('mRegPass').value;
     const err   = document.getElementById('mRegErr');
+    const btn   = document.getElementById('mRegBtn');
+
     if (!ad || !email || !pass) {
       err.textContent = 'Ad, e-posta ve şifre zorunludur.';
       err.style.display = 'block';
       return;
     }
-    const kullanicilar = JSON.parse(localStorage.getItem('kullanicilar')) || [];
-    if (kullanicilar.find(k => k.email === email)) {
-      err.textContent = 'Bu e-posta zaten kayıtlı.';
-      err.style.display = 'block';
-      return;
-    }
-    const yeni = {
-      ad,
+
+    btn.textContent = 'Kaydediliyor...';
+    btn.disabled = true;
+
+    const payload = {
+      ad, email, sifre: pass,
       soyad:   document.getElementById('mRegSoyad').value.trim(),
-      email,
-      sifre:   pass,
       telefon: document.getElementById('mRegTel').value.trim(),
       adres:   document.getElementById('mRegAdres').value.trim(),
       il:      document.getElementById('mRegIl').value.trim(),
       ilce:    document.getElementById('mRegIlce').value.trim()
     };
-    kullanicilar.push(yeni);
-    localStorage.setItem('kullanicilar', JSON.stringify(kullanicilar));
-    localStorage.setItem('kullanici', JSON.stringify(yeni));
-    loginModalKapat();
-    document.getElementById('loginBanner').classList.remove('show');
-    document.getElementById('mainPage').classList.remove('blurred');
-    kullaniciAdresiniYukle(yeni);
+
+    try {
+      const res  = await fetch('/Loba/register.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (!data.basari) {
+        err.textContent = data.mesaj || 'Kayıt başarısız.';
+        err.style.display = 'block';
+        return;
+      }
+
+      const kullanici = {
+        ad: payload.ad, soyad: payload.soyad, email: payload.email,
+        telefon: payload.telefon, adres: payload.adres,
+        il: payload.il, ilce: payload.ilce
+      };
+
+      localStorage.setItem('kullanici', JSON.stringify(kullanici));
+      if (window.__novaAuth) window.__novaAuth.renderNavAccount();
+
+      loginModalKapat();
+      document.getElementById('loginBanner').classList.remove('show');
+      document.getElementById('mainPage').classList.remove('blurred');
+      kullaniciAdresiniYukle(kullanici);
+
+    } catch(e) {
+      err.textContent = 'Sunucuya ulaşılamadı.';
+      err.style.display = 'block';
+    } finally {
+      btn.textContent = 'Kayıt Ol';
+      btn.disabled = false;
+    }
   }
 
   // Overlay dışına tıklayınca kapat
@@ -1141,12 +965,10 @@
     if (e.target === this) loginModalKapat();
   });
 
-  loginKontrol();
-
-  // ── SEPETİ SİPARİŞ ÖZETİNE YÜKlE ──
+  // ── SEPETİ SİPARİŞ ÖZETİNE YÜKLE ──
   let cartBase = 0;
   function sepetiYukle() {
-    const cart = (() => { try { return JSON.parse(localStorage.getItem('lobaCart')) || []; } catch(e) { return []; } })();
+    const cart = (() => { try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; } })();
     const container = document.getElementById('osItems');
 
     if (cart.length === 0) {
@@ -1157,7 +979,9 @@
     container.innerHTML = cart.map(item => `
       <div class="os-item">
         <div class="os-thumb">
-          ${item.resim ? `<img src="${item.resim}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"/>` : item.icon}
+          ${item.resim
+            ? `<img src="${item.resim}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"/>`
+            : item.icon}
           <div class="os-qty-badge">${item.qty}</div>
         </div>
         <div class="os-item-info">
@@ -1171,11 +995,12 @@
     cartBase = cart.reduce((s, i) => s + i.price * i.qty, 0);
     const kdv = Math.round(cartBase * 0.20);
     document.getElementById('araToplam').textContent = '₺' + cartBase.toLocaleString('tr-TR');
-    document.getElementById('taxVal').textContent = '₺' + kdv.toLocaleString('tr-TR');
+    document.getElementById('taxVal').textContent    = '₺' + kdv.toLocaleString('tr-TR');
     document.getElementById('grandTotal').textContent = '₺' + (cartBase + kdv).toLocaleString('tr-TR');
   }
 
   sepetiYukle();
+
   function selectAddr(el) {
     document.querySelectorAll('.addr-option').forEach(a => a.classList.remove('selected'));
     el.classList.add('selected');
@@ -1184,8 +1009,6 @@
     const f = document.getElementById('newAddrForm');
     f.style.display = f.style.display === 'none' ? 'block' : 'none';
   }
-
-  /* ── Fatura tipi ── */
   function selectBillType(el, type) {
     document.querySelectorAll('#sc2 .pay-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
@@ -1196,31 +1019,24 @@
     document.getElementById('billAddrSection').style.display = cb.checked ? 'none' : 'block';
   }
 
-  /* ── Kargo (sabit standart) ── */
   let cargoFee = 0;
 
-  /* ── Ödeme yöntemi ── */
   function switchPay(el, type) {
     document.querySelectorAll('#sc4 .pay-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
     document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + type).classList.add('active');
-    // Kapıda ödeme bedeli
     document.getElementById('kapidaRow').style.display = type === 'kapida' ? 'flex' : 'none';
     recalcTotal();
   }
 
-  /* ── Kart numarası formatlama ── */
   function formatCard(input) {
     let v = input.value.replace(/\D/g, '').substring(0, 16);
     let parts = [];
     for (let i = 0; i < v.length; i += 4) parts.push(v.substring(i, i + 4));
     input.value = parts.join(' ');
-    // Kart görseli güncelle
     let display = v.padEnd(16, '•');
-    let disp = display.replace(/(.{4})/g, '$1 ').trim();
-    document.getElementById('cvNum').textContent = disp;
-    // Marka
+    document.getElementById('cvNum').textContent = display.replace(/(.{4})/g, '$1 ').trim();
     let brand = '', brandTxt = 'LOBA';
     if (v.startsWith('4')) { brand = '💙'; brandTxt = 'VISA'; }
     else if (v.startsWith('5')) { brand = '🔴'; brandTxt = 'MC'; }
@@ -1237,18 +1053,16 @@
   }
   function isNum(e) { return /[0-9]/.test(String.fromCharCode(e.which)); }
 
-  /* ── Kupon ── */
   let couponActive = false;
   function applyCoupon() {
     const code = document.getElementById('couponInp').value.trim().toUpperCase();
     if (code === 'LOBA20' || code === 'HOSGELDIN') {
       couponActive = true;
       document.getElementById('couponRow').style.display = 'none';
-      const ca = document.getElementById('couponApplied');
-      ca.style.display = 'flex';
+      document.getElementById('couponApplied').style.display = 'flex';
       document.getElementById('couponCode').textContent = code;
       document.getElementById('couponPriceRow').style.display = 'flex';
-      document.getElementById('couponDisc').textContent = '−₺834';
+      document.getElementById('couponDisc').textContent = '−₺' + Math.round(cartBase * 0.20).toLocaleString('tr-TR');
       recalcTotal();
     } else if (!code) {
       alert('Lütfen bir kod girin.');
@@ -1265,32 +1079,29 @@
     recalcTotal();
   }
 
-  /* ── Toplam hesapla ── */
   function recalcTotal() {
     let base = cartBase;
     if (couponActive) base -= Math.round(base * 0.20);
     const kdv    = Math.round(base * 0.20);
     const kapida = document.getElementById('kapidaRow').style.display !== 'none' ? 15 : 0;
-    const total  = base + kdv + cargoFee + kapida;
-    document.getElementById('grandTotal').textContent = '₺' + total.toLocaleString('tr-TR');
+    document.getElementById('grandTotal').textContent = '₺' + (base + kdv + cargoFee + kapida).toLocaleString('tr-TR');
   }
 
-  /* ── Sipariş tamamla ── */
   async function placeOrder() {
-    if (!document.getElementById('kvkk').checked) { alert('Lütfen KVKK metnini kabul edin.'); return; }
+    if (!document.getElementById('kvkk').checked)     { alert('Lütfen KVKK metnini kabul edin.'); return; }
     if (!document.getElementById('mesafeli').checked) { alert('Lütfen Mesafeli Satış Sözleşmesini kabul edin.'); return; }
 
     const btn = document.querySelector('.place-order-btn');
     btn.textContent = '⏳ İşleniyor...';
     btn.disabled = true;
 
-    const siparisNo     = 'LOBA-' + Math.floor(10000 + Math.random() * 90000);
-    const cart          = (() => { try { return JSON.parse(localStorage.getItem('lobaCart')) || []; } catch(e) { return []; } })();
-    const kullanici     = getKullanici();
-    const kapida        = document.getElementById('kapidaRow').style.display !== 'none';
-    const odemeYontemi  = document.querySelector('#sc4 .pay-tab.active .pay-tab-label')?.textContent?.trim() || 'kredi';
+    const siparisNo    = 'LOBA-' + Math.floor(10000 + Math.random() * 90000);
+    const cart         = (() => { try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; } })();
+    const kullanici    = window.__novaAuth ? window.__novaAuth.getKullanici() : null;
+    const user_id      = kullanici ? (kullanici.user_id || kullanici.id || 0) : 0;
+    const kapida       = document.getElementById('kapidaRow').style.display !== 'none';
+    const odemeYontemi = document.querySelector('#sc4 .pay-tab.active .pay-tab-label')?.textContent?.trim() || 'kredi';
 
-    // Sayısal değerleri hesapla
     let base = cartBase;
     if (couponActive) base -= Math.round(base * 0.20);
     const kdv         = Math.round(base * 0.20);
@@ -1298,12 +1109,13 @@
     const toplam      = base + kdv + cargoFee + kapidaUcret;
 
     try {
-      const res = await fetch('/loba/siparis_ekle.php', {
+      const res = await fetch('/Loba/siparis_ekle.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           siparis_no:      siparisNo,
           kullanici_email: kullanici ? kullanici.email : '',
+          user_id:         user_id,
           urunler:         cart,
           ara_toplam:      base,
           kdv:             kdv,
@@ -1322,8 +1134,7 @@
       return;
     }
 
-    // Sepeti temizle
-    localStorage.removeItem('lobaCart');
+    localStorage.removeItem('novaCart');
 
     setTimeout(() => {
       document.getElementById('sorderNum').textContent = '#' + siparisNo;
@@ -1331,16 +1142,16 @@
     }, 1800);
   }
 
-  /* ── Enter ile kupon ── */
   document.getElementById('couponInp').addEventListener('keydown', e => {
     if (e.key === 'Enter') applyCoupon();
   });
 
-  /* ── Section focus efekti ── */
   document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
     el.addEventListener('focus', () => el.closest('.section-card')?.classList.add('focused'));
     el.addEventListener('blur',  () => el.closest('.section-card')?.classList.remove('focused'));
   });
 </script>
+
+<script src="auth.js"></script>
 </body>
 </html>
