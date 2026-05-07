@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOVA SHOP — Sepet</title>
+  <title>LOBA SHOP — Sepet</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -127,7 +127,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">NOVA</a>
+  <a href="index.html" class="nav-logo">LOBA</a>
   <ul class="nav-links">
     <li><a href="index.html">Ana Sayfa</a></li>
     <li>
@@ -143,7 +143,43 @@
   <span id="cartBadge" style="background:var(--accent);color:#0d0d0d;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
 </a>
     </li>
-    <li class="nav-account"><span id="navAccountArea"></span></li>
+    <li class="nav-account">
+      <a class="account-btn" onclick="toggleDropdown(event)" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Hesabım ▾
+      </a>
+      <div class="account-dropdown" id="accountDropdown">
+        <div class="dropdown-tabs">
+          <div class="dropdown-tab active" onclick="switchTab('giris')">Giriş Yap</div>
+          <div class="dropdown-tab" onclick="switchTab('kayit')">Kayıt Ol</div>
+        </div>
+        <div class="dropdown-panel active" id="panel-giris">
+          <div class="dp-title">Hoş Geldiniz 👋</div>
+          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
+          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre"/></div>
+          <button class="dp-btn" onclick="window.location.href='hesap.html'">Giriş Yap</button>
+          <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
+        </div>
+        <div class="dropdown-panel" id="panel-kayit">
+          <div class="dp-title">Yeni Hesap</div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="Ad"/>
+            <input class="dp-input" type="text" placeholder="Soyad"/>
+          </div>
+          <div class="form-row full"><input class="dp-input" type="tel" placeholder="Telefon Numarası"/></div>
+          <div class="form-row full"><input class="dp-input" type="email" placeholder="E-posta adresi"/></div>
+          <div class="form-row full"><input class="dp-input" type="password" placeholder="Şifre oluştur"/></div>
+          <div class="form-row full"><input class="dp-input" type="text" placeholder="Adres"/></div>
+          <div class="form-row">
+            <input class="dp-input" type="text" placeholder="İl"/>
+            <input class="dp-input" type="text" placeholder="İlçe"/>
+          </div>
+          <button class="dp-btn">Kayıt Ol</button>
+        </div>
+      </div>
+    </li>
     <li><a href="iletisim.html">İletişim</a></li>
   </ul>
 </nav>
@@ -190,18 +226,18 @@
 </main>
 
 <footer>
-  <span class="footer-logo">NOVA SHOP</span>
-  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span class="footer-logo">LOBA SHOP</span>
+  <span>© 2025 Loba. Tüm hakları saklıdır.</span>
   <span>Güvenli alışveriş · SSL korumalı</span>
 </footer>
 
 <script>
   // ── SEPET VERİSİ ──
   function getCart() {
-    try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; }
+    try { return JSON.parse(localStorage.getItem('lobaCart')) || []; } catch(e) { return []; }
   }
   function saveCart(cart) {
-    localStorage.setItem('novaCart', JSON.stringify(cart));
+    localStorage.setItem('lobaCart', JSON.stringify(cart));
   }
 
   let discount = 0;
@@ -236,7 +272,9 @@
       el.className = 'cart-item';
       el.style.animationDelay = (idx * 0.08) + 's';
       el.innerHTML = `
-        <div class="item-icon">${item.icon}</div>
+        <div class="item-icon">
+            ${item.resim ? `<img src="${item.resim}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"/>` : item.icon}
+          </div>
         <div class="item-info">
           <p class="item-cat">${item.cat}</p>
           <p class="item-name">${item.name}</p>
@@ -296,7 +334,7 @@
   }
 
   // Promosyon kodu
-  const PROMO_CODES = { 'NOVA10': 100, 'INDIRIM': 250, 'HOSGELDIN': 150 };
+  const PROMO_CODES = { 'LOBA10': 100, 'INDIRIM': 250, 'HOSGELDIN': 150 };
   function applyPromo() {
     const code = document.getElementById('promoInput').value.trim().toUpperCase();
     const msg = document.getElementById('promoMsg');
@@ -314,10 +352,23 @@
   }
 
   // Navbar
+  function toggleDropdown(e) {
+    e.preventDefault();
+    document.getElementById('accountDropdown').classList.toggle('open');
+  }
+  function switchTab(tab) {
+    document.querySelectorAll('.dropdown-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+  document.addEventListener('click', function(e) {
+    const acc = document.querySelector('.nav-account');
+    if (!acc.contains(e.target)) document.getElementById('accountDropdown').classList.remove('open');
+  });
 
   // Sayfa yüklenince render et
   renderCart();
 </script>
-<script src="auth.js"></script>
 </body>
 </html>
