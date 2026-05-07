@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOVA SHOP — Ürünler</title>
+  <title>Loba SHOP — Ürünler</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
     :root {
       --bg: #0d0d0d;
       --surface: #161616;
@@ -19,16 +19,16 @@
       --border: #2a2a2a;
       --nav-h: 72px;
     }
- 
+
     html { scroll-behavior: smooth; }
- 
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
       min-height: 100vh;
     }
- 
+
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-h);
@@ -39,7 +39,7 @@
       padding: 0 48px;
       z-index: 1000;
     }
- 
+
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
@@ -49,12 +49,12 @@
       text-decoration: none;
       flex: 1;
     }
- 
+
     .nav-links {
       display: flex; align-items: center; gap: 8px;
       list-style: none;
     }
- 
+
     .nav-links a {
       color: var(--text);
       text-decoration: none;
@@ -69,9 +69,9 @@
       background: var(--card);
       color: var(--accent);
     }
- 
+
     .nav-account { position: relative; }
- 
+
     .account-dropdown {
       display: none;
       position: absolute;
@@ -86,12 +86,12 @@
       animation: dropIn 0.25s ease;
     }
     .account-dropdown.open { display: block; }
- 
+
     @keyframes dropIn {
       from { opacity: 0; transform: translateY(-10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
- 
+
     .dropdown-tabs { display: flex; border-bottom: 1px solid var(--border); }
     .dropdown-tab {
       flex: 1; padding: 14px;
@@ -108,20 +108,20 @@
       background: rgba(232,192,125,0.07);
       border-bottom: 2px solid var(--accent);
     }
- 
+
     .dropdown-panel { padding: 24px; display: none; }
     .dropdown-panel.active { display: block; }
- 
+
     .dp-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       color: var(--text);
       margin-bottom: 18px;
     }
- 
+
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
     .form-row.full { grid-template-columns: 1fr; }
- 
+
     .dp-input {
       width: 100%;
       background: var(--card);
@@ -136,7 +136,7 @@
     }
     .dp-input:focus { border-color: var(--accent); }
     .dp-input::placeholder { color: var(--muted); }
- 
+
     .dp-btn {
       width: 100%;
       margin-top: 14px;
@@ -152,10 +152,10 @@
       transition: opacity 0.2s, transform 0.1s;
     }
     .dp-btn:hover { opacity: 0.9; transform: translateY(-1px); }
- 
+
     .dp-link { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
     .dp-link a { color: var(--accent); text-decoration: none; }
- 
+
     .page-wrapper {
       padding-top: var(--nav-h);
       display: flex;
@@ -164,7 +164,7 @@
         radial-gradient(ellipse 50% 60% at 90% 20%, rgba(232,192,125,0.06) 0%, transparent 60%),
         radial-gradient(ellipse 40% 50% at 10% 80%, rgba(201,149,106,0.04) 0%, transparent 60%);
     }
- 
+
     .sidebar {
       width: 280px;
       min-width: 280px;
@@ -176,11 +176,11 @@
       overflow-y: auto;
       background: rgba(22,22,22,0.5);
     }
- 
+
     .sidebar::-webkit-scrollbar { width: 4px; }
     .sidebar::-webkit-scrollbar-track { background: transparent; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
- 
+
     .sidebar-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
@@ -189,9 +189,9 @@
       display: flex; align-items: center; gap: 8px;
     }
     .sidebar-title svg { color: var(--accent); }
- 
+
     .filter-group { margin-bottom: 32px; }
- 
+
     .filter-group-title {
       font-size: 0.7rem;
       font-weight: 600;
@@ -202,7 +202,7 @@
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
- 
+
     .filter-btn {
       display: flex;
       align-items: center;
@@ -221,10 +221,10 @@
       transition: all 0.2s;
       margin-bottom: 4px;
     }
- 
+
     .filter-btn:hover { background: var(--card); color: var(--text); border-color: var(--border); }
     .filter-btn.active { background: rgba(232,192,125,0.1); border-color: rgba(232,192,125,0.3); color: var(--accent); }
- 
+
     .filter-btn .dot {
       width: 8px; height: 8px;
       border-radius: 50%;
@@ -233,7 +233,7 @@
       transition: background 0.2s;
     }
     .filter-btn.active .dot { background: var(--accent); }
- 
+
     .filter-count {
       margin-left: auto;
       font-size: 0.72rem;
@@ -242,9 +242,9 @@
       padding: 2px 7px;
       border-radius: 10px;
     }
- 
+
     .price-range { padding: 4px 0; }
- 
+
     .price-labels {
       display: flex; justify-content: space-between;
       font-size: 0.78rem;
@@ -252,7 +252,7 @@
       margin-bottom: 10px;
     }
     .price-labels span { color: var(--accent); font-weight: 600; }
- 
+
     input[type="range"] {
       width: 100%;
       -webkit-appearance: none;
@@ -270,16 +270,16 @@
       cursor: pointer;
       box-shadow: 0 0 0 3px rgba(232,192,125,0.2);
     }
- 
+
     .main-content { flex: 1; padding: 40px 48px; }
- 
+
     .content-header {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 32px;
       flex-wrap: wrap;
       gap: 16px;
     }
- 
+
     .content-header-left h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
@@ -288,7 +288,7 @@
     }
     .content-header-left h1 span { color: var(--accent); }
     .content-header-left p { font-size: 0.85rem; color: var(--muted); }
- 
+
     .search-bar {
       display: flex;
       align-items: center;
@@ -311,13 +311,13 @@
       width: 200px;
     }
     .search-bar input::placeholder { color: var(--muted); }
- 
+
     .active-filters {
       display: flex; align-items: center; gap: 8px;
       flex-wrap: wrap;
       margin-bottom: 24px;
     }
- 
+
     .filter-chip {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(232,192,125,0.1);
@@ -332,7 +332,7 @@
     }
     .filter-chip:hover { background: rgba(232,192,125,0.2); }
     .filter-chip .x { font-size: 0.7rem; opacity: 0.7; }
- 
+
     .clear-all {
       background: none;
       border: none;
@@ -345,13 +345,13 @@
       transition: color 0.2s;
     }
     .clear-all:hover { color: var(--text); }
- 
+
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 20px;
     }
- 
+
     .product-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -361,20 +361,20 @@
       cursor: pointer;
       animation: fadeUp 0.4s ease both;
     }
- 
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
- 
+
     .product-card:hover {
       transform: translateY(-6px);
       border-color: rgba(232,192,125,0.3);
       box-shadow: 0 20px 60px rgba(0,0,0,0.4);
     }
- 
+
     .product-card.hidden { display: none; }
- 
+
     .product-img {
       width: 100%; height: 200px;
       background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
@@ -382,7 +382,7 @@
       font-size: 3.5rem;
       position: relative; overflow: hidden;
     }
- 
+
     .product-badge {
       position: absolute; top: 12px; left: 12px;
       background: var(--accent);
@@ -393,9 +393,9 @@
       border-radius: 12px;
       letter-spacing: 0.5px;
     }
- 
+
     .product-info { padding: 18px; }
- 
+
     .product-cat {
       font-size: 0.72rem;
       color: var(--muted);
@@ -403,7 +403,7 @@
       letter-spacing: 1.5px;
       margin-bottom: 6px;
     }
- 
+
     .product-name {
       font-size: 0.95rem;
       font-weight: 600;
@@ -411,9 +411,9 @@
       margin-bottom: 12px;
       line-height: 1.4;
     }
- 
+
     .product-footer { display: flex; align-items: center; justify-content: space-between; }
- 
+
     .product-price { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
     .product-price .old {
       font-size: 0.78rem;
@@ -422,7 +422,7 @@
       text-decoration: line-through;
       margin-left: 6px;
     }
- 
+
     .add-cart-btn {
       background: rgba(232,192,125,0.1);
       border: 1px solid rgba(232,192,125,0.25);
@@ -436,7 +436,7 @@
       font-family: 'DM Sans', sans-serif;
     }
     .add-cart-btn:hover { background: var(--accent); color: #0d0d0d; transform: scale(1.04); }
- 
+
     .empty-state {
       grid-column: 1/-1;
       text-align: center;
@@ -447,7 +447,7 @@
     .empty-icon { font-size: 4rem; margin-bottom: 16px; }
     .empty-state h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 8px; }
     .empty-state p { color: var(--muted); font-size: 0.875rem; }
- 
+
     .loading {
       grid-column: 1/-1;
       text-align: center;
@@ -455,7 +455,7 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
- 
+
     footer {
       border-top: 1px solid var(--border);
       padding: 40px 48px;
@@ -463,9 +463,9 @@
       color: var(--muted);
       font-size: 0.82rem;
     }
- 
+
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); font-weight: 700; }
- 
+
     .page-wrapper::before {
       content: '';
       position: fixed; inset: 0;
@@ -478,9 +478,9 @@
   </style>
 </head>
 <body>
- 
+
 <nav>
-  <a href="index.html" class="nav-logo">NOVA</a>
+  <a href="index.html" class="nav-logo">LOBA</a>
   <ul class="nav-links">
     <li><a href="index.html">Ana Sayfa</a></li>
     <li>
@@ -497,9 +497,9 @@
     <li><a href="iletisim.html">İletişim</a></li>
   </ul>
 </nav>
- 
+
 <div class="page-wrapper">
- 
+
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-title">
@@ -508,7 +508,7 @@
       </svg>
       Filtrele
     </div>
- 
+
     <div class="filter-group">
       <div class="filter-group-title">Kategori</div>
       <button class="filter-btn active" data-category="all" onclick="filterCategory(this, 'all')">
@@ -530,7 +530,7 @@
         <span class="dot"></span> Aksesuar <span class="filter-count">6</span>
       </button>
     </div>
- 
+
     <div class="filter-group">
       <div class="filter-group-title">Fiyat Aralığı</div>
       <div class="price-range">
@@ -538,7 +538,7 @@
         <input type="range" id="priceRange" min="0" max="70000" value="70000" step="500" oninput="filterPrice(this.value)"/>
       </div>
     </div>
- 
+
     <div class="filter-group">
       <div class="filter-group-title">Durum</div>
       <button class="filter-btn active" data-status="all" onclick="filterStatus(this, 'all')">
@@ -551,7 +551,7 @@
         <span class="dot"></span> İndirimli
       </button>
     </div>
- 
+
     <div class="filter-group">
       <div class="filter-group-title">Sırala</div>
       <button class="filter-btn active" data-sort="default" onclick="sortProducts(this, 'default')">
@@ -565,7 +565,7 @@
       </button>
     </div>
   </aside>
- 
+
   <!-- MAIN -->
   <div class="main-content">
     <div class="content-header">
@@ -582,12 +582,12 @@
         </div>
       </div>
     </div>
- 
+
     <div class="active-filters" id="activeFilters" style="display:none;">
       <span id="chipContainer"></span>
       <button class="clear-all" onclick="clearAllFilters()">Tümünü temizle</button>
     </div>
- 
+
     <div class="products-grid" id="productsGrid">
       <div class="loading">⏳ Ürünler yükleniyor...</div>
       <div class="empty-state" id="emptyState">
@@ -598,38 +598,38 @@
     </div>
   </div>
 </div>
- 
+
 <footer>
-  <span class="footer-logo">NOVA SHOP</span>
-  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span class="footer-logo">LOBA SHOP</span>
+  <span>© 2025 Loba Shop. Tüm hakları saklıdır.</span>
   <span>Güvenli alışveriş · SSL korumalı</span>
 </footer>
- 
+
 <script>
   let activeCategory = 'all';
   let activeStatus = 'all';
   let maxPrice = 70000;
   let searchQuery = '';
- 
+
   function getCards() {
     return document.querySelectorAll('.product-card:not(.empty-state)');
   }
- 
+
   function applyFilters() {
     const cards = getCards();
     let visible = 0;
- 
+
     cards.forEach(card => {
       const cat    = card.dataset.category;
       const price  = parseInt(card.dataset.price);
       const status = card.dataset.status || '';
       const name   = card.querySelector('.product-name').textContent.toLowerCase();
- 
+
       const catOk    = activeCategory === 'all' || cat === activeCategory;
       const priceOk  = price <= maxPrice;
       const statusOk = activeStatus === 'all' || status.includes(activeStatus);
       const searchOk = searchQuery === '' || name.includes(searchQuery.toLowerCase());
- 
+
       if (catOk && priceOk && statusOk && searchOk) {
         card.classList.remove('hidden');
         visible++;
@@ -637,26 +637,26 @@
         card.classList.add('hidden');
       }
     });
- 
+
     document.getElementById('resultCount').textContent = visible + ' ürün listeleniyor';
     document.getElementById('emptyState').classList.toggle('show', visible === 0);
     updateChips();
   }
- 
+
   function filterCategory(btn, cat) {
     document.querySelectorAll('[data-category]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeCategory = cat;
     applyFilters();
   }
- 
+
   function filterStatus(btn, status) {
     document.querySelectorAll('[data-status]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeStatus = status;
     applyFilters();
   }
- 
+
   function filterPrice(val) {
     maxPrice = parseInt(val);
     document.getElementById('priceVal').textContent = '₺' + parseInt(val).toLocaleString('tr-TR');
@@ -665,7 +665,7 @@
       `linear-gradient(to right, #e8c07d 0%, #e8c07d ${pct}%, #2a2a2a ${pct}%)`;
     applyFilters();
   }
- 
+
   function sortProducts(btn, type) {
     document.querySelectorAll('[data-sort]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -681,29 +681,29 @@
     cards.forEach(c => grid.appendChild(c));
     grid.appendChild(document.getElementById('emptyState'));
   }
- 
+
   function searchProducts(val) {
     searchQuery = val;
     applyFilters();
   }
- 
+
   function updateChips() {
     const container = document.getElementById('chipContainer');
     const bar = document.getElementById('activeFilters');
     const chips = [];
- 
+
     if (activeCategory !== 'all') chips.push({ label: activeCategory, type: 'category' });
     if (activeStatus !== 'all')   chips.push({ label: activeStatus,   type: 'status'   });
     if (maxPrice < 70000)         chips.push({ label: '₺0–₺' + maxPrice.toLocaleString('tr-TR'), type: 'price' });
     if (searchQuery)              chips.push({ label: '"' + searchQuery + '"', type: 'search' });
- 
+
     if (chips.length === 0) { bar.style.display = 'none'; return; }
     bar.style.display = 'flex';
     container.innerHTML = chips.map(c =>
       `<span class="filter-chip" onclick="removeChip('${c.type}')">${c.label} <span class="x">✕</span></span>`
     ).join('');
   }
- 
+
   function removeChip(type) {
     if (type === 'category') {
       activeCategory = 'all';
@@ -726,7 +726,7 @@
     }
     applyFilters();
   }
- 
+
   function clearAllFilters() {
     activeCategory = 'all';
     activeStatus   = 'all';
@@ -742,23 +742,21 @@
     document.querySelector('[data-status="all"]').classList.add('active');
     applyFilters();
   }
- 
-  function addToCart(e, id, name, price, icon, cat) {
-    e.stopPropagation();
+
+  function addToCart(id, name, price, icon, cat, resim, btn) {
     let cart = [];
     try { cart = JSON.parse(localStorage.getItem('novaCart')) || []; } catch(err) { cart = []; }
- 
+
     const existing = cart.find(i => i.id == id);
     if (existing) { existing.qty += 1; }
-    else { cart.push({ id: String(id), name, price: parseFloat(price), icon, cat, qty: 1 }); }
- 
+    else { cart.push({ id: String(id), name, price: parseFloat(price), icon, cat, resim: resim || '', qty: 1 }); }
+
     localStorage.setItem('novaCart', JSON.stringify(cart));
- 
+
     const total = cart.reduce((s, i) => s + i.qty, 0);
     const badge = document.getElementById('cartBadge');
     if (badge) { badge.textContent = total; badge.style.display = total > 0 ? 'flex' : 'none'; }
- 
-    const btn = e.target;
+
     btn.textContent = '✓ Eklendi';
     btn.style.background   = 'rgba(126,200,126,0.15)';
     btn.style.borderColor  = 'rgba(126,200,126,0.4)';
@@ -770,57 +768,69 @@
       btn.style.color       = '';
     }, 1500);
   }
- 
+
   // VERİTABANINDAN ÜRÜN YÜKLE
   async function loadProducts() {
     try {
       const res      = await fetch('/Loba/urunler.php');
       const products = await res.json();
       const grid     = document.getElementById('productsGrid');
- 
+
       grid.querySelector('.loading')?.remove();
- 
+
       products.forEach((p, i) => {
-        const badge    = p.badge ? `<span class="product-badge">${p.badge}</span>` : '';
+        const badge    = p.badge ? '<span class="product-badge">' + p.badge + '</span>' : '';
         const oldPrice = p.eski_fiyat
-          ? `<span class="old">₺${parseFloat(p.eski_fiyat).toLocaleString('tr-TR')}</span>`
+          ? '<span class="old">₺' + parseFloat(p.eski_fiyat).toLocaleString('tr-TR') + '</span>'
           : '';
- 
+
         const card = document.createElement('div');
         card.className        = 'product-card';
         card.dataset.category = p.kategori;
         card.dataset.price    = p.fiyat;
         card.dataset.status   = p.durum || '';
         card.style.animationDelay = (i * 0.05) + 's';
- 
+
+        // Resim veya emoji
+        const gorselHTML = p.resim
+          ? '<img src="' + p.resim + '" alt="' + p.ad + '" style="width:100%;height:100%;object-fit:cover;"/>'
+          : p.emoji;
+
+        card.innerHTML =
+          '<div class="product-img">' + gorselHTML + badge + '</div>' +
+          '<div class="product-info">' +
+            '<p class="product-cat">' + p.kategori.charAt(0).toUpperCase() + p.kategori.slice(1) + '</p>' +
+            '<p class="product-name">' + p.ad + '</p>' +
+            '<div class="product-footer">' +
+              '<span class="product-price">₺' + parseFloat(p.fiyat).toLocaleString('tr-TR') + ' ' + oldPrice + '</span>' +
+              '<button class="add-cart-btn" ' +
+                'data-id="' + p.id + '" ' +
+                'data-name="' + p.ad.replace(/"/g, '&quot;') + '" ' +
+                'data-price="' + p.fiyat + '" ' +
+                'data-icon="' + p.emoji + '" ' +
+                'data-cat="' + p.kategori + '" ' +
+                'data-resim="' + (p.resim || '') + '">' +
+              '+ Sepet</button>' +
+            '</div>' +
+          '</div>';
+
         // Ürün detay sayfasına yönlendirme
         card.style.cursor = 'pointer';
         card.addEventListener('click', function(e) {
           if (e.target.classList.contains('add-cart-btn')) return;
           window.location.href = 'urun.html?id=' + p.id;
         });
- 
-        card.innerHTML = `
-          <div class="product-img">
-            ${p.resim
-              ? `<img src="${p.resim}" alt="${p.ad}" style="width:100%;height:100%;object-fit:cover;"/>`
-              : p.emoji
-            }
-            ${badge}
-          </div>
-          <div class="product-info">
-            <p class="product-cat">${p.kategori.charAt(0).toUpperCase() + p.kategori.slice(1)}</p>
-            <p class="product-name">${p.ad}</p>
-            <div class="product-footer">
-              <span class="product-price">₺${parseFloat(p.fiyat).toLocaleString('tr-TR')} ${oldPrice}</span>
-              <button class="add-cart-btn" onclick="addToCart(event, '${p.id}', '${p.ad}', ${p.fiyat}, '${p.emoji}', '${p.kategori}')">+ Sepet</button>
-            </div>
-          </div>
-        `;
- 
+
+        // Sepet butonu event listener
+        card.querySelector('.add-cart-btn').addEventListener('click', function(e) {
+          e.stopPropagation();
+          const btn = e.currentTarget;
+          addToCart(btn.dataset.id, btn.dataset.name, btn.dataset.price, btn.dataset.icon, btn.dataset.cat, btn.dataset.resim, btn);
+        });
+
         grid.insertBefore(card, document.getElementById('emptyState'));
       });
- 
+
       applyFilters();
     } catch(e) {
       console.error('Ürünler yüklenemedi:', e);
@@ -828,11 +838,10 @@
       if (loading) loading.textContent = '❌ Ürünler yüklenemedi.';
     }
   }
- 
+
   loadProducts();
 </script>
- 
+
 <script src="auth.js"></script>
 </body>
 </html>
- 
