@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NOVA SHOP — Ürün</title>
+  <title>LOBA SHOP — Ürün</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,8 +78,7 @@
     .btn-cart { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.95rem; border: none; border-radius: 14px; cursor: pointer; transition: opacity 0.2s, transform 0.2s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .btn-cart:hover { opacity: 0.9; transform: translateY(-1px); }
     .btn-cart:active { transform: translateY(0); }
-    .btn-fav { padding: 16px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; cursor: pointer; transition: border-color 0.2s, background 0.2s; color: var(--text); display: flex; align-items: center; justify-content: center; }
-    .btn-fav:hover { border-color: var(--accent); background: rgba(232,192,125,0.06); }
+
 
     .stock-info { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; }
     .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: #7ec87e; }
@@ -109,7 +108,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">NOVA</a>
+  <a href="index.html" class="nav-logo">LOBA</a>
   <ul class="nav-links">
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="urunler.html">Ürünler</a></li>
@@ -135,8 +134,8 @@
 </div>
 
 <footer>
-  <span class="footer-logo">NOVA SHOP</span>
-  <span>© 2025 Nova Shop. Tüm hakları saklıdır.</span>
+  <span class="footer-logo">LOBA SHOP</span>
+  <span>© 2025 Loba Shop. Tüm hakları saklıdır.</span>
   <span>Güvenli alışveriş · SSL korumalı</span>
 </footer>
 
@@ -164,7 +163,7 @@
         return;
       }
 
-      document.title = 'NOVA SHOP — ' + p.ad;
+      document.title = 'LOBA SHOP — ' + p.ad;
 
       const badge    = p.badge    ? `<span class="product-badge">${p.badge}</span>` : '';
       const oldPrice = p.eski_fiyat
@@ -217,18 +216,14 @@
             </div>
 
             <div class="btn-row">
-              <button class="btn-cart" onclick="addToCart('${p.id}', '${p.ad}', ${p.fiyat}, '${p.emoji}', '${p.kategori}')">
+              <button class="btn-cart" id="btnCart" data-id="${p.id}" data-name="${p.ad}" data-price="${p.fiyat}" data-icon="${p.emoji}" data-cat="${p.kategori}" data-resim="${p.resim || ''}" onclick="addToCart()">
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
                   <path d="M16 10a4 4 0 01-8 0"/>
                 </svg>
                 Sepete Ekle
               </button>
-              <button class="btn-fav" title="Favorilere ekle">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-                </svg>
-              </button>
+
             </div>
           </div>
         </div>
@@ -245,22 +240,29 @@
     document.getElementById('qtyVal').textContent = adet;
   }
 
-  function addToCart(id, name, price, icon, cat) {
+  function addToCart() {
+    const btn   = document.getElementById('btnCart');
+    const id    = btn.dataset.id;
+    const name  = btn.dataset.name;
+    const price = btn.dataset.price;
+    const icon  = btn.dataset.icon;
+    const cat   = btn.dataset.cat;
+    const resim = btn.dataset.resim;
+
     let cart = [];
     try { cart = JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { cart = []; }
 
     const existing = cart.find(i => i.id == id);
     if (existing) { existing.qty += adet; }
-    else { cart.push({ id: String(id), name, price: parseFloat(price), icon, cat, qty: adet }); }
+    else { cart.push({ id: String(id), name, price: parseFloat(price), icon, cat, resim: resim || '', qty: adet }); }
 
     localStorage.setItem('novaCart', JSON.stringify(cart));
     window.__novaAuth?.updateCartBadge();
 
-    const btn = document.querySelector('.btn-cart');
     btn.textContent = '✓ Sepete Eklendi';
     btn.style.background = 'linear-gradient(135deg, #7ec87e, #5aaa5a)';
     setTimeout(() => {
-      btn.innerHTML = `<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> Sepete Ekle`;
+      btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> Sepete Ekle';
       btn.style.background = '';
     }, 2000);
   }
