@@ -59,4 +59,4 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute([$ad, $soyad, $telefon, $email, $sifreHash, $adres, $il, $ilce]);
 
-echo json_encode(['basari' => true, 'mesaj' => 'Kayıt başarılı']);
+echo json_encode(['basari' => true, 'mesaj' => 'Kayıt başarılı', 'user_id' => $pdo->lastInsertId()]);
