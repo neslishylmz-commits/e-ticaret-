@@ -36,6 +36,7 @@
 
       const k = data.kullanici;
       const kullanici = {
+        user_id: k.user_id,
         ad:      k.user_ad,
         soyad:   k.user_soyad   || '',
         email:   k.user_mail,
@@ -105,6 +106,7 @@
       }
 
       const kullanici = {
+        user_id: data.user_id || null,
         ad:      payload.ad,
         soyad:   payload.soyad,
         email:   payload.email,
@@ -237,7 +239,6 @@
               <div class="form-row full"><input class="dp-input" id="loginPass" type="password" placeholder="Şifre"/></div>
               <p style="color:#e07070;font-size:0.78rem;margin-top:6px;display:none;" id="loginErr"></p>
               <button class="dp-btn" onclick="window.__novaAuth.girisYap()">Giriş Yap</button>
-              <p class="dp-link">Şifreni mi unuttun? <a href="#">Sıfırla</a></p>
             </div>
             <div class="dropdown-panel" id="panel-kayit">
               <div class="dp-title">Yeni Hesap</div>
