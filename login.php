@@ -35,20 +35,12 @@ $stmt->execute([$email]);
 $kullanici = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$kullanici) {
-    echo json_encode([
-        'basari' => false,
-        'mesaj'  => 'E-posta bulunamadı',
-        'aranan_email' => $email
-    ]);
+    echo json_encode(['basari' => false, 'mesaj' => 'E-posta veya şifre hatalı']);
     exit;
 }
 
 if (!password_verify($sifre, $kullanici['user_sifre'])) {
-    echo json_encode([
-        'basari'      => false,
-        'mesaj'       => 'Şifre hatalı',
-        'hash_uzunluk' => strlen($kullanici['user_sifre'])
-    ]);
+    echo json_encode(['basari' => false, 'mesaj' => 'E-posta veya şifre hatalı']);
     exit;
 }
 
