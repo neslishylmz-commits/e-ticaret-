@@ -13,26 +13,20 @@
       --text: #f0ece4; --muted: #888; --border: #2a2a2a;
       --nav-h: 72px; --danger: #e07070; --success: #7ec87e;
     }
-
     body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
-
-    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
       background: rgba(13,13,13,0.92); backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; padding: 0 48px; z-index: 1000;
-      gap: 24px;
+      display: flex; align-items: center; padding: 0 48px; z-index: 1000; gap: 24px;
     }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-decoration: none; flex: 1; }
-
     .nav-steps { display: flex; align-items: center; gap: 0; }
     .ns { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
     .ns.done { color: var(--success); }
     .ns.active { color: var(--accent); font-weight: 600; }
     .ns-dot {
-      width: 26px; height: 26px; border-radius: 50%;
-      border: 2px solid var(--border);
+      width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.7rem; font-weight: 700; font-family: 'Playfair Display', serif;
       background: var(--bg); flex-shrink: 0;
@@ -41,135 +35,86 @@
     .ns.active .ns-dot { background: var(--accent); border-color: var(--accent); color: #0d0d0d; }
     .ns-line { width: 36px; height: 1px; background: var(--border); margin: 0 4px; }
     .ns-line.done { background: var(--success); }
-
     .nav-secure { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--muted); }
     .nav-secure svg { color: var(--success); }
-
-    /* ── PAGE ── */
     .page { padding: calc(var(--nav-h) + 48px) 48px 80px; max-width: 1180px; margin: 0 auto; }
-
     .page-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 4px; }
     .page-title span { color: var(--accent); }
     .page-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 40px; display: flex; align-items: center; gap: 6px; }
     .page-sub a { color: var(--accent); text-decoration: none; font-weight: 500; }
     .page-sub a:hover { text-decoration: underline; }
-
-    /* ── LAYOUT ── */
     .checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: 36px; align-items: start; }
     @media(max-width:960px){ .checkout-layout { grid-template-columns: 1fr; } }
-
-    /* ── SECTION CARD ── */
     .section-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      margin-bottom: 20px;
-      transition: border-color 0.3s;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px; margin-bottom: 20px; transition: border-color 0.3s;
     }
     .section-card.focused { border-color: rgba(232,192,125,0.25); }
-
     .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
     .section-num {
       width: 32px; height: 32px; border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 0.85rem; font-weight: 700; color: #0d0d0d; flex-shrink: 0;
+      font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: #0d0d0d; flex-shrink: 0;
     }
     .section-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text); }
     .section-badge {
-      margin-left: auto;
-      background: rgba(126,200,126,0.1); color: var(--success);
-      font-size: 0.7rem; font-weight: 600;
-      padding: 3px 10px; border-radius: 20px; letter-spacing: 0.3px;
+      margin-left: auto; background: rgba(126,200,126,0.1); color: var(--success);
+      font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.3px;
     }
-
-    /* ── FORM ── */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
     .form-full { grid-column: 1 / -1; }
-
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
     .form-input, .form-select {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 14px;
-      color: var(--text); font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem; outline: none;
+      border-radius: 10px; padding: 12px 14px; color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none;
       transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
     }
-    .form-input:focus, .form-select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(232,192,125,0.1);
-    }
+    .form-input:focus, .form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,192,125,0.1); }
     .form-input::placeholder { color: #444; }
     .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
     .form-select option { background: var(--card); }
     .form-hint { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
-
     .input-wrap { position: relative; }
     .input-wrap .form-input { padding-left: 42px; }
     .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 15px; pointer-events: none; }
     .input-wrap .card-brand { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; }
-
-    /* Card visual */
     .card-visual {
       background: linear-gradient(135deg, #1e1e2e 0%, #2d2040 100%);
       border: 1px solid var(--border); border-radius: 16px;
-      padding: 22px 24px; margin-bottom: 22px;
-      position: relative; overflow: hidden; min-height: 130px;
+      padding: 22px 24px; margin-bottom: 22px; position: relative; overflow: hidden; min-height: 130px;
     }
-    .card-visual::before {
-      content: ''; position: absolute; top: -40px; right: -40px;
-      width: 150px; height: 150px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,192,125,0.12), transparent 70%);
-    }
-    .card-visual::after {
-      content: ''; position: absolute; bottom: -30px; left: -20px;
-      width: 120px; height: 120px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,149,106,0.08), transparent 70%);
-    }
+    .card-visual::before { content: ''; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(232,192,125,0.12), transparent 70%); }
+    .card-visual::after { content: ''; position: absolute; bottom: -30px; left: -20px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(201,149,106,0.08), transparent 70%); }
     .cv-chip { font-size: 22px; margin-bottom: 12px; }
     .cv-number { font-family: 'DM Sans', sans-serif; font-size: 1.15rem; font-weight: 300; letter-spacing: 3px; color: rgba(240,236,228,0.9); margin-bottom: 16px; }
     .cv-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
     .cv-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(240,236,228,0.4); margin-bottom: 2px; }
     .cv-val { font-size: 0.85rem; color: rgba(240,236,228,0.8); font-weight: 500; }
     .cv-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); }
-
-    /* ── PAYMENT METHOD TABS ── */
     .pay-tabs { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
     .pay-tab {
-      flex: 1; min-width: 100px;
-      background: var(--surface); border: 1.5px solid var(--border);
-      border-radius: 12px; padding: 12px 8px;
-      text-align: center; cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      flex: 1; min-width: 100px; background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px;
     }
     .pay-tab:hover { border-color: rgba(232,192,125,0.3); }
     .pay-tab.active { border-color: var(--accent); background: rgba(232,192,125,0.07); }
     .pay-tab-icon { font-size: 20px; }
     .pay-tab-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); }
     .pay-tab.active .pay-tab-label { color: var(--accent); }
-
     .pay-panel { display: none; }
     .pay-panel.active { display: block; }
-
-    .kapida-note {
-      background: rgba(232,192,125,0.07); border: 1px solid rgba(232,192,125,0.2);
-      border-radius: 12px; padding: 16px 18px;
-      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
-    }
+    .kapida-note { background: rgba(232,192,125,0.07); border: 1px solid rgba(232,192,125,0.2); border-radius: 12px; padding: 16px 18px; font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
     .kapida-note strong { color: var(--accent); }
-
-    /* ── ADDRESS ── */
     .addr-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
     .addr-option {
       background: var(--surface); border: 1.5px solid var(--border);
       border-radius: 12px; padding: 14px 16px; cursor: pointer;
-      display: flex; gap: 12px; align-items: flex-start;
-      transition: border-color 0.2s;
+      display: flex; gap: 12px; align-items: flex-start; transition: border-color 0.2s;
     }
     .addr-option:hover { border-color: rgba(232,192,125,0.3); }
     .addr-option.selected { border-color: var(--accent); background: rgba(232,192,125,0.04); }
@@ -177,25 +122,18 @@
     .addr-tag { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 3px; }
     .addr-name { font-size: 0.875rem; font-weight: 600; margin-bottom: 2px; }
     .addr-text { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
-
     .new-addr-toggle {
       background: none; border: 1.5px dashed var(--border); color: var(--muted);
-      border-radius: 12px; padding: 12px; width: 100%;
-      font-size: 0.85rem; font-weight: 500; cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 12px; padding: 12px; width: 100%; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      transition: border-color 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
     .new-addr-toggle:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── CARGO ── */
     .cargo-options { display: flex; flex-direction: column; gap: 10px; }
     .cargo-option {
       background: var(--surface); border: 1.5px solid var(--border);
       border-radius: 12px; padding: 14px 16px; cursor: pointer;
-      display: flex; align-items: center; gap: 14px;
-      transition: border-color 0.2s;
+      display: flex; align-items: center; gap: 14px; transition: border-color 0.2s;
     }
-    .cargo-option:hover { border-color: rgba(232,192,125,0.3); }
     .cargo-option.selected { border-color: var(--accent); background: rgba(232,192,125,0.04); }
     .cargo-option input[type="radio"] { accent-color: var(--accent); flex-shrink: 0; }
     .cargo-icon { font-size: 22px; }
@@ -204,232 +142,112 @@
     .cargo-desc { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
     .cargo-price { font-weight: 700; font-size: 0.9rem; }
     .cargo-price.free { color: var(--success); }
-
     .form-textarea {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 14px;
-      color: var(--text); font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem; outline: none; resize: vertical;
-      min-height: 80px; width: 100%; transition: border-color 0.2s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px;
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none;
+      resize: vertical; min-height: 80px; width: 100%; transition: border-color 0.2s;
     }
     .form-textarea:focus { border-color: var(--accent); }
     .form-textarea::placeholder { color: #444; }
-
-    /* ── ORDER SUMMARY ── */
     .order-summary {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 20px; padding: 28px;
-      position: sticky; top: calc(var(--nav-h) + 24px);
+      border-radius: 20px; padding: 28px; position: sticky; top: calc(var(--nav-h) + 24px);
     }
     .os-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; }
     .os-items { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
     .os-item { display: flex; align-items: center; gap: 12px; }
-    .os-thumb {
-      width: 50px; height: 50px; background: var(--surface);
-      border-radius: 10px; border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; flex-shrink: 0; position: relative;
-    }
-    .os-qty-badge {
-      position: absolute; top: -6px; right: -6px;
-      width: 18px; height: 18px;
-      background: var(--accent); color: #0d0d0d;
-      border-radius: 50%; font-size: 0.65rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .os-thumb { width: 50px; height: 50px; background: var(--surface); border-radius: 10px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; position: relative; }
+    .os-qty-badge { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: var(--accent); color: #0d0d0d; border-radius: 50%; font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
     .os-item-info { flex: 1; }
     .os-item-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 2px; }
     .os-item-sub { font-size: 0.72rem; color: var(--muted); }
     .os-item-price { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--accent); }
-
     .price-rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
     .price-row { display: flex; justify-content: space-between; font-size: 0.85rem; }
     .price-row .lbl { color: var(--muted); }
     .price-row .val { font-weight: 500; }
     .price-row .val.green { color: var(--success); }
     .price-row .val.red { color: var(--danger); }
-
-    .total-row {
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid var(--border);
-      padding-top: 16px; margin-bottom: 20px;
-    }
+    .total-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 16px; margin-bottom: 20px; }
     .total-lbl { font-family: 'Playfair Display', serif; font-size: 1rem; }
     .total-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--accent); }
-
     .coupon-row { display: flex; gap: 8px; margin-bottom: 16px; }
-    .coupon-input {
-      flex: 1; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 10px 14px;
-      color: var(--text); font-size: 0.82rem; font-family: 'DM Sans', sans-serif;
-      outline: none; transition: border-color 0.2s;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
+    .coupon-input { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; color: var(--text); font-size: 0.82rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; text-transform: uppercase; letter-spacing: 1px; }
     .coupon-input:focus { border-color: var(--accent); }
     .coupon-input::placeholder { text-transform: none; letter-spacing: 0; color: #444; }
-    .coupon-btn {
-      padding: 10px 14px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; color: var(--accent);
-      font-size: 0.82rem; font-weight: 600; cursor: pointer;
-      transition: background 0.2s; white-space: nowrap;
-    }
+    .coupon-btn { padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--accent); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
     .coupon-btn:hover { background: var(--card); }
-    .coupon-applied {
-      display: none;
-      background: rgba(126,200,126,0.08); border: 1px solid rgba(126,200,126,0.2);
-      border-radius: 10px; padding: 10px 14px;
-      font-size: 0.82rem; justify-content: space-between; align-items: center;
-      margin-bottom: 16px;
-    }
+    .coupon-applied { display: none; background: rgba(126,200,126,0.08); border: 1px solid rgba(126,200,126,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .coupon-applied .ccode { color: var(--success); font-weight: 700; letter-spacing: 1px; }
     .coupon-applied button { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; }
     .coupon-applied button:hover { color: var(--danger); }
-
     .place-order-btn {
-      width: 100%; padding: 17px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d; font-weight: 700; font-size: 1rem;
-      border: none; border-radius: 12px; cursor: pointer;
-      letter-spacing: 0.3px;
-      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 8px 24px rgba(232,192,125,0.2);
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 17px; background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0d0d0d; font-weight: 700; font-size: 1rem; border: none; border-radius: 12px; cursor: pointer;
+      letter-spacing: 0.3px; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(232,192,125,0.2); display: flex; align-items: center; justify-content: center; gap: 8px;
     }
     .place-order-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 12px 30px rgba(232,192,125,0.28); }
     .place-order-btn:active { transform: translateY(0); }
-
     .trust-row { display: flex; justify-content: center; gap: 18px; margin-top: 14px; flex-wrap: wrap; }
     .trust-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--muted); }
-
     .pay-logos { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-    .pay-logo {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; padding: 5px 10px;
-      font-size: 0.72rem; font-weight: 600; color: var(--muted);
-    }
-
-    /* ── CHECKBOX ── */
+    .pay-logo { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 0.72rem; font-weight: 600; color: var(--muted); }
     .check-row { display: flex; gap: 10px; align-items: flex-start; }
     .check-row input[type="checkbox"] { accent-color: var(--accent); margin-top: 3px; flex-shrink: 0; width: 15px; height: 15px; }
     .check-row label { font-size: 0.8rem; color: var(--muted); line-height: 1.5; cursor: pointer; }
     .check-row label a { color: var(--accent); text-decoration: none; }
-
-    /* ── GİRİŞ UYARI BANNER ── */
     .login-banner {
       position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 999;
       background: linear-gradient(135deg, rgba(232,192,125,0.12), rgba(201,149,106,0.08));
-      border-bottom: 1px solid rgba(232,192,125,0.25);
-      backdrop-filter: blur(12px); padding: 14px 48px;
-      display: none; align-items: center; gap: 14px;
-      animation: slideDown 0.35s ease;
+      border-bottom: 1px solid rgba(232,192,125,0.25); backdrop-filter: blur(12px); padding: 14px 48px;
+      display: none; align-items: center; gap: 14px; animation: slideDown 0.35s ease;
     }
     .login-banner.show { display: flex; }
     @keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
     .banner-icon { font-size: 20px; flex-shrink: 0; }
     .banner-text { flex: 1; font-size: 0.875rem; color: var(--text); }
     .banner-text strong { color: var(--accent); }
-    .banner-btn {
-      padding: 9px 20px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d; font-weight: 700; font-size: 0.82rem;
-      border: none; border-radius: 20px; cursor: pointer;
-      white-space: nowrap; transition: opacity 0.2s; letter-spacing: 0.3px;
-    }
+    .banner-btn { padding: 9px 20px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.82rem; border: none; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; letter-spacing: 0.3px; }
     .banner-btn:hover { opacity: 0.88; }
-    .banner-close {
-      background: none; border: none; color: var(--muted);
-      font-size: 18px; cursor: pointer; padding: 4px 8px;
-      border-radius: 6px; transition: color 0.2s; flex-shrink: 0;
-    }
+    .banner-close { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: color 0.2s; flex-shrink: 0; }
     .banner-close:hover { color: var(--text); }
-
-    /* ── GİRİŞ MODAL ── */
-    .login-overlay {
-      display: none; position: fixed; inset: 0; z-index: 2000;
-      background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
-      align-items: center; justify-content: center;
-      animation: fadeIn 0.2s ease;
-    }
+    .login-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); align-items: center; justify-content: center; animation: fadeIn 0.2s ease; }
     .login-overlay.show { display: flex; }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    .login-modal {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 36px; width: 100%; max-width: 400px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-      animation: popIn 0.3s ease; position: relative;
-    }
+    .login-modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 36px; width: 100%; max-width: 400px; box-shadow: 0 32px 80px rgba(0,0,0,0.6); animation: popIn 0.3s ease; position: relative; }
     @keyframes popIn { from { opacity:0; transform:scale(0.95) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
     .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
     .modal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 24px; }
     .modal-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 22px; }
-    .modal-tab {
-      flex: 1; padding: 10px; text-align: center;
-      font-size: 0.85rem; font-weight: 600; cursor: pointer;
-      color: var(--muted); transition: color 0.2s;
-      border-bottom: 2px solid transparent;
-    }
+    .modal-tab { flex: 1; padding: 10px; text-align: center; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: color 0.2s; border-bottom: 2px solid transparent; }
     .modal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
     .modal-panel { display: none; }
     .modal-panel.active { display: block; }
-    .modal-input {
-      width: 100%; background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 14px; color: var(--text);
-      font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
-      outline: none; transition: border-color 0.2s; margin-bottom: 10px;
-    }
+    .modal-input { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none; transition: border-color 0.2s; margin-bottom: 10px; }
     .modal-input:focus { border-color: var(--accent); }
     .modal-input::placeholder { color: #444; }
     .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .modal-btn {
-      width: 100%; margin-top: 6px; padding: 13px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d; font-weight: 700; font-size: 0.9rem;
-      border: none; border-radius: 10px; cursor: pointer;
-      transition: opacity 0.2s; font-family: 'DM Sans', sans-serif;
-    }
+    .modal-btn { width: 100%; margin-top: 6px; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 10px; cursor: pointer; transition: opacity 0.2s; font-family: 'DM Sans', sans-serif; }
     .modal-btn:hover { opacity: 0.9; }
     .modal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .modal-err { font-size: 0.78rem; color: var(--danger); margin-top: 4px; display: none; }
-    .modal-close-btn {
-      position: absolute; top: 16px; right: 16px;
-      background: none; border: none; color: var(--muted);
-      font-size: 22px; cursor: pointer; line-height: 1;
-    }
-
+    .modal-close-btn { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
     .page.blurred { filter: blur(2px) brightness(0.6); pointer-events: none; user-select: none; }
-
-    /* ── SUCCESS OVERLAY ── */
-    .success-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(13,13,13,0.95); backdrop-filter: blur(10px);
-      z-index: 2000; align-items: center; justify-content: center;
-    }
+    .success-overlay { display: none; position: fixed; inset: 0; background: rgba(13,13,13,0.95); backdrop-filter: blur(10px); z-index: 2000; align-items: center; justify-content: center; }
     .success-overlay.show { display: flex; }
-    .success-box {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 24px; padding: 48px 40px;
-      text-align: center; max-width: 460px; width: 90%;
-      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
-    }
+    .success-box { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 40px; text-align: center; max-width: 460px; width: 90%; animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
     .success-icon { font-size: 64px; margin-bottom: 16px; }
     .success-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent); margin-bottom: 8px; }
     .success-sub { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px; }
     .success-order { background: var(--surface); border-radius: 12px; padding: 16px; margin-bottom: 28px; }
     .sorder-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
     .sorder-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent); font-weight: 700; }
-    .success-btn {
-      display: inline-block; padding: 14px 32px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #0d0d0d; font-weight: 700; font-size: 0.95rem;
-      border: none; border-radius: 12px; cursor: pointer;
-      text-decoration: none; transition: opacity 0.2s;
-    }
+    .success-btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.95rem; border: none; border-radius: 12px; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
     .success-btn:hover { opacity: 0.9; }
-
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
     @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
     .section-card { animation: fadeUp 0.35s ease both; }
     .section-card:nth-child(1) { animation-delay: 0.05s; }
@@ -437,7 +255,6 @@
     .section-card:nth-child(3) { animation-delay: 0.15s; }
     .section-card:nth-child(4) { animation-delay: 0.2s; }
     .section-card:nth-child(5) { animation-delay: 0.25s; }
-
     @media(max-width:640px){
       nav { padding: 0 20px; }
       .page { padding: calc(var(--nav-h) + 28px) 16px 60px; }
@@ -449,7 +266,6 @@
 </head>
 <body>
 
-<!-- ── NAV ── -->
 <nav>
   <a href="sepet.html" class="nav-logo">LOBA</a>
   <div class="nav-steps">
@@ -467,7 +283,6 @@
   </div>
 </nav>
 
-<!-- ── GİRİŞ UYARI BANNER ── -->
 <div class="login-banner" id="loginBanner">
   <div class="banner-icon">🔐</div>
   <div class="banner-text">
@@ -477,7 +292,6 @@
   <button class="banner-close" onclick="bannerKapat()" title="Kapat">✕</button>
 </div>
 
-<!-- ── GİRİŞ MODAL ── -->
 <div class="login-overlay" id="loginOverlay">
   <div class="login-modal">
     <button class="modal-close-btn" onclick="loginModalKapat()">✕</button>
@@ -487,16 +301,12 @@
       <div class="modal-tab active" onclick="modalTab('giris', this)">Giriş Yap</div>
       <div class="modal-tab" onclick="modalTab('kayit', this)">Kayıt Ol</div>
     </div>
-
-    <!-- Giriş Paneli -->
     <div class="modal-panel active" id="mpanel-giris">
       <input class="modal-input" id="mLoginEmail" type="email" placeholder="E-posta adresi"/>
       <input class="modal-input" id="mLoginPass" type="password" placeholder="Şifre"/>
       <p class="modal-err" id="mLoginErr"></p>
       <button class="modal-btn" id="mLoginBtn" onclick="modalGiris()">Giriş Yap</button>
     </div>
-
-    <!-- Kayıt Paneli -->
     <div class="modal-panel" id="mpanel-kayit">
       <div class="modal-row" style="margin-bottom:10px;">
         <input class="modal-input" id="mRegAd"    type="text" placeholder="Ad"    style="margin-bottom:0;"/>
@@ -516,16 +326,11 @@
   </div>
 </div>
 
-<!-- ── PAGE ── -->
 <div class="page" id="mainPage">
   <h1 class="page-title">Ödeme <span>Bilgileri</span></h1>
-  <p class="page-sub">
-    <a href="sepet.html">← Sepete Dön</a>
-  </p>
+  <p class="page-sub"><a href="sepet.html">← Sepete Dön</a></p>
 
   <div class="checkout-layout">
-
-    <!-- SOL KOLON -->
     <div class="left-col">
 
       <!-- 1. TESLİMAT ADRESİ -->
@@ -539,37 +344,62 @@
         <button class="new-addr-toggle" onclick="toggleNewAddr()">
           <span>＋</span> Yeni Adres Ekle
         </button>
+        <!-- YENİ ADRES FORMU -->
         <div id="newAddrForm" style="display:none; margin-top:18px;">
           <div class="form-grid" style="margin-bottom:14px;">
-            <div class="form-group"><label class="form-label">Ad</label><input class="form-input" type="text" placeholder="Adınız"/></div>
-            <div class="form-group"><label class="form-label">Soyad</label><input class="form-input" type="text" placeholder="Soyadınız"/></div>
+            <div class="form-group">
+              <label class="form-label">Ad</label>
+              <input class="form-input" id="naAd" type="text" placeholder="Adınız"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Soyad</label>
+              <input class="form-input" id="naSoyad" type="text" placeholder="Soyadınız"/>
+            </div>
             <div class="form-group form-full">
               <label class="form-label">Telefon</label>
-              <div class="input-wrap"><span class="input-icon">📞</span><input class="form-input" type="tel" placeholder="+90 5xx xxx xx xx"/></div>
+              <div class="input-wrap">
+                <span class="input-icon">📞</span>
+                <input class="form-input" id="naTelefon" type="tel" placeholder="+90 5xx xxx xx xx"/>
+              </div>
             </div>
-            <div class="form-group form-full"><label class="form-label">Adres Satırı</label><input class="form-input" type="text" placeholder="Mahalle, cadde, sokak, bina no, daire"/></div>
+            <div class="form-group form-full">
+              <label class="form-label">Adres Satırı</label>
+              <input class="form-input" id="naAdres" type="text" placeholder="Mahalle, cadde, sokak, bina no, daire"/>
+            </div>
             <div class="form-group">
               <label class="form-label">İl</label>
-              <select class="form-select">
-                <option>Kayseri</option><option>Ankara</option><option>İstanbul</option>
-                <option>İzmir</option><option>Bursa</option><option>Antalya</option>
+              <select class="form-select" id="naIl">
+                <option>Adana</option><option>Ankara</option><option>Antalya</option>
+                <option>Bursa</option><option>İstanbul</option><option>İzmir</option>
+                <option>Kayseri</option><option>Konya</option><option>Mersin</option>
               </select>
             </div>
-            <div class="form-group"><label class="form-label">İlçe</label><input class="form-input" type="text" placeholder="İlçe"/></div>
-            <div class="form-group"><label class="form-label">Posta Kodu</label><input class="form-input" type="text" placeholder="38000"/></div>
+            <div class="form-group">
+              <label class="form-label">İlçe</label>
+              <input class="form-input" id="naIlce" type="text" placeholder="İlçe"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Posta Kodu</label>
+              <input class="form-input" id="naPostakodu" type="text" placeholder="38000"/>
+            </div>
             <div class="form-group">
               <label class="form-label">Adres Başlığı</label>
-              <select class="form-select"><option>Ev</option><option>İş</option><option>Diğer</option></select>
+              <select class="form-select" id="naBaslik">
+                <option>Ev</option><option>İş</option><option>Diğer</option>
+              </select>
             </div>
           </div>
-          <div class="check-row">
-            <input type="checkbox" id="saveAddr"/>
-            <label for="saveAddr">Bu adresi kaydet</label>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:6px;">
+            <button onclick="yeniAdresKaydet()" id="adresKaydetBtn" style="padding:11px 24px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#0d0d0d; font-weight:700; font-size:0.85rem; border:none; border-radius:10px; cursor:pointer; font-family:'DM Sans',sans-serif;">
+              💾 Adresi Kaydet
+            </button>
+            <span id="adresKaydetMesaj" style="font-size:0.8rem; color:var(--success); display:none;">✅ Adres kaydedildi!</span>
+            <span id="adresKaydetHata"  style="font-size:0.8rem; color:var(--danger);  display:none;"></span>
           </div>
         </div>
       </div>
 
-      <!-- 2. FATURA ADRESİ -->
+      <!-- 2. FATURA BİLGİLERİ -->
       <div class="section-card" id="sc2">
         <div class="section-header">
           <div class="section-num">2</div>
@@ -582,11 +412,9 @@
           </div>
         </div>
         <div id="billAddrSection" style="display:none;">
-          <div style="margin-bottom:14px;">
-            <div class="pay-tabs" style="margin-bottom:14px;">
-              <div class="pay-tab active" onclick="selectBillType(this,'bireysel')"><div class="pay-tab-icon">👤</div><div class="pay-tab-label">Bireysel</div></div>
-              <div class="pay-tab" onclick="selectBillType(this,'kurumsal')"><div class="pay-tab-icon">🏢</div><div class="pay-tab-label">Kurumsal</div></div>
-            </div>
+          <div class="pay-tabs" style="margin-bottom:14px;">
+            <div class="pay-tab active" onclick="selectBillType(this,'bireysel')"><div class="pay-tab-icon">👤</div><div class="pay-tab-label">Bireysel</div></div>
+            <div class="pay-tab" onclick="selectBillType(this,'kurumsal')"><div class="pay-tab-icon">🏢</div><div class="pay-tab-label">Kurumsal</div></div>
           </div>
           <div id="billForm-bireysel">
             <div class="form-grid">
@@ -638,8 +466,6 @@
           <div class="pay-tab active" onclick="switchPay(this,'kredi')"><div class="pay-tab-icon">💳</div><div class="pay-tab-label">Kredi / Banka Kartı</div></div>
           <div class="pay-tab" onclick="switchPay(this,'kapida')"><div class="pay-tab-icon">🏠</div><div class="pay-tab-label">Kapıda Ödeme</div></div>
         </div>
-
-        <!-- Kredi Kartı -->
         <div class="pay-panel active" id="panel-kredi">
           <div class="card-visual">
             <div class="cv-chip">💳</div>
@@ -680,13 +506,7 @@
             <input type="checkbox" id="save3d"/>
             <label for="save3d">3D Secure ile öde (önerilir)</label>
           </div>
-          <div style="margin-top:8px;" class="check-row">
-            <input type="checkbox" id="saveCard"/>
-            <label for="saveCard">Bu kartı kaydet</label>
-          </div>
         </div>
-
-        <!-- Kapıda Ödeme -->
         <div class="pay-panel" id="panel-kapida">
           <div class="kapida-note">
             <strong>Kapıda Nakit Ödeme</strong> seçeneği ile ürünü teslim alırken ödeme yapabilirsiniz.<br/><br/>
@@ -701,7 +521,7 @@
         </div>
       </div>
 
-      <!-- 5. SİPARİŞ NOTU & SÖZLEŞMELER -->
+      <!-- 5. EK BİLGİLER -->
       <div class="section-card" id="sc5">
         <div class="section-header">
           <div class="section-num">5</div>
@@ -715,18 +535,17 @@
           <div class="check-row"><input type="checkbox" id="kvkk" required/><label for="kvkk"><a href="#">KVKK Aydınlatma Metni</a>'ni okudum, kabul ediyorum. *</label></div>
           <div class="check-row"><input type="checkbox" id="mesafeli" required/><label for="mesafeli"><a href="#">Mesafeli Satış Sözleşmesi</a>'ni okudum, kabul ediyorum. *</label></div>
           <div class="check-row"><input type="checkbox" id="iptal"/><label for="iptal"><a href="#">Ön Bilgilendirme Formu</a>'nu okudum, kabul ediyorum.</label></div>
-          <div class="check-row"><input type="checkbox" id="eposta"/><label for="eposta">Kampanya ve fırsatlardan haberdar olmak için e-posta almak istiyorum.</label></div>
+          <div class="check-row"><input type="checkbox" id="eposta"/><label for="eposta">Kampanya ve fırsatlardan haberdar olmak istiyorum.</label></div>
         </div>
       </div>
 
-    </div>
+    </div><!-- /left-col -->
 
     <!-- SAĞ KOLON -->
     <div class="right-col">
       <div class="order-summary">
         <div class="os-title">Sipariş Özeti</div>
         <div class="os-items" id="osItems"></div>
-
         <div class="coupon-row" id="couponRow">
           <input class="coupon-input" id="couponInp" type="text" placeholder="İndirim / promosyon kodu"/>
           <button class="coupon-btn" onclick="applyCoupon()">Uygula</button>
@@ -738,7 +557,6 @@
           </div>
           <button onclick="removeCoupon()">✕</button>
         </div>
-
         <div class="price-rows">
           <div class="price-row"><span class="lbl">Ara Toplam</span><span class="val" id="araToplam">₺0</span></div>
           <div class="price-row" id="couponPriceRow" style="display:none;"><span class="lbl">Kupon İndirimi</span><span class="val red" id="couponDisc">−₺0</span></div>
@@ -746,19 +564,16 @@
           <div class="price-row"><span class="lbl">KDV (%20)</span><span class="val" id="taxVal">₺0</span></div>
           <div class="price-row" id="kapidaRow" style="display:none;"><span class="lbl">Kapıda Ödeme Bedeli</span><span class="val">₺15,00</span></div>
         </div>
-
         <div class="total-row">
           <span class="total-lbl">Toplam</span>
           <span class="total-val" id="grandTotal">₺0</span>
         </div>
-
         <button class="place-order-btn" onclick="placeOrder()">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
           Siparişi Tamamla
         </button>
-
         <div class="trust-row">
           <div class="trust-item">🔒 SSL Güvenli</div>
           <div class="trust-item">↩️ 14 Gün İade</div>
@@ -772,12 +587,11 @@
           <span class="pay-logo">3D Secure</span>
         </div>
       </div>
-    </div>
+    </div><!-- /right-col -->
 
-  </div>
-</div>
+  </div><!-- /checkout-layout -->
+</div><!-- /page -->
 
-<!-- ── SUCCESS OVERLAY ── -->
 <div class="success-overlay" id="successOverlay">
   <div class="success-box">
     <div class="success-icon">🎉</div>
@@ -793,7 +607,6 @@
 
 <script>
   // ── GİRİŞ KONTROL ──
-  // auth.js yüklendikten sonra çalışması için window.onload kullanıyoruz
   window.addEventListener('load', function () {
     loginKontrol();
   });
@@ -808,14 +621,16 @@
     }
   }
 
-  function kullaniciAdresiniYukle(kullanici) {
+  async function kullaniciAdresiniYukle(kullanici) {
     const adOptions = document.querySelector('.addr-options');
     if (!adOptions) return;
+
+    // Önce profil adresini göster
     adOptions.innerHTML = `
       <label class="addr-option selected" onclick="selectAddr(this)">
         <input type="radio" name="addr" checked/>
         <div>
-          <div class="addr-tag">🏠 Ev</div>
+          <div class="addr-tag">🏠 Kayıtlı Adres</div>
           <div class="addr-name">${kullanici.ad || ''} ${kullanici.soyad || ''}</div>
           <div class="addr-text">
             ${kullanici.adres || 'Adres girilmemiş'}<br/>
@@ -825,17 +640,41 @@
         </div>
       </label>
     `;
+
+    // Veritabanındaki ek adresleri çek
+    const user_id = kullanici.id || kullanici.user_id;
+    if (!user_id) return;
+
+    try {
+      const res  = await fetch('/Loba/adresler_getir.php?user_id=' + user_id);
+      const data = await res.json();
+      if (!data.basari || !data.adresler.length) return;
+
+      data.adresler.forEach(a => {
+        const opt = document.createElement('label');
+        opt.className = 'addr-option';
+        opt.onclick = function() { selectAddr(this); };
+        opt.innerHTML = `
+          <input type="radio" name="addr"/>
+          <div>
+            <div class="addr-tag">📍 ${a.baslik || 'Adres'}</div>
+            <div class="addr-name">${a.ad || ''} ${a.soyad || ''}</div>
+            <div class="addr-text">
+              ${a.adres || ''}<br/>
+              ${a.ilce ? a.ilce + ' / ' : ''}${a.il || ''}
+              ${a.telefon ? '· ' + a.telefon : ''}
+            </div>
+          </div>
+        `;
+        adOptions.appendChild(opt);
+      });
+    } catch(e) {}
   }
 
-  function bannerKapat() {
-    document.getElementById('loginBanner').classList.remove('show');
-  }
-  function loginModalAc() {
-    document.getElementById('loginOverlay').classList.add('show');
-  }
-  function loginModalKapat() {
-    document.getElementById('loginOverlay').classList.remove('show');
-  }
+  function bannerKapat() { document.getElementById('loginBanner').classList.remove('show'); }
+  function loginModalAc() { document.getElementById('loginOverlay').classList.add('show'); }
+  function loginModalKapat() { document.getElementById('loginOverlay').classList.remove('show'); }
+
   function modalTab(tab, el) {
     document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
@@ -843,7 +682,7 @@
     document.getElementById('mpanel-' + tab).classList.add('active');
   }
 
-  // Giriş — PHP login.php kullanır
+  // ── GİRİŞ ──
   async function modalGiris() {
     const email = document.getElementById('mLoginEmail').value.trim();
     const pass  = document.getElementById('mLoginPass').value;
@@ -855,7 +694,6 @@
       err.style.display = 'block';
       return;
     }
-
     btn.textContent = 'Giriş yapılıyor...';
     btn.disabled = true;
 
@@ -875,14 +713,18 @@
 
       const k = data.kullanici;
       const kullanici = {
-        ad: k.user_ad, soyad: k.user_soyad || '',
-        email: k.user_mail, telefon: k.user_telefon || '',
-        adres: k.user_adres || '', il: k.user_il || '', ilce: k.user_ilce || ''
+        id:      k.user_id,
+        ad:      k.user_ad,
+        soyad:   k.user_soyad   || '',
+        email:   k.user_mail,
+        telefon: k.user_telefon || '',
+        adres:   k.user_adres   || '',
+        il:      k.user_il      || '',
+        ilce:    k.user_ilce    || ''
       };
 
       localStorage.setItem('kullanici', JSON.stringify(kullanici));
       if (window.__novaAuth) window.__novaAuth.renderNavAccount();
-
       loginModalKapat();
       document.getElementById('loginBanner').classList.remove('show');
       document.getElementById('mainPage').classList.remove('blurred');
@@ -897,7 +739,7 @@
     }
   }
 
-  // Kayıt — PHP register.php kullanır
+  // ── KAYIT ──
   async function modalKayit() {
     const ad    = document.getElementById('mRegAd').value.trim();
     const email = document.getElementById('mRegEmail').value.trim();
@@ -910,14 +752,15 @@
       err.style.display = 'block';
       return;
     }
-
     btn.textContent = 'Kaydediliyor...';
     btn.disabled = true;
 
     const payload = {
-      ad, email, sifre: pass,
+      ad,
       soyad:   document.getElementById('mRegSoyad').value.trim(),
       telefon: document.getElementById('mRegTel').value.trim(),
+      email,
+      sifre:   pass,
       adres:   document.getElementById('mRegAdres').value.trim(),
       il:      document.getElementById('mRegIl').value.trim(),
       ilce:    document.getElementById('mRegIlce').value.trim()
@@ -938,14 +781,18 @@
       }
 
       const kullanici = {
-        ad: payload.ad, soyad: payload.soyad, email: payload.email,
-        telefon: payload.telefon, adres: payload.adres,
-        il: payload.il, ilce: payload.ilce
+        id:      data.user_id,
+        ad:      payload.ad,
+        soyad:   payload.soyad,
+        email:   payload.email,
+        telefon: payload.telefon,
+        adres:   payload.adres,
+        il:      payload.il,
+        ilce:    payload.ilce
       };
 
       localStorage.setItem('kullanici', JSON.stringify(kullanici));
       if (window.__novaAuth) window.__novaAuth.renderNavAccount();
-
       loginModalKapat();
       document.getElementById('loginBanner').classList.remove('show');
       document.getElementById('mainPage').classList.remove('blurred');
@@ -960,28 +807,23 @@
     }
   }
 
-  // Overlay dışına tıklayınca kapat
   document.getElementById('loginOverlay').addEventListener('click', function(e) {
     if (e.target === this) loginModalKapat();
   });
 
-  // ── SEPETİ SİPARİŞ ÖZETİNE YÜKLE ──
+  // ── SEPETİ YÜKLE ──
   let cartBase = 0;
   function sepetiYukle() {
     const cart = (() => { try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; } })();
     const container = document.getElementById('osItems');
-
     if (cart.length === 0) {
       container.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;text-align:center;padding:16px 0;">Sepetiniz boş.</p>';
       return;
     }
-
     container.innerHTML = cart.map(item => `
       <div class="os-item">
         <div class="os-thumb">
-          ${item.resim
-            ? `<img src="${item.resim}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"/>`
-            : item.icon}
+          ${item.resim ? `<img src="${item.resim}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"/>` : (item.icon || '📦')}
           <div class="os-qty-badge">${item.qty}</div>
         </div>
         <div class="os-item-info">
@@ -991,12 +833,99 @@
         <div class="os-item-price">₺${(item.price * item.qty).toLocaleString('tr-TR')}</div>
       </div>
     `).join('');
-
     cartBase = cart.reduce((s, i) => s + i.price * i.qty, 0);
     const kdv = Math.round(cartBase * 0.20);
-    document.getElementById('araToplam').textContent = '₺' + cartBase.toLocaleString('tr-TR');
-    document.getElementById('taxVal').textContent    = '₺' + kdv.toLocaleString('tr-TR');
+    document.getElementById('araToplam').textContent  = '₺' + cartBase.toLocaleString('tr-TR');
+    document.getElementById('taxVal').textContent     = '₺' + kdv.toLocaleString('tr-TR');
     document.getElementById('grandTotal').textContent = '₺' + (cartBase + kdv).toLocaleString('tr-TR');
+  }
+
+  // ── YENİ ADRES KAYDET ──
+  async function yeniAdresKaydet() {
+    const adresVal = document.getElementById('naAdres').value.trim();
+    const ilVal    = document.getElementById('naIl').value.trim();
+    const mesajEl  = document.getElementById('adresKaydetMesaj');
+    const hataEl   = document.getElementById('adresKaydetHata');
+    mesajEl.style.display = 'none';
+    hataEl.style.display  = 'none';
+
+    if (!adresVal || !ilVal) {
+      hataEl.textContent   = '⚠️ Adres ve il alanları zorunludur.';
+      hataEl.style.display = 'inline';
+      return;
+    }
+
+    const kullanici = (() => { try { return JSON.parse(localStorage.getItem('kullanici')); } catch(e) { return null; } })();
+
+    if (!kullanici || !kullanici.id) {
+      hataEl.textContent   = '⚠️ Giriş yapmanız gerekiyor.';
+      hataEl.style.display = 'inline';
+      return;
+    }
+
+    const btn = document.getElementById('adresKaydetBtn');
+    btn.textContent = '⏳ Kaydediliyor...';
+    btn.disabled = true;
+
+    const adVal     = document.getElementById('naAd').value.trim();
+    const soyadVal  = document.getElementById('naSoyad').value.trim();
+    const telVal    = document.getElementById('naTelefon').value.trim();
+    const ilceVal   = document.getElementById('naIlce').value.trim();
+    const postaVal  = document.getElementById('naPostakodu').value.trim();
+    const baslikVal = document.getElementById('naBaslik').value;
+
+    try {
+      const res  = await fetch('/Loba/adres_kaydet.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kullanici_id: kullanici.id,
+          ad: adVal, soyad: soyadVal, telefon: telVal,
+          adres: adresVal, il: ilVal, ilce: ilceVal,
+          posta_kodu: postaVal, baslik: baslikVal
+        })
+      });
+      const data = await res.json();
+
+      if (!data.basari) {
+        hataEl.textContent   = '❌ ' + (data.mesaj || 'Kayıt başarısız.');
+        hataEl.style.display = 'inline';
+        return;
+      }
+
+      mesajEl.style.display = 'inline';
+
+      // Yeni adresi listeye ekle
+      const adOptions = document.querySelector('.addr-options');
+      const newOpt = document.createElement('label');
+      newOpt.className = 'addr-option';
+      newOpt.onclick = function() { selectAddr(this); };
+      newOpt.innerHTML = `
+        <input type="radio" name="addr"/>
+        <div>
+          <div class="addr-tag">${baslikVal}</div>
+          <div class="addr-name">${adVal} ${soyadVal}</div>
+          <div class="addr-text">${adresVal}<br/>${ilceVal ? ilceVal + ' / ' : ''}${ilVal}${telVal ? ' · ' + telVal : ''}</div>
+        </div>
+      `;
+      adOptions.appendChild(newOpt);
+
+      // Formu temizle ve kapat
+      ['naAd','naSoyad','naTelefon','naAdres','naIlce','naPostakodu'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      setTimeout(() => {
+        document.getElementById('newAddrForm').style.display = 'none';
+        mesajEl.style.display = 'none';
+      }, 2000);
+
+    } catch(e) {
+      hataEl.textContent   = '❌ Sunucuya ulaşılamadı.';
+      hataEl.style.display = 'inline';
+    } finally {
+      btn.textContent = '💾 Adresi Kaydet';
+      btn.disabled = false;
+    }
   }
 
   sepetiYukle();
@@ -1020,7 +949,6 @@
   }
 
   let cargoFee = 0;
-
   function switchPay(el, type) {
     document.querySelectorAll('#sc4 .pay-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
@@ -1078,7 +1006,6 @@
     document.getElementById('couponInp').value = '';
     recalcTotal();
   }
-
   function recalcTotal() {
     let base = cartBase;
     if (couponActive) base -= Math.round(base * 0.20);
@@ -1098,7 +1025,7 @@
     const siparisNo    = 'LOBA-' + Math.floor(10000 + Math.random() * 90000);
     const cart         = (() => { try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; } })();
     const kullanici    = window.__novaAuth ? window.__novaAuth.getKullanici() : null;
-    const user_id      = kullanici ? (kullanici.user_id || kullanici.id || 0) : 0;
+    const user_id      = kullanici ? (kullanici.id || kullanici.user_id || 0) : 0;
     const kapida       = document.getElementById('kapidaRow').style.display !== 'none';
     const odemeYontemi = document.querySelector('#sc4 .pay-tab.active .pay-tab-label')?.textContent?.trim() || 'kredi';
 
@@ -1115,13 +1042,13 @@
         body: JSON.stringify({
           siparis_no:      siparisNo,
           kullanici_email: kullanici ? kullanici.email : '',
-          user_id:         user_id,
+          user_id,
           urunler:         cart,
           ara_toplam:      base,
-          kdv:             kdv,
+          kdv,
           kargo_ucreti:    cargoFee,
           kapida_ucret:    kapidaUcret,
-          toplam:          toplam,
+          toplam,
           odeme_yontemi:   odemeYontemi
         })
       });
@@ -1135,7 +1062,6 @@
     }
 
     localStorage.removeItem('novaCart');
-
     setTimeout(() => {
       document.getElementById('sorderNum').textContent = '#' + siparisNo;
       document.getElementById('successOverlay').classList.add('show');
@@ -1145,13 +1071,11 @@
   document.getElementById('couponInp').addEventListener('keydown', e => {
     if (e.key === 'Enter') applyCoupon();
   });
-
   document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
     el.addEventListener('focus', () => el.closest('.section-card')?.classList.add('focused'));
     el.addEventListener('blur',  () => el.closest('.section-card')?.classList.remove('focused'));
   });
 </script>
-
 <script src="auth.js"></script>
 </body>
 </html>
