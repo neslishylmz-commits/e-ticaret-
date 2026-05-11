@@ -15,16 +15,12 @@
     }
     body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
 
-    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: rgba(13,13,13,0.85); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 48px; z-index: 1000; }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); letter-spacing: 2px; text-decoration: none; flex: 1; }
     .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
     .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 18px; border-radius: 24px; transition: background 0.2s, color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { background: var(--card); color: var(--accent); }
-    .cart-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; color: var(--text); text-decoration: none; border-radius: 50%; transition: background 0.2s; }
-    .cart-icon:hover { background: var(--card); }
-    .cart-badge { position: absolute; top: 4px; right: 4px; background: var(--accent); color: #0d0d0d; font-size: 0.6rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: none; align-items: center; justify-content: center; }
-    .nav-account { position: relative; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { background: var(--card); color: var(--accent); }
+    .nav-account { position: relative; }
     .account-dropdown { display: none; position: absolute; top: calc(100% + 14px); right: 0; width: 340px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.6); overflow: hidden; animation: dropIn 0.25s ease; }
     .account-dropdown.open { display: block; }
     @keyframes dropIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
@@ -41,15 +37,10 @@
     .dp-input::placeholder { color: var(--muted); }
     .dp-btn { width: 100%; margin-top: 14px; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #0d0d0d; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 10px; cursor: pointer; transition: opacity 0.2s; font-family: 'DM Sans', sans-serif; }
     .dp-btn:hover { opacity: 0.9; }
-    .dp-link { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
-    .dp-link a { color: var(--accent); text-decoration: none; }
-    .err-msg { font-size: 0.78rem; margin-top: 6px; color: var(--danger); display: none; }
 
-    /* PAGE */
     .page { padding: calc(var(--nav-h) + 48px) 48px 80px; max-width: 1100px; margin: 0 auto; }
     .account-layout { display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
 
-    /* Sidebar */
     .account-sidebar { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; height: fit-content; position: sticky; top: calc(var(--nav-h) + 24px); }
     .user-avatar { width: 64px; height: 64px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 12px; }
     .user-name { text-align: center; font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
@@ -60,22 +51,18 @@
     .sidebar-logout { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; color: var(--danger); text-decoration: none; font-size: 0.875rem; font-weight: 500; cursor: pointer; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 20px; transition: background 0.2s; }
     .sidebar-logout:hover { background: rgba(224,112,112,0.08); }
 
-    /* Tabs / Panels */
     .account-panel { display: none; }
     .account-panel.active { display: block; }
 
-    /* Stats */
     .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
     .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
     .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent); font-weight: 700; }
     .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
 
-    /* Section card */
     .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; margin-bottom: 24px; }
     .section-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .section-card-title span { color: var(--accent); }
 
-    /* Profile form */
     .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .input-group { display: flex; flex-direction: column; gap: 6px; }
     .input-group.full { grid-column: 1 / -1; }
@@ -86,7 +73,6 @@
     .save-btn:hover { opacity: 0.9; }
     .save-msg { font-size: 0.82rem; color: var(--green); margin-top: 10px; display: none; }
 
-    /* Orders */
     .order-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
     .order-item:last-child { border-bottom: none; }
     .order-icon { font-size: 2rem; width: 48px; text-align: center; flex-shrink: 0; }
@@ -99,13 +85,22 @@
     .status-shipping { background: rgba(232,192,125,0.15); color: var(--accent); }
     .empty-orders { text-align: center; padding: 40px 0; color: var(--muted); font-size: 0.875rem; }
 
-    /* Address */
-    .address-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
-    .address-box p { font-size: 0.875rem; line-height: 1.7; color: var(--text); }
-    .address-box .address-label { font-size: 0.7rem; color: var(--accent); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    /* Adres kartları */
+    .address-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .address-box { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px; transition: border-color 0.2s; }
+    .address-box:hover { border-color: rgba(232,192,125,0.3); }
+    .address-label { font-size: 0.7rem; color: var(--accent); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .address-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .address-text { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
 
     footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.82rem; }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); font-weight: 700; }
+
+    @media(max-width:768px) {
+      .account-layout { grid-template-columns: 1fr; }
+      .page { padding: calc(var(--nav-h) + 24px) 16px 60px; }
+      nav { padding: 0 20px; }
+    }
   </style>
 </head>
 <body>
@@ -116,12 +111,13 @@
     <li><a href="index.html">Ana Sayfa</a></li>
     <li><a href="urunler.html">Ürünler</a></li>
     <li>
-      <a href="sepet.html" class="cart-icon" title="Sepet">
-        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+      <a href="sepet.html" style="display:flex;align-items:center;gap:6px;color:var(--text);text-decoration:none;font-size:0.9rem;font-weight:500;padding:8px 18px;border-radius:24px;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--card)';this.style.color='var(--accent)'" onmouseout="this.style.background='none';this.style.color='var(--text)'">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 01-8 0"/>
         </svg>
-        <span class="cart-badge" id="cartBadge">0</span>
+        Sepetim
+        <span id="cartBadge" style="background:var(--accent);color:#0d0d0d;font-size:0.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
       </a>
     </li>
     <li class="nav-account">
@@ -134,7 +130,6 @@
 <main class="page">
   <div class="account-layout">
 
-    <!-- Sidebar -->
     <aside class="account-sidebar">
       <div class="user-avatar">👤</div>
       <p class="user-name" id="sidebarAd">—</p>
@@ -165,7 +160,6 @@
       </div>
     </aside>
 
-    <!-- Main Panels -->
     <div class="account-main">
 
       <!-- GENEL BAKIŞ -->
@@ -193,7 +187,7 @@
         </div>
       </div>
 
-      <!-- PROFİL BİLGİLERİ -->
+      <!-- PROFİL -->
       <div class="account-panel" id="panel-profil">
         <div class="section-card">
           <h3 class="section-card-title">
@@ -201,41 +195,20 @@
             Profil <span>Bilgileri</span>
           </h3>
           <div class="profile-grid">
-            <div class="input-group">
-              <label class="input-label">Ad</label>
-              <input class="profile-input" id="pAd" type="text"/>
-            </div>
-            <div class="input-group">
-              <label class="input-label">Soyad</label>
-              <input class="profile-input" id="pSoyad" type="text"/>
-            </div>
-            <div class="input-group">
-              <label class="input-label">Telefon</label>
-              <input class="profile-input" id="pTel" type="tel"/>
-            </div>
-            <div class="input-group">
-              <label class="input-label">E-posta</label>
-              <input class="profile-input" id="pEmail" type="email"/>
-            </div>
-            <div class="input-group full">
-              <label class="input-label">Adres</label>
-              <input class="profile-input" id="pAdres" type="text"/>
-            </div>
-            <div class="input-group">
-              <label class="input-label">İl</label>
-              <input class="profile-input" id="pIl" type="text"/>
-            </div>
-            <div class="input-group">
-              <label class="input-label">İlçe</label>
-              <input class="profile-input" id="pIlce" type="text"/>
-            </div>
+            <div class="input-group"><label class="input-label">Ad</label><input class="profile-input" id="pAd" type="text"/></div>
+            <div class="input-group"><label class="input-label">Soyad</label><input class="profile-input" id="pSoyad" type="text"/></div>
+            <div class="input-group"><label class="input-label">Telefon</label><input class="profile-input" id="pTel" type="tel"/></div>
+            <div class="input-group"><label class="input-label">E-posta</label><input class="profile-input" id="pEmail" type="email"/></div>
+            <div class="input-group full"><label class="input-label">Adres</label><input class="profile-input" id="pAdres" type="text"/></div>
+            <div class="input-group"><label class="input-label">İl</label><input class="profile-input" id="pIl" type="text"/></div>
+            <div class="input-group"><label class="input-label">İlçe</label><input class="profile-input" id="pIlce" type="text"/></div>
           </div>
           <button class="save-btn" onclick="profilKaydet()">Değişiklikleri Kaydet</button>
           <p class="save-msg" id="saveMsg">✓ Bilgileriniz güncellendi.</p>
         </div>
       </div>
 
-      <!-- SİPARİŞLERİM -->
+      <!-- SİPARİŞLER -->
       <div class="account-panel" id="panel-siparisler">
         <div class="section-card">
           <h3 class="section-card-title">
@@ -253,7 +226,9 @@
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             Kayıtlı <span>Adreslerim</span>
           </h3>
-          <div id="adresBox"></div>
+          <div id="adresBox">
+            <div class="empty-orders">⏳ Adresler yükleniyor...</div>
+          </div>
         </div>
       </div>
 
@@ -268,7 +243,6 @@
 </footer>
 
 <script>
-  // ── YARDIMCI ──
   function getKullanici() {
     try { return JSON.parse(localStorage.getItem('kullanici')); } catch(e) { return null; }
   }
@@ -276,16 +250,23 @@
     try { return JSON.parse(localStorage.getItem('novaCart')) || []; } catch(e) { return []; }
   }
 
-  // Veritabanından siparişleri user_id ile çek
   async function getSiparislerDB(user_id) {
     try {
-      const res  = await fetch('/Loba/siparis_getir.php?user_id=' + user_id);
+      const res  = await fetch('/Loba/siparisler_getir.php?user_id=' + user_id);
       const data = await res.json();
       return data.basari ? data.siparisler : [];
     } catch(e) { return []; }
   }
 
-  // ── PANEL GEÇİŞİ ──
+  // ── VERİTABANINDAN ADRESLERİ ÇEK ──
+  async function getAdreslerDB(user_id) {
+    try {
+      const res  = await fetch('/Loba/adresler_getir.php?user_id=' + user_id);
+      const data = await res.json();
+      return data.basari ? data.adresler : [];
+    } catch(e) { return []; }
+  }
+
   function showPanel(id, link) {
     document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
@@ -293,12 +274,11 @@
     if (link) link.classList.add('active');
   }
 
-  // ── SİPARİŞ HTML ──
   function siparisHTML(s) {
     const statusClass = s.durum === 'Teslim Edildi' ? 'status-delivered' : 'status-shipping';
     const urunler = s.urunler || s.items || [];
     const ilkUrun = urunler[0];
-    const toplam  = s.toplam || urunler.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const toplam  = s.toplam || 0;
     const tarih   = s.created_at ? new Date(s.created_at).toLocaleDateString('tr-TR') : (s.tarih || '');
     return `
       <div class="order-item">
@@ -313,20 +293,222 @@
     `;
   }
 
-  // ── SAYFA YÜKLE ──
-  async function sayfaYukle() {
-    const kullanici = getKullanici();
+  // ── ADRESLERİ GÖSTER ──
+  // ── ADRESLERİ GÖSTER ──
+  function adresHTML(adresler, kullanici) {
+    const adresEl = document.getElementById('adresBox');
+    let tumAdresler = [...adresler];
 
-    if (!kullanici) {
-      window.location.href = 'index.html';
+    if (kullanici.adres && adresler.length === 0) {
+      tumAdresler.push({
+        id: 0, baslik: 'Kayıtlı Adres',
+        ad: kullanici.ad, soyad: kullanici.soyad || '',
+        adres: kullanici.adres, il: kullanici.il || '',
+        ilce: kullanici.ilce || '', telefon: kullanici.telefon || ''
+      });
+    }
+
+    if (tumAdresler.length === 0) {
+      adresEl.innerHTML = '<div class="empty-orders">Kayıtlı adresiniz bulunmuyor.<br><a href="odeme.html" style="color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block;">Adres Ekle →</a></div>';
       return;
     }
 
-    // Sidebar bilgileri
+    const kullanici_id = kullanici.id || kullanici.user_id;
+
+    adresEl.innerHTML = `
+      <div class="address-grid">
+        ${tumAdresler.map(a => `
+          <div class="address-box" id="adres-kart-${a.id}">
+            <div class="address-label">📍 ${a.baslik || 'Adres'}</div>
+            <div class="address-name">${a.ad || ''} ${a.soyad || ''}</div>
+            <div class="address-text">
+              ${a.adres || ''}<br/>
+              ${a.ilce ? a.ilce + ' / ' : ''}${a.il || ''}
+              ${a.posta_kodu ? ' · ' + a.posta_kodu : ''}
+              ${a.telefon ? '<br/>' + a.telefon : ''}
+            </div>
+            ${a.id ? `
+            <div style="display:flex;gap:8px;margin-top:14px;">
+              <button onclick="adresDuzenle(${a.id})" style="flex:1;padding:8px;background:rgba(232,192,125,0.1);border:1px solid rgba(232,192,125,0.3);color:var(--accent);border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
+                ✏️ Düzenle
+              </button>
+              <button onclick="adresSil(${a.id}, ${kullanici_id})" style="flex:1;padding:8px;background:rgba(224,112,112,0.1);border:1px solid rgba(224,112,112,0.3);color:var(--danger);border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
+                🗑️ Sil
+              </button>
+            </div>` : ''}
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- DÜZENLEME MODALI -->
+      <div id="adresDuzenleModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:2000;align-items:center;justify-content:center;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;width:100%;max-width:480px;position:relative;">
+          <button onclick="adresDuzenleKapat()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;">✕</button>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:20px;">Adresi <span style="color:var(--accent);">Düzenle</span></h3>
+          <input type="hidden" id="duzenleAdresId"/>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Ad</label>
+              <input class="profile-input" id="duzenleAd" type="text" style="margin-top:4px;"/>
+            </div>
+            <div>
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Soyad</label>
+              <input class="profile-input" id="duzenleSoyad" type="text" style="margin-top:4px;"/>
+            </div>
+            <div style="grid-column:1/-1;">
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Telefon</label>
+              <input class="profile-input" id="duzenleTelefon" type="tel" style="margin-top:4px;"/>
+            </div>
+            <div style="grid-column:1/-1;">
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Adres</label>
+              <input class="profile-input" id="duzenleAdres" type="text" style="margin-top:4px;"/>
+            </div>
+            <div>
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">İl</label>
+              <input class="profile-input" id="duzenleIl" type="text" style="margin-top:4px;"/>
+            </div>
+            <div>
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">İlçe</label>
+              <input class="profile-input" id="duzenleIlce" type="text" style="margin-top:4px;"/>
+            </div>
+            <div>
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Posta Kodu</label>
+              <input class="profile-input" id="duzenlePostakodu" type="text" style="margin-top:4px;"/>
+            </div>
+            <div>
+              <label style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;">Başlık</label>
+              <select class="profile-input" id="duzenleBaslik" style="margin-top:4px;appearance:none;">
+                <option>Ev</option><option>İş</option><option>Diğer</option><option>Kayıtlı Adres</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:20px;">
+            <button onclick="adresDuzenleKaydet()" style="flex:1;padding:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0d0d0d;font-weight:700;font-size:0.9rem;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;">
+              💾 Kaydet
+            </button>
+            <button onclick="adresDuzenleKapat()" style="padding:13px 20px;background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:0.9rem;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;">
+              İptal
+            </button>
+          </div>
+          <p id="duzenleHata" style="font-size:0.78rem;color:var(--danger);margin-top:8px;display:none;"></p>
+        </div>
+      </div>
+    `;
+
+    // Adres verilerini JS'e aktar (düzenleme için)
+    window._adreslerData = tumAdresler;
+  }
+  function silOnayModal() {
+    return new Promise(resolve => {
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:3000;display:flex;align-items:center;justify-content:center;';
+        modal.innerHTML = `
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px;max-width:380px;width:90%;text-align:center;">
+                <div style="font-size:48px;margin-bottom:16px;">🗑️</div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px;">Adresi Sil</h3>
+                <p style="color:var(--muted);font-size:0.875rem;margin-bottom:28px;line-height:1.6;">Bu adresi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
+                <div style="display:flex;gap:10px;">
+                    <button id="silIptal" style="flex:1;padding:13px;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:0.9rem;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;">İptal</button>
+                    <button id="silOnayla" style="flex:1;padding:13px;background:linear-gradient(135deg,#e07070,#c05050);color:#fff;font-weight:700;font-size:0.9rem;border:none;border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;">Evet, Sil</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        document.getElementById('silIptal').onclick  = () => { modal.remove(); resolve(false); };
+        document.getElementById('silOnayla').onclick = () => { modal.remove(); resolve(true); };
+    });
+}
+  // ── ADRES SİL ──
+  async function adresSil(adres_id, kullanici_id) {
+    const onay = await silOnayModal();
+    if (!onay) return;
+    try {
+      const res  = await fetch('/Loba/adres_sil.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ adres_id, kullanici_id })
+      });
+      const data = await res.json();
+      if (data.basari) {
+        document.getElementById('adres-kart-' + adres_id)?.remove();
+      } else {
+        alert('Silinemedi: ' + data.mesaj);
+      }
+    } catch(e) { alert('Sunucuya ulaşılamadı.'); }
+  }
+
+  // ── ADRES DÜZENLE ──
+  function adresDuzenle(adres_id) {
+    const a = (window._adreslerData || []).find(x => x.id == adres_id);
+    if (!a) return;
+
+    document.getElementById('duzenleAdresId').value   = a.id;
+    document.getElementById('duzenleAd').value        = a.ad      || '';
+    document.getElementById('duzenleSoyad').value     = a.soyad   || '';
+    document.getElementById('duzenleTelefon').value   = a.telefon || '';
+    document.getElementById('duzenleAdres').value     = a.adres   || '';
+    document.getElementById('duzenleIl').value        = a.il      || '';
+    document.getElementById('duzenleIlce').value      = a.ilce    || '';
+    document.getElementById('duzenlePostakodu').value = a.posta_kodu || '';
+    document.getElementById('duzenleBaslik').value    = a.baslik  || 'Ev';
+
+    const modal = document.getElementById('adresDuzenleModal');
+    modal.style.display = 'flex';
+  }
+
+  function adresDuzenleKapat() {
+    document.getElementById('adresDuzenleModal').style.display = 'none';
+  }
+
+  async function adresDuzenleKaydet() {
+    const kullanici   = getKullanici();
+    const kullanici_id = kullanici.id || kullanici.user_id;
+    const adres_id    = document.getElementById('duzenleAdresId').value;
+    const hataEl      = document.getElementById('duzenleHata');
+    hataEl.style.display = 'none';
+
+    const payload = {
+      adres_id:     parseInt(adres_id),
+      kullanici_id: parseInt(kullanici_id),
+      ad:           document.getElementById('duzenleAd').value.trim(),
+      soyad:        document.getElementById('duzenleSoyad').value.trim(),
+      telefon:      document.getElementById('duzenleTelefon').value.trim(),
+      adres:        document.getElementById('duzenleAdres').value.trim(),
+      il:           document.getElementById('duzenleIl').value.trim(),
+      ilce:         document.getElementById('duzenleIlce').value.trim(),
+      posta_kodu:   document.getElementById('duzenlePostakodu').value.trim(),
+      baslik:       document.getElementById('duzenleBaslik').value
+    };
+
+    try {
+      const res  = await fetch('/Loba/adres_guncelle.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!data.basari) {
+        hataEl.textContent   = '❌ ' + (data.mesaj || 'Güncellenemedi.');
+        hataEl.style.display = 'block';
+        return;
+      }
+      adresDuzenleKapat();
+      // Sayfayı yenile
+      const adresler = await getAdreslerDB(kullanici_id);
+      adresHTML(adresler, kullanici);
+    } catch(e) {
+      hataEl.textContent   = '❌ Sunucuya ulaşılamadı.';
+      hataEl.style.display = 'block';
+    }
+  }
+
+  async function sayfaYukle() {
+    const kullanici = getKullanici();
+    if (!kullanici) { window.location.href = 'index.html'; return; }
+
     document.getElementById('sidebarAd').textContent    = kullanici.ad + ' ' + (kullanici.soyad || '');
     document.getElementById('sidebarEmail').textContent = kullanici.email;
 
-    // Profil formu doldur
     document.getElementById('pAd').value    = kullanici.ad      || '';
     document.getElementById('pSoyad').value = kullanici.soyad   || '';
     document.getElementById('pTel').value   = kullanici.telefon || '';
@@ -335,50 +517,43 @@
     document.getElementById('pIl').value    = kullanici.il      || '';
     document.getElementById('pIlce').value  = kullanici.ilce    || '';
 
-    // Siparişleri user_id ile veritabanından çek
-    const user_id    = kullanici.user_id || kullanici.id;
-    const siparisler = user_id ? await getSiparislerDB(user_id) : [];
-    const aktifKargo = siparisler.filter(s => s.durum !== 'Teslim Edildi').length;
+    const user_id = kullanici.id || kullanici.user_id;
 
-    // İstatistikler
+    // Siparişler ve adresler paralel çek
+    const [siparisler, adresler] = await Promise.all([
+      user_id ? getSiparislerDB(user_id) : Promise.resolve([]),
+      user_id ? getAdreslerDB(user_id)   : Promise.resolve([])
+    ]);
+
+    const aktifKargo = siparisler.filter(s => s.durum !== 'Teslim Edildi').length;
     document.getElementById('statSiparis').textContent = siparisler.length;
     document.getElementById('statKargo').textContent   = aktifKargo;
     const cartQty = getCart().reduce((s, i) => s + i.qty, 0);
     document.getElementById('statSepet').textContent   = cartQty;
 
-    // Genel bakış — son 3 sipariş
     const genelEl = document.getElementById('genelSiparisler');
     genelEl.innerHTML = siparisler.length === 0
       ? '<div class="empty-orders">Henüz siparişiniz bulunmuyor.<br><a href="urunler.html" style="color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block;">Alışverişe Başla →</a></div>'
       : siparisler.slice(0, 3).map(siparisHTML).join('');
 
-    // Tüm siparişler
     const tumEl = document.getElementById('tumSiparisler');
     tumEl.innerHTML = siparisler.length === 0
       ? '<div class="empty-orders">Henüz siparişiniz bulunmuyor.<br><a href="urunler.html" style="color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block;">Alışverişe Başla →</a></div>'
       : siparisler.map(siparisHTML).join('');
 
-    // Adres
-    const adresEl = document.getElementById('adresBox');
-    adresEl.innerHTML = kullanici.adres
-      ? `<div class="address-box">
-           <p class="address-label">📍 Varsayılan Adres</p>
-           <p>${kullanici.adres}<br>${kullanici.ilce ? kullanici.ilce + ' / ' : ''}${kullanici.il || ''}<br>${kullanici.telefon || ''}</p>
-         </div>`
-      : '<div class="empty-orders">Kayıtlı adresiniz bulunmuyor. Profil bilgilerinden ekleyebilirsiniz.</div>';
+    // Adresleri göster
+    adresHTML(adresler, kullanici);
 
-    // Sepet badge
     const badge = document.getElementById('cartBadge');
     if (badge) { badge.textContent = cartQty; badge.style.display = cartQty > 0 ? 'flex' : 'none'; }
   }
 
-  // ── PROFİL KAYDET — veritabanına yaz ──
   async function profilKaydet() {
     const kullanici = getKullanici();
     if (!kullanici) return;
 
     const yeni = {
-      user_id: kullanici.user_id || kullanici.id,
+      user_id: kullanici.id || kullanici.user_id,
       ad:      document.getElementById('pAd').value.trim(),
       soyad:   document.getElementById('pSoyad').value.trim(),
       telefon: document.getElementById('pTel').value.trim(),
@@ -400,7 +575,6 @@
       return;
     }
 
-    // localStorage'ı da güncelle
     kullanici.ad      = yeni.ad;
     kullanici.soyad   = yeni.soyad;
     kullanici.telefon = yeni.telefon;
@@ -408,8 +582,6 @@
     kullanici.il      = yeni.il;
     kullanici.ilce    = yeni.ilce;
     localStorage.setItem('kullanici', JSON.stringify(kullanici));
-
-    // Sidebar güncelle
     document.getElementById('sidebarAd').textContent = kullanici.ad + ' ' + (kullanici.soyad || '');
 
     const msg = document.getElementById('saveMsg');
@@ -417,13 +589,11 @@
     setTimeout(() => { msg.style.display = 'none'; }, 3000);
   }
 
-  // Çıkış butonu
   document.getElementById('logoutBtn').onclick = function() {
     if (window.__novaAuth) window.__novaAuth.cikisYap();
     else { localStorage.removeItem('kullanici'); window.location.href = 'index.html'; }
   };
 
-  // Başlat
   sayfaYukle();
 </script>
 <script src="auth.js"></script>
