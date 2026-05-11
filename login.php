@@ -12,7 +12,7 @@ $user   = "root";
 $pass   = "";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo json_encode(['basari' => false, 'mesaj' => 'DB hatası: ' . $e->getMessage()]);
@@ -23,27 +23,34 @@ $raw  = file_get_contents('php://input');
 $data = json_decode($raw, true);
 
 if (!$data || !isset($data['email'], $data['sifre'])) {
-    echo json_encode(['basari' => false, 'mesaj' => 'Eksik veri']);
+    echo json_encode(['basari' => false, 'mesaj' => 'Eksik veri', 'raw' => $raw]);
     exit;
 }
 
 $email = trim($data['email']);
-$sifre = trim($data['sifre']);
+$sifre = $data['sifre']; // trim() kaldırıldı — şifredeki boşlukları koruyalım
 
 $stmt = $pdo->prepare("SELECT * FROM user_data WHERE user_mail = ?");
 $stmt->execute([$email]);
 $kullanici = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$kullanici) {
-    echo json_encode(['basari' => false, 'mesaj' => 'E-posta veya şifre hatalı']);
+    echo json_encode([
+        'basari' => false,
+        'mesaj'  => 'E-posta bulunamadı',
+        'aranan_email' => $email
+    ]);
     exit;
 }
 
 if (!password_verify($sifre, $kullanici['user_sifre'])) {
-    echo json_encode(['basari' => false, 'mesaj' => 'E-posta veya şifre hatalı']);
+    echo json_encode([
+        'basari'      => false,
+        'mesaj'       => 'Şifre hatalı',
+        'hash_uzunluk' => strlen($kullanici['user_sifre'])
+    ]);
     exit;
 }
 
 unset($kullanici['user_sifre']);
-
 echo json_encode(['basari' => true, 'kullanici' => $kullanici]);
