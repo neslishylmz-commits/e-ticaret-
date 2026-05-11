@@ -36,6 +36,7 @@
 
       const k = data.kullanici;
       const kullanici = {
+        id:      k.user_id,   // ← hem id hem user_id kaydediyoruz
         user_id: k.user_id,
         ad:      k.user_ad,
         soyad:   k.user_soyad   || '',
@@ -50,6 +51,13 @@
       renderNavAccount();
       const dd = document.getElementById('accountDropdown');
       if (dd) dd.classList.remove('open');
+
+      // Eğer ödeme sayfasındaysak banner'ı kapat
+      const banner = document.getElementById('loginBanner');
+      const page   = document.getElementById('mainPage');
+      if (banner) banner.classList.remove('show');
+      if (page)   page.classList.remove('blurred');
+      if (typeof kullaniciAdresiniYukle === 'function') kullaniciAdresiniYukle(kullanici);
 
     } catch (e) {
       if (err) { err.textContent = 'Sunucuya ulaşılamadı.'; err.style.display = 'block'; }
@@ -106,6 +114,7 @@
       }
 
       const kullanici = {
+        id:      data.user_id || null,   // ← hem id hem user_id
         user_id: data.user_id || null,
         ad:      payload.ad,
         soyad:   payload.soyad,
@@ -119,6 +128,13 @@
       renderNavAccount();
       const dd = document.getElementById('accountDropdown');
       if (dd) dd.classList.remove('open');
+
+      // Eğer ödeme sayfasındaysak banner'ı kapat
+      const banner = document.getElementById('loginBanner');
+      const page   = document.getElementById('mainPage');
+      if (banner) banner.classList.remove('show');
+      if (page)   page.classList.remove('blurred');
+      if (typeof kullaniciAdresiniYukle === 'function') kullaniciAdresiniYukle(kullanici);
 
     } catch (e) {
       if (err) { err.textContent = 'Sunucuya ulaşılamadı.'; err.style.display = 'block'; }
