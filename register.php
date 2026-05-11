@@ -59,4 +59,15 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute([$ad, $soyad, $telefon, $email, $sifreHash, $adres, $il, $ilce]);
 
-echo json_encode(['basari' => true, 'mesaj' => 'Kayıt başarılı', 'user_id' => $pdo->lastInsertId()]);
+$yeni_user_id = $pdo->lastInsertId();
+
+// Adres varsa adresler tablosuna da kaydet
+if ($adres) {
+    $stmtA = $pdo->prepare("
+        INSERT INTO adresler (kullanici_id, ad, soyad, telefon, adres, il, ilce, baslik)
+        VALUES (?, ?, ?, ?, ?, ?, ?, 'Kayıtlı Adres')
+    ");
+    $stmtA->execute([$yeni_user_id, $ad, $soyad, $telefon, $adres, $il, $ilce]);
+}
+
+echo json_encode(['basari' => true, 'mesaj' => 'Kayıt başarılı', 'user_id' => $yeni_user_id]);
